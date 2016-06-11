@@ -71,8 +71,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Figura.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Controladora.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
+    <ClInclude Include="Figura.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

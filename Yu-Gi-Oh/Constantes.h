@@ -1,7 +1,9 @@
 #pragma once
 using namespace System::Windows::Forms;
+using namespace System::Drawing;
 
-namespace YuGiOh {
+namespace YuGiOh
+{
 	//Dimensiones del Windows Form(cuantas coordenadas tendra), en unidades;
 	extern const int MYFORM_WIDTH;
 	extern const int MYFORM_HEIGHT;
@@ -16,4 +18,10 @@ namespace YuGiOh {
 	//Controles
 	extern const Keys CONTROLES_CAMBIO_ESCENA;
 
+	//Enums
+	public enum Direcciones { Arriba, Abajo, Izquierda, Derecha };
+	public enum TiposDeCartaS { Criticos, Basicos, Extra, Electivos };
+	public enum Pertenencia { Tienda, DeMarco, DeProfesor };
+	public enum ModoBatalla { Defensa, Ataque };
+	public enum Objetos { Piso__, Puerta, Moneda, Pared_ };
 }

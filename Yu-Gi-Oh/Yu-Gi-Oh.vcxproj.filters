@@ -18,7 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyForm.cpp">
+    <ClCompile Include="Figura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controladora.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,6 +30,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constantes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Figura.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
