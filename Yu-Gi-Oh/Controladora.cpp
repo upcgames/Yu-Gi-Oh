@@ -14,6 +14,16 @@ namespace YuGiOh
 	
 	//Controles
 	const Keys CONTROLES_CAMBIO_ESCENA = Keys::E;
+	
+	const Keys CONTROLES_MOVER_ARRIBA_1 = Keys::W;
+	const Keys CONTROLES_MOVER_ABAJO_1 = Keys::S;
+	const Keys CONTROLES_MOVER_IZQUIERDA_1 = Keys::A;
+	const Keys CONTROLES_MOVER_DERECHA_1 = Keys::D;
+
+	const Keys CONTROLES_MOVER_ARRIBA_2 = Keys::Up;
+	const Keys CONTROLES_MOVER_ABAJO_2 = Keys::Down;
+	const Keys CONTROLES_MOVER_IZQUIERDA_2 = Keys::Left;
+	const Keys CONTROLES_MOVER_DERECHA_2 = Keys::Right;
 
 	MyForm::MyForm(void)
 	{
@@ -27,8 +37,8 @@ namespace YuGiOh
 		imagenes = gcnew Imagenes();
 
 		//Inicializamos las escenas
-		//introduccion = gcnew Introduccion();
-		//inicio = gcnew Inicio();
+		//menu = gcnew Menu();
+		introduccion = gcnew Introduccion();
 		campus = gcnew Campus();
 		//instrucciones = gcnew Instrucciones();
 		//pausa = gcnew Pausa();
@@ -36,11 +46,11 @@ namespace YuGiOh
 		//congratulations = gcnew Congratulations();
 		//gameOver = gcnew GameOver();
 		//creditos = gcnew Creditos();
-		
+
 		se_cambiara_de_escena = false;
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(campus);
+		Escena::EmpezarConEscena(introduccion);
 		//Nivel::PasarANivel(1);
 	}
 

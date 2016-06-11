@@ -74,6 +74,7 @@
     <ClCompile Include="Campus.cpp" />
     <ClCompile Include="Escena.cpp" />
     <ClCompile Include="Figura.cpp" />
+    <ClCompile Include="Instroduccion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controladora.cpp" />
     <ClCompile Include="Marco.cpp" />

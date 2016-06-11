@@ -24,9 +24,9 @@ namespace YuGiOh
 		//static ArrBombas^ bombas;
 		//static ArrMalignos^ malignos;
 
-		//static Introduccion^ introduccion;
-		//static Inicio^ inicio;
+		//static Menu^ menu;
 		//static Instrucciones^ instrucciones;
+		static Introduccion^ introduccion;
 		static Campus^ campus;
 		//static Pausa^ pausa;
 		//static YouWin^ youWin;

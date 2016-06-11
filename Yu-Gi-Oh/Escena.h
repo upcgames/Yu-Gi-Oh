@@ -27,12 +27,20 @@ namespace YuGiOh
 	public ref class Campus : public Escena
 	{
 	public:
-		int mapa;
+		int pabellon;
 		Campus();
 		char cheatKey;
 		void mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 		void teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+	};
+
+	public ref class Introduccion : public Escena
+	{
+	public:
+		Introduccion();
+		void timerTick(System::Object^  sender, System::EventArgs^  e);
+		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 	};
 }

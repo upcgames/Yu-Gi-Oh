@@ -68,13 +68,13 @@ namespace YuGiOh
 
 	void Campus::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if (e->KeyCode == Keys::W || MyForm::marco->direccion == Arriba)
+		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && MyForm::marco->direccion == Arriba)
 			MyForm::marco->Detener();
-		else if (e->KeyCode == Keys::S || MyForm::marco->direccion == Abajo)
+		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && MyForm::marco->direccion == Abajo)
 			MyForm::marco->Detener();
-		else if (e->KeyCode == Keys::A || MyForm::marco->direccion == Izquierda)
+		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && MyForm::marco->direccion == Izquierda)
 			MyForm::marco->Detener();
-		else if (e->KeyCode == Keys::D || MyForm::marco->direccion == Derecha)
+		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && MyForm::marco->direccion == Derecha)
 			MyForm::marco->Detener();
 
 

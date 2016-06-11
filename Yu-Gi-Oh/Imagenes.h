@@ -12,7 +12,7 @@ namespace YuGiOh
 		static Image^ Money1;
 		static Image^ Doors1;
 		static Image^ Extra1;
+
+		static Image^ Introduccion;
 	};
-
-
 }

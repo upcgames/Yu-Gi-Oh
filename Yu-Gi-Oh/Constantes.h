@@ -17,6 +17,14 @@ namespace YuGiOh
 	
 	//Controles
 	extern const Keys CONTROLES_CAMBIO_ESCENA;
+	extern const Keys CONTROLES_MOVER_ARRIBA_1;
+	extern const Keys CONTROLES_MOVER_ABAJO_1;
+	extern const Keys CONTROLES_MOVER_IZQUIERDA_1;
+	extern const Keys CONTROLES_MOVER_DERECHA_1;
+	extern const Keys CONTROLES_MOVER_ARRIBA_2;
+	extern const Keys CONTROLES_MOVER_ABAJO_2;
+	extern const Keys CONTROLES_MOVER_IZQUIERDA_2;
+	extern const Keys CONTROLES_MOVER_DERECHA_2;
 
 	//Enums
 	public enum Direcciones { Arriba, Abajo, Izquierda, Derecha };

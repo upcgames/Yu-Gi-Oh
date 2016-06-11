@@ -33,6 +33,9 @@
     <ClCompile Include="Campus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Instroduccion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
