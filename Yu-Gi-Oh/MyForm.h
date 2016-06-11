@@ -1,5 +1,8 @@
 #pragma once
 #include "Constantes.h"
+#include "Imagenes.h"
+#include "Marco.h"
+#include "Escena.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -13,8 +16,9 @@ namespace YuGiOh
 	public:
 		//aleatorio generara todos los numeros random en el futuro
 		static Random^ aleatorio;
-		//static Imagenes^ imagenes;
-		//static Marco^ marco;
+		static Imagenes^ imagenes;
+		
+		static Marco^ marco;
 
 		//static MatrizObjetos^ objetos;
 		//static ArrBombas^ bombas;
@@ -23,7 +27,7 @@ namespace YuGiOh
 		//static Introduccion^ introduccion;
 		//static Inicio^ inicio;
 		//static Instrucciones^ instrucciones;
-		//static Juego^ juego;
+		static Campus^ campus;
 		//static Pausa^ pausa;
 		//static YouWin^ youWin;
 		//static Congratulations^ congratulations;

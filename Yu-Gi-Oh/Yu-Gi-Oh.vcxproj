@@ -71,9 +71,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Campus.cpp" />
+    <ClCompile Include="Escena.cpp" />
     <ClCompile Include="Figura.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controladora.cpp" />
+    <ClCompile Include="Marco.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -84,7 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
+    <ClInclude Include="Escena.h" />
     <ClInclude Include="Figura.h" />
+    <ClInclude Include="Imagenes.h" />
+    <ClInclude Include="Marco.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
