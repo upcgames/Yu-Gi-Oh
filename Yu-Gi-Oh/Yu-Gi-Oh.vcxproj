@@ -75,7 +75,7 @@
     <ClCompile Include="Dialogo.cpp" />
     <ClCompile Include="Escena.cpp" />
     <ClCompile Include="Figura.cpp" />
-    <ClCompile Include="Instroduccion.cpp" />
+    <ClCompile Include="Introduccion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controladora.cpp" />
     <ClCompile Include="Marco.cpp" />

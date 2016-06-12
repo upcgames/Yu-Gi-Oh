@@ -1,25 +1,35 @@
 #pragma once
+#include "Escena.h"
+
 using namespace System;
 using namespace System::Drawing;
 using namespace System::Windows::Forms;
 
 namespace YuGiOh
 {
-	ref class Dialogo
+	public ref class Dialogo : public Escena
 	{
 	public:
-		int posicion;
-		int numero_de_caracteres;
-		int punto_de_comienzo;
-		String^ mensaje;
+		array<String^>^ mensajes;
+		String^ oracion_actual;
+		Escena^ escena_anterior;
 		Font^ fuente;
-		BufferedGraphics^ buffer;
-		KeyEventHandler^ onKeyDown;
-		EventHandler^ onTimerTick;
+
+		int posicion_oracion;
+		int posicion_parrafo;
+		bool esperando_confirmacion;
+
+		float punto_de_comienzo;
+		int numero_de_caracteres;
+		int numero_de_oraciones;
+		
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-		void EmpezarAEscribir();
-		void TerminarDeEscribir();
-		Dialogo(String^ mensaje);
+		void mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		
+		void empezarAEscribir();
+		void escribirCaracter();
+		void terminarDeEscribir();
+		Dialogo(array<String^>^ mensajes);
 	};
 }

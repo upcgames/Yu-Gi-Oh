@@ -6,10 +6,10 @@ namespace YuGiOh
 {
 
 	//Definicion de las constantes
-	const int MYFORM_WIDTH = 15;
-	const int MYFORM_HEIGHT = 9;
-	const int RESOLUCION_X = 56;
-	const int RESOLUCION_Y = 56;
+	const int MYFORM_WIDTH = 20;
+	const int MYFORM_HEIGHT = 14;
+	const int RESOLUCION_X = 48;
+	const int RESOLUCION_Y = 48;
 	const int MYFORM_SIZE_WIDTH = MYFORM_WIDTH * RESOLUCION_X;
 	const int MYFORM_SIZE_HEIGHT = MYFORM_HEIGHT * RESOLUCION_Y;
 	const float TAMANIO_LETRAS = 24.0f;

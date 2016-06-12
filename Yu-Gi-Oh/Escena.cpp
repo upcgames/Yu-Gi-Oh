@@ -11,10 +11,20 @@ namespace YuGiOh
 		contador = 0;
 	}
 
+	Escena^ Escena::getEscenaActual() {
+		if (MyForm::campus->activo)
+			return MyForm::campus;
+
+		if (MyForm::introduccion->activo)
+			return MyForm::introduccion;
+		
+		return nullptr;
+	}
+
 	void Escena::CambiarEscena(Escena^ escena)
 	{
-		if (MyForm::campus->activo)
-			DesactivarEscena(MyForm::campus);
+		Escena^ escena_actual = getEscenaActual();
+		DesactivarEscena(escena_actual);
 
 		ActivarEscena(escena);
 	}
@@ -31,9 +41,9 @@ namespace YuGiOh
 
 		if (escena->onTimerTick != nullptr)
 			MyForm::myform->timer->Tick += escena->onTimerTick;
-		if (escena->onTimerTick != nullptr)
+		if (escena->onKeyDown != nullptr)
 			MyForm::myform->KeyDown += escena->onKeyDown;
-		if (escena->onTimerTick != nullptr)
+		if (escena->onKeyUp != nullptr)
 			MyForm::myform->KeyUp += escena->onKeyUp;
 		if (escena->onMouseClick != nullptr)
 			MyForm::myform->MouseClick += escena->onMouseClick;
@@ -45,9 +55,9 @@ namespace YuGiOh
 
 		if (escena->onTimerTick != nullptr)
 			MyForm::myform->timer->Tick -= escena->onTimerTick;
-		if (escena->onTimerTick != nullptr)
+		if (escena->onKeyDown != nullptr)
 			MyForm::myform->KeyDown -= escena->onKeyDown;
-		if (escena->onTimerTick != nullptr)
+		if (escena->onKeyUp != nullptr)
 			MyForm::myform->KeyUp -= escena->onKeyUp;
 		if (escena->onMouseClick != nullptr)
 			MyForm::myform->MouseClick -= escena->onMouseClick;

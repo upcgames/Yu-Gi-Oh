@@ -33,10 +33,10 @@
     <ClCompile Include="Campus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instroduccion.cpp">
+    <ClCompile Include="Dialogo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dialogo.cpp">
+    <ClCompile Include="Introduccion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

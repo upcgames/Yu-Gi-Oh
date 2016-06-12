@@ -18,6 +18,7 @@ namespace YuGiOh
 		MouseEventHandler^ onMouseClick;
 		EventHandler^ onTimerTick;
 		Escena();
+		static Escena^ getEscenaActual();
 		static void CambiarEscena(Escena^ escena);
 		static void EmpezarConEscena(Escena^ escena);
 		static void ActivarEscena(Escena^ escena);
