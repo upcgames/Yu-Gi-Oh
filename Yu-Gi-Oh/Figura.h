@@ -9,13 +9,14 @@ namespace YuGiOh
 		int x;
 		int y;
 		Posicion(int x, int y);
+		Posicion(int x, int y, bool multiplicar_automaticamente);
 		static bool	operator ==(const Posicion^ p1, const Posicion^ p2);
 		void IgualarA(Posicion^ p);
 		void IgualarA(int x, int y);
-		void Aumentar(Direcciones direccion, int velocidad);
+		void Aumentar(Direccion direccion, int velocidad);
 		void ToZero();
 		Rectangle getBody(int ancho, int alto);
-		Posicion^ getPosicionIncrementada(Direcciones direccion, int velocidad);
+		Posicion^ getPosicionIncrementada(Direccion direccion, int velocidad);
 	};
 
 	public ref class Figura

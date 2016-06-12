@@ -1,6 +1,6 @@
 #include "Escena.h"
 #include "Imagenes.h"
-#include "MyForm.h"
+#include "Juego.h"
 #include "Dialogo.h"
 
 namespace YuGiOh
@@ -18,8 +18,8 @@ namespace YuGiOh
 			if (!dibujado)
 			{
 				buffer->Graphics->DrawImage(Imagenes::Introduccion, Rectangle(0, 0, 832, 577));
-				buffer->Render(MyForm::graphics);
-				MyForm::dialogo = gcnew Dialogo(gcnew array<String^> {
+				buffer->Render(Juego::graphics);
+				Juego::dialogo = gcnew Dialogo(gcnew array<String^> {
 					"Bienvenido al mundo YuGiOh!!!",
 					"Para moverte usa las flechas del teclado",
 					"Estas en el Campus de la UPC!!",
@@ -41,7 +41,7 @@ namespace YuGiOh
 			if (e->KeyCode == Keys::Enter)
 			{
 				DesactivarEscena(this);
-				ActivarEscena(MyForm::campus);
+				ActivarEscena(Juego::campus);
 			}
 
 		}

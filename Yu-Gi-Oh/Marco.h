@@ -7,11 +7,11 @@ namespace YuGiOh
 	{
 	public:
 		static bool moviendose;
-		Direcciones direccion;
+		Direccion direccion;
 		int velocidad;
 		Marco(Posicion^ p);
 		void MostrarMarco(Graphics^ graphics);
-		void Avanzar(Direcciones direccion);
+		void Avanzar(Direccion direccion);
 		void Detener();
 	};
 }

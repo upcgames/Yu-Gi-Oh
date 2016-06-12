@@ -8,6 +8,12 @@ namespace YuGiOh
 		this->y = y;
 	}
 
+	Posicion::Posicion(int x, int y, bool multiplicar_automaticamente) {
+		this->x = x * RESOLUCION_X;
+		this->y = y * RESOLUCION_Y;
+	
+	}
+
 	bool Posicion::operator ==(const Posicion^ p1, const Posicion^ p2) {
 		if (p1->x == p2->x && p1->y == p2->y)
 			return true;
@@ -27,15 +33,15 @@ namespace YuGiOh
 		this->y = y;
 	}
 
-	void Posicion::Aumentar(Direcciones direccion, int velocidad)
+	void Posicion::Aumentar(Direccion direccion, int velocidad)
 	{
-		if (direccion == Direcciones::Arriba)
+		if (direccion == Direccion::Arriba)
 			y -= velocidad;
-		else if (direccion == Direcciones::Abajo)
+		else if (direccion == Direccion::Abajo)
 			y += velocidad;
-		if (direccion == Direcciones::Izquierda)
+		if (direccion == Direccion::Izquierda)
 			x -= velocidad;
-		else if (direccion == Direcciones::Derecha)
+		else if (direccion == Direccion::Derecha)
 			x += velocidad;
 	}
 
@@ -50,18 +56,18 @@ namespace YuGiOh
 		return Rectangle(x, y, ancho, alto);
 	}
 
-	Posicion^ Posicion::getPosicionIncrementada(Direcciones direccion, int velocidad)
+	Posicion^ Posicion::getPosicionIncrementada(Direccion direccion, int velocidad)
 	{
 		int auxiliar_x = x;
 		int auxiliar_y = y;
 
-		if (direccion == Direcciones::Arriba)
+		if (direccion == Direccion::Arriba)
 			auxiliar_y -= velocidad;
-		else if (direccion == Direcciones::Abajo)
+		else if (direccion == Direccion::Abajo)
 			auxiliar_y += velocidad;
-		else if (direccion == Direcciones::Izquierda)
+		else if (direccion == Direccion::Izquierda)
 			auxiliar_x -= velocidad;
-		else if (direccion == Direcciones::Derecha)
+		else if (direccion == Direccion::Derecha)
 			auxiliar_x += velocidad;
 
 		return gcnew Posicion(auxiliar_x, auxiliar_y);

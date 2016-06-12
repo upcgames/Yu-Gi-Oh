@@ -25,6 +25,14 @@ namespace YuGiOh
 		static void DesactivarEscena(Escena^ escena);
 	};
 
+	public ref class Introduccion : public Escena
+	{
+	public:
+		Introduccion();
+		void timerTick(System::Object^  sender, System::EventArgs^  e);
+		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+	};
+
 	public ref class Campus : public Escena
 	{
 	public:
@@ -35,13 +43,5 @@ namespace YuGiOh
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 		void teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-	};
-
-	public ref class Introduccion : public Escena
-	{
-	public:
-		Introduccion();
-		void timerTick(System::Object^  sender, System::EventArgs^  e);
-		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 	};
 }

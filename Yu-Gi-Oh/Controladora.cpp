@@ -1,4 +1,4 @@
-#include "MyForm.h"
+#include "Juego.h"
 #include "Constantes.h"
 #include "Imagenes.h"
 
@@ -28,7 +28,7 @@ namespace YuGiOh
 	const Keys CONTROLES_MOVER_IZQUIERDA_2 = Keys::Left;
 	const Keys CONTROLES_MOVER_DERECHA_2 = Keys::Right;
 
-	MyForm::MyForm(void)
+	Juego::Juego(void)
 	{
 		InitializeComponent();
 		myform = this;
@@ -53,11 +53,12 @@ namespace YuGiOh
 		se_cambiara_de_escena = false;
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(introduccion);
+
+		Escena::EmpezarConEscena(campus);
 		//Nivel::PasarANivel(1);
 	}
 
-	MyForm::~MyForm()
+	Juego::~Juego()
 	{
 		if (components)
 		{
@@ -65,10 +66,10 @@ namespace YuGiOh
 		}
 	}
 
-	void MyForm::InitializeComponent(void)
+	void Juego::InitializeComponent(void)
 	{
 		this->components = (gcnew System::ComponentModel::Container());
-		System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+		System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Juego::typeid));
 		this->timer = (gcnew System::Windows::Forms::Timer(this->components));
 		this->SuspendLayout();
 		// 
@@ -79,6 +80,7 @@ namespace YuGiOh
 		// 
 		// Myform
 		// 
+		this->DoubleBuffered = true;
 		this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->ClientSize = System::Drawing::Size(MYFORM_WIDTH * RESOLUCION_X, MYFORM_HEIGHT * RESOLUCION_Y);
@@ -87,13 +89,13 @@ namespace YuGiOh
 		this->Name = L"YuGiOh!";
 		this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 		this->Text = L"YuGiOh!";
-		this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
-		this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
+		this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Juego::Juego_KeyDown);
+		this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &Juego::Juego_KeyUp);
 		this->ResumeLayout(false);
 
 	}
 
-	System::Void MyForm::MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+	System::Void Juego::Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
 		if (e->KeyCode == CONTROLES_CAMBIO_ESCENA)
 			se_cambiara_de_escena = true;
@@ -144,9 +146,27 @@ namespace YuGiOh
 		//}
 	}
 
-	System::Void MyForm::MyForm_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+	System::Void Juego::Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
 		if (e->KeyCode == CONTROLES_CAMBIO_ESCENA && this->se_cambiara_de_escena)
 			se_cambiara_de_escena = false;
+	}
+
+	Direccion Utils::obtenerDireccionInvertida(Direccion direccion) {
+		switch (direccion)
+		{
+		case Arriba:
+			return Abajo;
+			break;
+		case Abajo:
+			return Arriba;
+			break;
+		case Izquierda:
+			return Derecha;
+			break;
+		case Derecha:
+			return Izquierda;
+			break;
+		}
 	}
 }

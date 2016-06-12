@@ -7,11 +7,12 @@ namespace YuGiOh
 	public:
 		Imagenes();
 		static Image^ MARCO_SPRITE;
-		static Image^ Suelo1;
-		static Image^ Pared1;
-		static Image^ Money1;
-		static Image^ Doors1;
-		static Image^ Extra1;
+		static Image^ LOCETA;
+		static Image^ PUERTA;
+		static Image^ MONEDA;
+		static Image^ AGUA;
+		static Image^ MACETA;
+		static Image^ PASTO;
 
 		static Image^ Introduccion;
 	};

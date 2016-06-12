@@ -1,5 +1,5 @@
 #include "Dialogo.h"
-#include "MyForm.h"
+#include "Juego.h"
 #include "string.h"
 #include<vcclr.h>
 
@@ -24,15 +24,15 @@ namespace YuGiOh
 		onKeyDown = gcnew KeyEventHandler(this, &Dialogo::teclaDown);
 		onMouseClick = gcnew MouseEventHandler(this, &Dialogo::mouseClick);
 
-		MyForm::myform->timer->Tick += this->onTimerTick;
-		MyForm::myform->KeyDown += this->onKeyDown;
-		MyForm::myform->MouseClick += this->onMouseClick;
+		Juego::myform->timer->Tick += this->onTimerTick;
+		Juego::myform->KeyDown += this->onKeyDown;
+		Juego::myform->MouseClick += this->onMouseClick;
 
 	}
 	void Dialogo::terminarDeEscribir() {
-		MyForm::myform->timer->Tick -= this->onTimerTick;
-		MyForm::myform->KeyDown -= this->onKeyDown;
-		MyForm::myform->MouseClick -= this->onMouseClick;
+		Juego::myform->timer->Tick -= this->onTimerTick;
+		Juego::myform->KeyDown -= this->onKeyDown;
+		Juego::myform->MouseClick -= this->onMouseClick;
 
 		Escena::ActivarEscena(escena_anterior);
 	}
@@ -45,11 +45,11 @@ namespace YuGiOh
 			String^ caracter = oracion_actual->Substring(posicion_oracion, 1);
 
 			if (caracter != " ")
-				ancho_de_caracter = MyForm::graphics->MeasureString(caracter, fuente, 0, StringFormat::GenericTypographic).Width;
+				ancho_de_caracter = Juego::graphics->MeasureString(caracter, fuente, 0, StringFormat::GenericTypographic).Width;
 			else
 				ancho_de_caracter = TAMANIO_LETRAS / 2;
 
-			MyForm::graphics->DrawString(caracter, fuente, gcnew SolidBrush(Color::Black), punto_de_comienzo, MYFORM_SIZE_HEIGHT * 7.5F / 9, StringFormat::GenericTypographic);
+			Juego::graphics->DrawString(caracter, fuente, gcnew SolidBrush(Color::Black), punto_de_comienzo, MYFORM_SIZE_HEIGHT * 7.5F / 9, StringFormat::GenericTypographic);
 			punto_de_comienzo += ancho_de_caracter;
 			posicion_oracion++;
 		}
@@ -67,11 +67,11 @@ namespace YuGiOh
 			if (!esperando_confirmacion) {
 
 				if (posicion_oracion == 0) {
-					this->escena_anterior->buffer->Render(MyForm::graphics);
-					MyForm::graphics->FillRectangle(gcnew SolidBrush(Color::White), 0, MYFORM_SIZE_HEIGHT * 2 / 3, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT / 3);
+					this->escena_anterior->buffer->Render(Juego::graphics);
+					Juego::graphics->FillRectangle(gcnew SolidBrush(Color::White), 0, MYFORM_SIZE_HEIGHT * 2 / 3, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT / 3);
 					oracion_actual = mensajes[posicion_parrafo];
 					numero_de_caracteres = oracion_actual->Length;
-					float ancho_de_texto = MyForm::graphics->MeasureString(oracion_actual, this->fuente).Width;
+					float ancho_de_texto = Juego::graphics->MeasureString(oracion_actual, this->fuente).Width;
 					punto_de_comienzo = (MYFORM_SIZE_WIDTH - ancho_de_texto) / 2;
 					punto_de_comienzo += 24;
 				}

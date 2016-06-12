@@ -4,6 +4,8 @@
 #include "Marco.h"
 #include "Escena.h"
 #include "Dialogo.h"
+#include "Objeto.h"
+#include "Mapa.h"
 
 using namespace System;
 using namespace System::Drawing;
@@ -13,7 +15,7 @@ using namespace System::Data;
 
 namespace YuGiOh
 {
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class Juego : public System::Windows::Forms::Form
 	{
 	public:
 		//aleatorio generara todos los numeros random en el futuro
@@ -22,8 +24,7 @@ namespace YuGiOh
 		static Dialogo^ dialogo;
 		
 		static Marco^ marco;
-
-		//static MatrizObjetos^ objetos;
+		
 		//static ArrBombas^ bombas;
 		//static ArrMalignos^ malignos;
 
@@ -37,7 +38,12 @@ namespace YuGiOh
 		//static GameOver^ gameOver;
 		//static Creditos^ creditos;
 
-		//static Mapa1^ mapa1;
+		static Mapa^ mapa_actual;
+		static array<Objeto^>^ objetos;
+
+		static PlazuelaMapa^ plazuela_mapa;
+		static PabellonAMapa^ pabellonA_mapa;
+		static PabellonBMapa^ pabellonB_mapa;
 		//static Mapa2^ mapa2;
 		//static Mapa3^ mapa3;
 		//static Mapa4^ mapa4;
@@ -45,18 +51,24 @@ namespace YuGiOh
 		bool se_cambiara_de_escena;
 
 		//myform, graphics y context serviran para mostar los graficos.
-		static MyForm^ myform;
+		static Juego^ myform;
 		static Graphics^ graphics;
 		static BufferedGraphicsContext^ context;
 		static System::Windows::Forms::Timer^  timer;
 		System::ComponentModel::IContainer^  components;
 
-		//Funciones del MyForm
-		MyForm(void);
-		~MyForm();
+		//Funciones del Juego
+		Juego(void);
+		~Juego();
 		void InitializeComponent(void);
-		private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-		private: System::Void MyForm_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+		private: System::Void Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+		private: System::Void Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 
+	};
+
+	public ref class Utils
+	{
+	public:
+		static Direccion obtenerDireccionInvertida(Direccion direccion);
 	};
 }

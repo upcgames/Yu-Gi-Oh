@@ -1,22 +1,22 @@
 #include "Escena.h"
-#include "MyForm.h"
+#include "Juego.h"
 
 namespace YuGiOh
 {
 	Escena::Escena()
 	{
-		buffer = MyForm::context->Allocate(MyForm::graphics, MyForm::myform->ClientRectangle);
+		buffer = Juego::context->Allocate(Juego::graphics, Juego::myform->ClientRectangle);
 		activo = false;
 		dibujado = false;
 		contador = 0;
 	}
 
 	Escena^ Escena::getEscenaActual() {
-		if (MyForm::campus->activo)
-			return MyForm::campus;
+		if (Juego::campus->activo)
+			return Juego::campus;
 
-		if (MyForm::introduccion->activo)
-			return MyForm::introduccion;
+		if (Juego::introduccion->activo)
+			return Juego::introduccion;
 		
 		return nullptr;
 	}
@@ -40,13 +40,13 @@ namespace YuGiOh
 		escena->activo = true;
 
 		if (escena->onTimerTick != nullptr)
-			MyForm::myform->timer->Tick += escena->onTimerTick;
+			Juego::myform->timer->Tick += escena->onTimerTick;
 		if (escena->onKeyDown != nullptr)
-			MyForm::myform->KeyDown += escena->onKeyDown;
+			Juego::myform->KeyDown += escena->onKeyDown;
 		if (escena->onKeyUp != nullptr)
-			MyForm::myform->KeyUp += escena->onKeyUp;
+			Juego::myform->KeyUp += escena->onKeyUp;
 		if (escena->onMouseClick != nullptr)
-			MyForm::myform->MouseClick += escena->onMouseClick;
+			Juego::myform->MouseClick += escena->onMouseClick;
 	}
 
 	void Escena::DesactivarEscena(Escena^ escena)
@@ -54,13 +54,13 @@ namespace YuGiOh
 		escena->activo = false;
 
 		if (escena->onTimerTick != nullptr)
-			MyForm::myform->timer->Tick -= escena->onTimerTick;
+			Juego::myform->timer->Tick -= escena->onTimerTick;
 		if (escena->onKeyDown != nullptr)
-			MyForm::myform->KeyDown -= escena->onKeyDown;
+			Juego::myform->KeyDown -= escena->onKeyDown;
 		if (escena->onKeyUp != nullptr)
-			MyForm::myform->KeyUp -= escena->onKeyUp;
+			Juego::myform->KeyUp -= escena->onKeyUp;
 		if (escena->onMouseClick != nullptr)
-			MyForm::myform->MouseClick -= escena->onMouseClick;
+			Juego::myform->MouseClick -= escena->onMouseClick;
 
 		escena->dibujado = false;
 	}

@@ -4,7 +4,7 @@ using namespace System::Drawing;
 
 namespace YuGiOh
 {
-	//Dimensiones del Windows Form(cuantas coordenadas tendra), en unidades;
+	//Dimensiones del Windows Form(cuantas coordenadas tendra), en unidades
 	extern const int MYFORM_WIDTH;
 	extern const int MYFORM_HEIGHT;
 
@@ -32,9 +32,11 @@ namespace YuGiOh
 	extern const Keys CONTROLES_MOVER_DERECHA_2;
 
 	//Enums
-	public enum Direcciones { Arriba, Abajo, Izquierda, Derecha };
-	public enum TiposDeCartaS { Criticos, Basicos, Extra, Electivos };
+	public enum Direccion { Arriba, Abajo, Izquierda, Derecha };
+	public enum TiposDeCarta { Criticos, Basicos, Extra, Electivos };
 	public enum Pertenencia { Tienda, DeMarco, DeProfesor };
 	public enum ModoBatalla { Defensa, Ataque };
-	public enum Objetos { Piso__, Puerta, Moneda, Pared_ };
+	public enum Objetos { Puerta, Moneda };
+	public enum Terreno { Loceta, Agua, Maceta, Pasto };
+	public enum Pabellon { Plazuela, PabellonA, PabellonB, Jardin, Sotano};
 }

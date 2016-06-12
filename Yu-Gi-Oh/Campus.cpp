@@ -1,20 +1,23 @@
 #include "Escena.h"
 #include "Marco.h"
-#include "MyForm.h"
+#include "Juego.h"
 
 namespace YuGiOh
 {
 	Campus::Campus()
 	{
-		MyForm::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
 		onTimerTick = gcnew EventHandler(this, &Campus::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &Campus::teclaDown);
 		onKeyUp = gcnew KeyEventHandler(this, &Campus::teclaUp);
 		onMouseClick = gcnew MouseEventHandler(this, &Campus::mouseClick);
 
-		cheatKey = 'z';
+		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Juego::plazuela_mapa = gcnew PlazuelaMapa();
+		Juego::pabellonA_mapa = gcnew PabellonAMapa();
+		Juego::pabellonB_mapa = gcnew PabellonBMapa();
 
-		MyForm::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Juego::mapa_actual = Juego::plazuela_mapa;
 	}
 
 	void Campus::timerTick(System::Object^  sender, System::EventArgs^  e)
@@ -22,10 +25,9 @@ namespace YuGiOh
 		if (activo)
 		{
 			contador++;
-			//Mapa::MostrarMapa(buffer->Graphics);
-			buffer->Graphics->Clear(Color::Black);
-			MyForm::marco->MostrarMarco(buffer->Graphics);
-			buffer->Render(MyForm::graphics);
+			Juego::mapa_actual->mostrarTerreno();
+			Juego::marco->MostrarMarco(buffer->Graphics);
+			buffer->Render(Juego::graphics);
 			dibujado = true;
 		}
 	}
@@ -36,23 +38,23 @@ namespace YuGiOh
 		{
 			if (e->KeyCode == Keys::W || e->KeyCode == Keys::Up)
 			{
-				MyForm::marco->moviendose = true;
-				MyForm::marco->direccion = Arriba;
+				Juego::marco->moviendose = true;
+				Juego::marco->direccion = Arriba;
 			}
 			else if (e->KeyCode == Keys::S || e->KeyCode == Keys::Down)
 			{
-				MyForm::marco->moviendose = true;
-				MyForm::marco->direccion = Abajo;
+				Juego::marco->moviendose = true;
+				Juego::marco->direccion = Abajo;
 			}
 			else if (e->KeyCode == Keys::A || e->KeyCode == Keys::Left)
 			{
-				MyForm::marco->moviendose = true;
-				MyForm::marco->direccion = Izquierda;
+				Juego::marco->moviendose = true;
+				Juego::marco->direccion = Izquierda;
 			}
 			else if (e->KeyCode == Keys::D || e->KeyCode == Keys::Right)
 			{
-				MyForm::marco->moviendose = true;
-				MyForm::marco->direccion = Derecha;
+				Juego::marco->moviendose = true;
+				Juego::marco->direccion = Derecha;
 			}
 			/*else if (e->KeyCode == Keys::N)
 			{
@@ -61,21 +63,21 @@ namespace YuGiOh
 			else if (e->KeyCode == Keys::P)
 			{
 				DesactivarEscena(this);
-				//ActivarEscena(MyForm::pausa);
+				//ActivarEscena(Juego::pausa);
 			}
 		}
 	}
 
 	void Campus::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && MyForm::marco->direccion == Arriba)
-			MyForm::marco->Detener();
-		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && MyForm::marco->direccion == Abajo)
-			MyForm::marco->Detener();
-		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && MyForm::marco->direccion == Izquierda)
-			MyForm::marco->Detener();
-		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && MyForm::marco->direccion == Derecha)
-			MyForm::marco->Detener();
+		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && Juego::marco->direccion == Arriba)
+			Juego::marco->Detener();
+		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && Juego::marco->direccion == Abajo)
+			Juego::marco->Detener();
+		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && Juego::marco->direccion == Izquierda)
+			Juego::marco->Detener();
+		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && Juego::marco->direccion == Derecha)
+			Juego::marco->Detener();
 
 
 		//if (e->KeyCode == Keys::N && cheatKey == 'n')

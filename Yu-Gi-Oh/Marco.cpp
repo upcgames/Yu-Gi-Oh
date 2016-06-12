@@ -1,5 +1,7 @@
 #include "Marco.h"
 #include "Imagenes.h"
+#include "Juego.h"
+#include "Objeto.h"
 
 namespace YuGiOh
 {
@@ -12,7 +14,7 @@ namespace YuGiOh
 		sprite->numero_de_columnas = 8;
 		sprite->numero_de_filas = 6;
 
-		direccion = Direcciones::Abajo;
+		direccion = Direccion::Abajo;
 		velocidad = 8;
 		posicion = p;
 		ancho = RESOLUCION_X;
@@ -37,9 +39,9 @@ namespace YuGiOh
 		graphics->DrawImage(sprite->imagen, Rectangle(posicion->x, posicion->y, ancho, alto), Rectangle(sprite->indice / 2 * sprite->ancho, sprite->subindice * sprite->alto, sprite->ancho, sprite->alto), GraphicsUnit::Pixel);
 	}
 
-	void Marco::Avanzar(Direcciones pDireccion)
+	void Marco::Avanzar(Direccion direccion)
 	{
-		direccion = pDireccion;
+		this->direccion = direccion;
 
 		sprite->indice++;
 
@@ -49,7 +51,13 @@ namespace YuGiOh
 		else if (sprite->indice == 6)
 			sprite->indice = 0;
 
-		posicion->Aumentar(direccion, velocidad);
+		Objeto^ siguiente_bloque = Juego::mapa_actual->getObjeto(posicion->getPosicionIncrementada(direccion, velocidad));
+
+		if (siguiente_bloque == nullptr)
+			posicion->Aumentar(this->direccion, velocidad);
+		else {
+			siguiente_bloque->accionar();
+		}
 	}
 
 	void Marco::Detener()
