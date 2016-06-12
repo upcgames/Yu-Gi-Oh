@@ -10,6 +10,9 @@ namespace YuGiOh
 	const int MYFORM_HEIGHT = 9;
 	const int RESOLUCION_X = 56;
 	const int RESOLUCION_Y = 56;
+	const int MYFORM_SIZE_WIDTH = MYFORM_WIDTH * RESOLUCION_X;
+	const int MYFORM_SIZE_HEIGHT = MYFORM_HEIGHT * RESOLUCION_Y;
+	const float TAMANIO_LETRAS = 24.0f;
 	const int VELOCIDAD_TIMER = 50;
 	
 	//Controles

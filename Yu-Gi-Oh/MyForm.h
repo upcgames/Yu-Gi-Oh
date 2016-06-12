@@ -3,8 +3,10 @@
 #include "Imagenes.h"
 #include "Marco.h"
 #include "Escena.h"
+#include "Dialogo.h"
 
 using namespace System;
+using namespace System::Drawing;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Data;
@@ -17,6 +19,7 @@ namespace YuGiOh
 		//aleatorio generara todos los numeros random en el futuro
 		static Random^ aleatorio;
 		static Imagenes^ imagenes;
+		static Dialogo^ dialogo;
 		
 		static Marco^ marco;
 

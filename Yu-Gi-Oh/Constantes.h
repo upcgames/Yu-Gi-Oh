@@ -12,6 +12,11 @@ namespace YuGiOh
 	extern const int RESOLUCION_X;
 	extern const int RESOLUCION_Y;
 
+	extern const int MYFORM_SIZE_WIDTH;
+	extern const int MYFORM_SIZE_HEIGHT;
+
+	extern const float TAMANIO_LETRAS;
+
 	//Velocidad con la que Marco corre en pixeles
 	extern const int VELOCIDAD_TIMER;
 	
