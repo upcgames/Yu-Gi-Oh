@@ -45,10 +45,10 @@ namespace YuGiOh
 
 		sprite->indice++;
 
-		if (sprite->indice == 3)
-			sprite->indice = 4;
+		if (sprite->indice == 8)
+			sprite->indice = 10;
 
-		else if (sprite->indice == 6)
+		else if (sprite->indice == 16)
 			sprite->indice = 0;
 
 		Objeto^ siguiente_bloque = Juego::mapa_actual->getObjeto(posicion->getPosicionIncrementada(direccion, velocidad));

@@ -45,7 +45,7 @@ namespace YuGiOh
 		tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(introduccion);
+		Escena::EmpezarConEscena(campus);
 	}
 
 	Juego::~Juego()

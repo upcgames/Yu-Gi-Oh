@@ -78,7 +78,7 @@
     <ClCompile Include="IntroduccionEscena.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controladora.cpp" />
-    <ClCompile Include="Mapa.cpp" />
+    <ClCompile Include="Mapas.cpp" />
     <ClCompile Include="Marco.cpp" />
     <ClCompile Include="Objetos.cpp" />
     <ClCompile Include="TiendaEscena.cpp" />

@@ -19,6 +19,10 @@ namespace YuGiOh {
 		;
 	}
 
+	ObjetoAnimado::ObjetoAnimado(Posicion^ posicion) : Objeto(posicion) {
+		;
+	}
+
 	PuertaObjeto::PuertaObjeto(
 		Posicion^ posicion,
 		Pabellon pabellon_de_salida,
@@ -30,6 +34,40 @@ namespace YuGiOh {
 		this->pabellon_de_salida = pabellon_de_salida;
 		this->posicion_de_salida = posicion_de_salida;
 		this->direccion_de_salida = direccion_de_salida;
+	}
+
+	void ObjetoAnimado::mostrar() {
+		Graphics^ graphics_actual = Escena::getEscenaActual()->buffer->Graphics;
+		graphics_actual->DrawImage(
+			sprite->imagen,
+			Rectangle(posicion->x, posicion->y, ancho, alto),
+			Rectangle(sprite->indice / 2 * sprite->ancho, sprite->subindice * sprite->alto, sprite->ancho, sprite->alto),
+			GraphicsUnit::Pixel);
+		
+		sprite->indice++;
+
+		if (sprite->indice == sprite->numero_de_columnas * 2)
+			sprite->indice = 0;
+	}
+
+	MonedaObjeto::MonedaObjeto(Posicion^ posicion) : ObjetoAnimado(posicion) {
+		dinero_sorpresa = (Juego::aleatorio->Next(10) + 1) * 10;
+
+		sprite = gcnew Sprite(Imagenes::MONEDA_SPRITE);
+		sprite->indice = 0;
+		sprite->subindice = 0;
+		sprite->ancho = 122;
+		sprite->alto = 122;
+		sprite->numero_de_columnas = 7;
+		sprite->numero_de_filas = 1;
+		ancho = RESOLUCION_X;
+		alto = RESOLUCION_Y;
+	}
+
+	void MonedaObjeto::accionar(){
+		Juego::dialogo = gcnew Dialogo(gcnew array<String^>{"Encontraste " + dinero_sorpresa + " soles!!"});
+		Juego::mapa_actual->objetos->Remove(this);
+		Juego::marco->moviendose = false;
 	}
 
 	void PuertaObjeto::accionar() {
@@ -68,6 +106,6 @@ namespace YuGiOh {
 
 	void PuertaEscenaObjeto::mostrar() {
 		Graphics^ graphics_actual = Escena::getEscenaActual()->buffer->Graphics;
-		graphics_actual->DrawImage(imagen, Rectangle(posicion->x, posicion->y, RESOLUCION_X, RESOLUCION_Y));;
+		graphics_actual->DrawImage(imagen, Rectangle(posicion->x, posicion->y, RESOLUCION_X, RESOLUCION_Y));
 	}
 }

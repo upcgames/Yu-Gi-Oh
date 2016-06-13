@@ -8,8 +8,9 @@ namespace YuGiOh
 {
 	Imagenes::Imagenes()
 	{
-		//Personaje
+		//Sprites
 		MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Marco_Sprite.png");
+		MONEDA_SPRITE = Image::FromFile("Imagenes\\Objetos\\Moneda_Sprite.png");
 
 		//Objetos
 		LOCETA = Image::FromFile("Imagenes\\Objetos\\Piso4.png");
@@ -19,9 +20,9 @@ namespace YuGiOh
 		MACETA = Image::FromFile("Imagenes\\Objetos\\Bloque5.png");
 		PASTO = Image::FromFile("Imagenes\\Objetos\\Piso2.png");
 	
-		IntroduccionEscena = Image::FromFile("Imagenes\\Interfaces\\Introduccion.png");
-		Fondo_Tienda_Vender = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
-		Fondo_Tienda_Comprar = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
+		INTRODUCCION_FONDO = Image::FromFile("Imagenes\\Interfaces\\Introduccion.png");
+		FONDO_TIENDA_VENDER = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
+		FONDO_TIENDA_COMPRAR = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
 	}
 
 	[STAThread]
@@ -31,7 +32,6 @@ namespace YuGiOh
 		Application::SetCompatibleTextRenderingDefault(false);
 
 		Juego^ my_form = gcnew Juego();
-
 		Application::Run(my_form);
 	}
 }

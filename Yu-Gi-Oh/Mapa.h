@@ -1,6 +1,8 @@
 #pragma once
 #include "Objetos.h"
 
+using namespace System::Collections::Generic;
+
 namespace YuGiOh {
 	public ref class Mapa
 	{
@@ -9,7 +11,7 @@ namespace YuGiOh {
 	public:
 		Mapa();
 		array<Terreno, 2>^ matriz_terreno;
-		array<Objeto^>^ objetos;
+		List<Objeto^>^ objetos;
 
 		BufferedGraphics^ capa_terreno;
 

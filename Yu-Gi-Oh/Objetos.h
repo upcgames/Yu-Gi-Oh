@@ -18,6 +18,14 @@ namespace YuGiOh {
 		ObjetoStatico(Posicion^ posicion);
 	};
 
+	public ref class ObjetoAnimado : public Objeto
+	{
+	public:
+		Sprite^ sprite;
+		ObjetoAnimado(Posicion^ posicion);
+		virtual void mostrar() override;
+	};
+
 	public ref class PuertaObjeto: public ObjetoStatico
 	{
 	public:
@@ -30,6 +38,13 @@ namespace YuGiOh {
 			Posicion^ posicion_de_salida,
 			Direccion direccion_de_salida
 		);
+		virtual void accionar() override;
+	};
+
+	public ref class MonedaObjeto : public ObjetoAnimado {
+	public:
+		int dinero_sorpresa;
+		MonedaObjeto(Posicion^ posicion);
 		virtual void accionar() override;
 	};
 

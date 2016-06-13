@@ -7,6 +7,8 @@ namespace YuGiOh
 	public:
 		Imagenes();
 		static Image^ MARCO_SPRITE;
+		static Image^ MONEDA_SPRITE;
+		
 		static Image^ LOCETA;
 		static Image^ PUERTA;
 		static Image^ MONEDA;
@@ -14,8 +16,8 @@ namespace YuGiOh
 		static Image^ MACETA;
 		static Image^ PASTO;
 
-		static Image^ IntroduccionEscena;
-		static Image^ Fondo_Tienda_Vender;
-		static Image^ Fondo_Tienda_Comprar;
+		static Image^ INTRODUCCION_FONDO;
+		static Image^ FONDO_TIENDA_VENDER;
+		static Image^ FONDO_TIENDA_COMPRAR;
 	};
 }

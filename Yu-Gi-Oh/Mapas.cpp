@@ -42,7 +42,7 @@ namespace YuGiOh {
 
 	Objeto^ Mapa::getObjeto(Posicion^ posicion) {
 
-		int numero_de_objetos = this->objetos-> Length;
+		int numero_de_objetos = this->objetos->Count;
 		
 		for (int i = 0; i < numero_de_objetos; i++)
 		{
@@ -61,7 +61,7 @@ namespace YuGiOh {
 
 	void Mapa::mostrarObjetos() {
 
-		int numero_de_objetos = this->objetos->Length;
+		int numero_de_objetos = this->objetos->Count;
 
 		for (int i = 0; i < numero_de_objetos; i++)
 			objetos[i]->mostrar();
@@ -85,11 +85,19 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew array<Objeto^> {
+		this->objetos = gcnew List<Objeto^>();
+		this->objetos->AddRange(gcnew array<Objeto^>{
 			gcnew PuertaObjeto(gcnew Posicion(-1, 3, true), PabellonA, gcnew Posicion(19, 3, true), Izquierda),
 			gcnew PuertaObjeto(gcnew Posicion(8, 14, true), PabellonB, gcnew Posicion(8, 0, true), Abajo),
-			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha)
-		};
+			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha),
+			gcnew MonedaObjeto(gcnew Posicion(1, 1, true)),
+			gcnew MonedaObjeto(gcnew Posicion(1, 12, true)),
+			gcnew MonedaObjeto(gcnew Posicion(11, 9, true)),
+			gcnew MonedaObjeto(gcnew Posicion(12, 11, true)),
+			gcnew MonedaObjeto(gcnew Posicion(17, 2, true)),
+			gcnew MonedaObjeto(gcnew Posicion(18, 7, true)),
+			gcnew MonedaObjeto(gcnew Posicion(18, 12, true))
+		});
 
 		generarCapaTerreno();
 	}
@@ -112,9 +120,10 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew array<Objeto^> {
+		this->objetos = gcnew List<Objeto^>();
+		this->objetos->AddRange(gcnew array<Objeto^>{
 			gcnew PuertaObjeto(gcnew Posicion(20, 3, true), Plazuela, gcnew Posicion(0, 3, true), Derecha)
-		};
+		});
 
 		generarCapaTerreno();
 	}
@@ -137,9 +146,10 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew array<Objeto^> {
+		this->objetos = gcnew List<Objeto^>();
+		this->objetos->AddRange(gcnew array<Objeto^>{
 			gcnew PuertaObjeto(gcnew Posicion(8, -1, true), Plazuela, gcnew Posicion(8, 13, true), Arriba)
-		};
+		});
 
 		generarCapaTerreno();
 	}
