@@ -67,7 +67,7 @@ namespace YuGiOh {
 	void MonedaObjeto::accionar(){
 		Juego::dialogo = gcnew Dialogo(gcnew array<String^>{"Encontraste " + dinero_sorpresa + " soles!!"});
 		Juego::mapa_actual->objetos->Remove(this);
-		Juego::marco->moviendose = false;
+		Juego::marco->Detener();
 	}
 
 	void PuertaObjeto::accionar() {
