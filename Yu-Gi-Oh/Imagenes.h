@@ -15,5 +15,7 @@ namespace YuGiOh
 		static Image^ PASTO;
 
 		static Image^ IntroduccionEscena;
+		static Image^ Fondo_Tienda_Vender;
+		static Image^ Fondo_Tienda_Comprar;
 	};
 }

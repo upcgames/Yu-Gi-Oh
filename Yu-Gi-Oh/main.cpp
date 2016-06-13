@@ -9,7 +9,7 @@ namespace YuGiOh
 	Imagenes::Imagenes()
 	{
 		//Personaje
-		MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Bomberdog.png");
+		MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Marco_Sprite.png");
 
 		//Objetos
 		LOCETA = Image::FromFile("Imagenes\\Objetos\\Piso4.png");
@@ -20,6 +20,8 @@ namespace YuGiOh
 		PASTO = Image::FromFile("Imagenes\\Objetos\\Piso2.png");
 	
 		IntroduccionEscena = Image::FromFile("Imagenes\\Interfaces\\Introduccion.png");
+		Fondo_Tienda_Vender = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
+		Fondo_Tienda_Comprar = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
 	}
 
 	[STAThread]

@@ -1,5 +1,6 @@
 #pragma once
 #include "Constantes.h"
+#include "Figuras.h"
 
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
@@ -47,11 +48,23 @@ namespace YuGiOh
 		void teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 	};
 
-	public ref class TiendaEscena : public Escena
+	public ref class EscenaDeMapa : public Escena
+	{
+	public:
+		Direccion direccion_de_regreso;
+		Pabellon pabellon_de_regreso;
+		TipoEscena escena_a_mostrar;
+		Posicion^ posicion_de_regreso;
+	};
+
+	public ref class TiendaEscena : public EscenaDeMapa
 	{
 	public:
 		TiendaEscena();
-		char cheatKey;
+		bool modo_vender;
+		bool modo_comprar;
+		static Rectangle getBodyCartaNumero(int posicion_carta);
+		void salirDeTienda();
 		void mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);

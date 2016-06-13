@@ -17,7 +17,7 @@ namespace YuGiOh
 		{
 			if (!dibujado)
 			{
-				buffer->Graphics->DrawImage(Imagenes::IntroduccionEscena, Rectangle(0, 0, 832, 577));
+				buffer->Graphics->DrawImage(Imagenes::IntroduccionEscena, Rectangle(0, 0, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT));
 				buffer->Render(Juego::graphics);
 				Juego::dialogo = gcnew Dialogo(gcnew array<String^> {
 					"Bienvenido al mundo YuGiOh!!!",
