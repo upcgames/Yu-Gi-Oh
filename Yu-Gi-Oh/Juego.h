@@ -2,9 +2,9 @@
 #include "Constantes.h"
 #include "Imagenes.h"
 #include "Marco.h"
-#include "Escena.h"
+#include "Escenas.h"
 #include "Dialogo.h"
-#include "Objeto.h"
+#include "Objetos.h"
 #include "Mapa.h"
 
 using namespace System;
@@ -22,21 +22,12 @@ namespace YuGiOh
 		static Random^ aleatorio;
 		static Imagenes^ imagenes;
 		static Dialogo^ dialogo;
-		
-		static Marco^ marco;
-		
-		//static ArrBombas^ bombas;
-		//static ArrMalignos^ malignos;
 
-		//static Menu^ menu;
-		//static Instrucciones^ instrucciones;
-		static Introduccion^ introduccion;
-		static Campus^ campus;
-		//static Pausa^ pausa;
-		//static YouWin^ youWin;
-		//static Congratulations^ congratulations;
-		//static GameOver^ gameOver;
-		//static Creditos^ creditos;
+		static Marco^ marco;
+
+		static IntroduccionEscena^ introduccion;
+		static CampusEscena^ campus;
+		static TiendaEscena^ tienda;
 
 		static Mapa^ mapa_actual;
 		static array<Objeto^>^ objetos;
@@ -44,11 +35,6 @@ namespace YuGiOh
 		static PlazuelaMapa^ plazuela_mapa;
 		static PabellonAMapa^ pabellonA_mapa;
 		static PabellonBMapa^ pabellonB_mapa;
-		//static Mapa2^ mapa2;
-		//static Mapa3^ mapa3;
-		//static Mapa4^ mapa4;
-		//static Mapa5^ mapa5;
-		bool se_cambiara_de_escena;
 
 		//myform, graphics y context serviran para mostar los graficos.
 		static Juego^ myform;

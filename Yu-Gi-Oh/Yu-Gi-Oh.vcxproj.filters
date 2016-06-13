@@ -18,31 +18,34 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Figura.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Controladora.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Marco.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Escena.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Campus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Dialogo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Introduccion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objeto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mapa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroduccionEscena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TiendaEscena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CampusEscena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objetos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Figuras.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Escenas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,13 +53,7 @@
     <ClInclude Include="Constantes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Figura.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Marco.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Escena.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Imagenes.h">
@@ -68,10 +65,16 @@
     <ClInclude Include="Mapa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Objeto.h">
+    <ClInclude Include="Juego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Juego.h">
+    <ClInclude Include="Objetos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Figuras.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Escenas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

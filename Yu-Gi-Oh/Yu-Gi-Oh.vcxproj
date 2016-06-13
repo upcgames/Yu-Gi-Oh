@@ -71,16 +71,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Campus.cpp" />
+    <ClCompile Include="CampusEscena.cpp" />
     <ClCompile Include="Dialogo.cpp" />
-    <ClCompile Include="Escena.cpp" />
-    <ClCompile Include="Figura.cpp" />
-    <ClCompile Include="Introduccion.cpp" />
+    <ClCompile Include="Escenas.cpp" />
+    <ClCompile Include="Figuras.cpp" />
+    <ClCompile Include="IntroduccionEscena.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Controladora.cpp" />
     <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="Marco.cpp" />
-    <ClCompile Include="Objeto.cpp" />
+    <ClCompile Include="Objetos.cpp" />
+    <ClCompile Include="TiendaEscena.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -92,15 +93,15 @@
   <ItemGroup>
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Dialogo.h" />
-    <ClInclude Include="Escena.h" />
-    <ClInclude Include="Figura.h" />
+    <ClInclude Include="Escenas.h" />
+    <ClInclude Include="Figuras.h" />
     <ClInclude Include="Imagenes.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="Marco.h" />
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Objeto.h" />
+    <ClInclude Include="Objetos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

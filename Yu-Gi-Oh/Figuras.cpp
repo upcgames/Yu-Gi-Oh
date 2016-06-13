@@ -1,4 +1,4 @@
-#include "Figura.h"
+#include "Figuras.h"
 
 namespace YuGiOh
 {

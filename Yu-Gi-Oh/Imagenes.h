@@ -14,6 +14,6 @@ namespace YuGiOh
 		static Image^ MACETA;
 		static Image^ PASTO;
 
-		static Image^ Introduccion;
+		static Image^ IntroduccionEscena;
 	};
 }

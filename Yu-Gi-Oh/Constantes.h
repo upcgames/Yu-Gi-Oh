@@ -32,11 +32,12 @@ namespace YuGiOh
 	extern const Keys CONTROLES_MOVER_DERECHA_2;
 
 	//Enums
+	public enum TipoEscena { Introduccion, Campus, Tienda};
 	public enum Direccion { Arriba, Abajo, Izquierda, Derecha };
 	public enum TiposDeCarta { Criticos, Basicos, Extra, Electivos };
-	public enum Pertenencia { Tienda, DeMarco, DeProfesor };
+	public enum Pertenencia { Vendedor, DeMarco, DeProfesor };
 	public enum ModoBatalla { Defensa, Ataque };
-	public enum Objetos { Puerta, Moneda };
+	public enum Objetos { Puerta, PuertaEscena, Moneda };
 	public enum Terreno { Loceta, Agua, Maceta, Pasto };
 	public enum Pabellon { Plazuela, PabellonA, PabellonB, Jardin, Sotano};
 }

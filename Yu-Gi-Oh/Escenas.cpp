@@ -1,4 +1,4 @@
-#include "Escena.h"
+#include "Escenas.h"
 #include "Juego.h"
 
 namespace YuGiOh
@@ -15,8 +15,11 @@ namespace YuGiOh
 		if (Juego::campus->activo)
 			return Juego::campus;
 
-		if (Juego::introduccion->activo)
+		else if (Juego::introduccion->activo)
 			return Juego::introduccion;
+
+		else if (Juego::tienda->activo)
+			return Juego::tienda;
 		
 		return nullptr;
 	}
@@ -63,5 +66,22 @@ namespace YuGiOh
 			Juego::myform->MouseClick -= escena->onMouseClick;
 
 		escena->dibujado = false;
+	}
+
+	Escena^ Escena::getEscenaTipo(TipoEscena tipo) {
+		switch (tipo)
+		{
+		case Introduccion:
+			return Juego::introduccion;
+			break;
+		case Campus:
+			return Juego::campus;
+			break;
+		case Tienda:
+			return Juego::tienda;
+			break;
+		default:
+			return nullptr;
+		}
 	}
 }

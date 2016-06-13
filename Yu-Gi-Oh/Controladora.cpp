@@ -40,22 +40,12 @@ namespace YuGiOh
 		imagenes = gcnew Imagenes();
 
 		//Inicializamos las escenas
-		//menu = gcnew Menu();
-		introduccion = gcnew Introduccion();
-		campus = gcnew Campus();
-		//instrucciones = gcnew Instrucciones();
-		//pausa = gcnew Pausa();
-		//youWin = gcnew YouWin();
-		//congratulations = gcnew Congratulations();
-		//gameOver = gcnew GameOver();
-		//creditos = gcnew Creditos();
-
-		se_cambiara_de_escena = false;
+		introduccion = gcnew IntroduccionEscena();
+		campus = gcnew CampusEscena();
+		tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-
 		Escena::EmpezarConEscena(campus);
-		//Nivel::PasarANivel(1);
 	}
 
 	Juego::~Juego()
@@ -97,59 +87,12 @@ namespace YuGiOh
 
 	System::Void Juego::Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if (e->KeyCode == CONTROLES_CAMBIO_ESCENA)
-			se_cambiara_de_escena = true;
-		//else if (e->KeyCode == Keys::D1)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(introduccion);
-		//}
-		//else if (e->KeyCode == Keys::D2)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(inicio);
-		//}
-		//else if (e->KeyCode == Keys::D3)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(instrucciones);
-		//}
-		//else if (e->KeyCode == Keys::D4)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(juego);
-		//}
-		//else if (e->KeyCode == Keys::D5)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(pausa);
-		//}
-		//else if (e->KeyCode == Keys::D6)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(youWin);
-		//}
-		//else if (e->KeyCode == Keys::D7)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(gameOver);
-		//}
-		//else if (e->KeyCode == Keys::D8)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(congratulations);
-		//}
-		//else if (e->KeyCode == Keys::D9)
-		//{
-		//	if (se_cambiara_de_escena)
-		//		Escena::CambiarEscena(creditos);
-		//}
+		;
 	}
 
 	System::Void Juego::Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if (e->KeyCode == CONTROLES_CAMBIO_ESCENA && this->se_cambiara_de_escena)
-			se_cambiara_de_escena = false;
+		;
 	}
 
 	Direccion Utils::obtenerDireccionInvertida(Direccion direccion) {
@@ -167,6 +110,8 @@ namespace YuGiOh
 		case Derecha:
 			return Izquierda;
 			break;
+		default:
+			return Abajo;
 		}
 	}
 }

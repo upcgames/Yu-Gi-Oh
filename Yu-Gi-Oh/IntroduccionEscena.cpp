@@ -1,23 +1,23 @@
-#include "Escena.h"
+#include "Escenas.h"
 #include "Imagenes.h"
 #include "Juego.h"
 #include "Dialogo.h"
 
 namespace YuGiOh
 {
-	Introduccion::Introduccion()
+	IntroduccionEscena::IntroduccionEscena()
 	{
-		onTimerTick = gcnew EventHandler(this, &Introduccion::timerTick);
-		onKeyDown = gcnew KeyEventHandler(this, &Introduccion::teclaDown);
+		onTimerTick = gcnew EventHandler(this, &IntroduccionEscena::timerTick);
+		onKeyDown = gcnew KeyEventHandler(this, &IntroduccionEscena::teclaDown);
 	}
 
-	void Introduccion::timerTick(System::Object^  sender, System::EventArgs^  e)
+	void IntroduccionEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
 	{
 		if (activo)
 		{
 			if (!dibujado)
 			{
-				buffer->Graphics->DrawImage(Imagenes::Introduccion, Rectangle(0, 0, 832, 577));
+				buffer->Graphics->DrawImage(Imagenes::IntroduccionEscena, Rectangle(0, 0, 832, 577));
 				buffer->Render(Juego::graphics);
 				Juego::dialogo = gcnew Dialogo(gcnew array<String^> {
 					"Bienvenido al mundo YuGiOh!!!",
@@ -34,7 +34,7 @@ namespace YuGiOh
 		}
 	}
 
-	void Introduccion::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+	void IntroduccionEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
 		if (activo && dibujado)
 		{

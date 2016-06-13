@@ -1,16 +1,16 @@
-#include "Escena.h"
+#include "Escenas.h"
 #include "Marco.h"
 #include "Juego.h"
 
 namespace YuGiOh
 {
-	Campus::Campus()
+	CampusEscena::CampusEscena()
 	{
 		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
-		onTimerTick = gcnew EventHandler(this, &Campus::timerTick);
-		onKeyDown = gcnew KeyEventHandler(this, &Campus::teclaDown);
-		onKeyUp = gcnew KeyEventHandler(this, &Campus::teclaUp);
-		onMouseClick = gcnew MouseEventHandler(this, &Campus::mouseClick);
+		onTimerTick = gcnew EventHandler(this, &CampusEscena::timerTick);
+		onKeyDown = gcnew KeyEventHandler(this, &CampusEscena::teclaDown);
+		onKeyUp = gcnew KeyEventHandler(this, &CampusEscena::teclaUp);
+		onMouseClick = gcnew MouseEventHandler(this, &CampusEscena::mouseClick);
 
 		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
 		Juego::plazuela_mapa = gcnew PlazuelaMapa();
@@ -20,19 +20,20 @@ namespace YuGiOh
 		Juego::mapa_actual = Juego::plazuela_mapa;
 	}
 
-	void Campus::timerTick(System::Object^  sender, System::EventArgs^  e)
+	void CampusEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
 	{
 		if (activo)
 		{
 			contador++;
 			Juego::mapa_actual->mostrarTerreno();
+			Juego::mapa_actual->mostrarObjetos();
 			Juego::marco->MostrarMarco(buffer->Graphics);
 			buffer->Render(Juego::graphics);
 			dibujado = true;
 		}
 	}
 
-	void Campus::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+	void CampusEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
 		if (activo && dibujado)
 		{
@@ -56,10 +57,7 @@ namespace YuGiOh
 				Juego::marco->moviendose = true;
 				Juego::marco->direccion = Derecha;
 			}
-			/*else if (e->KeyCode == Keys::N)
-			{
-			cheatKey = 'n';
-			}*/
+
 			else if (e->KeyCode == Keys::P)
 			{
 				DesactivarEscena(this);
@@ -68,7 +66,7 @@ namespace YuGiOh
 		}
 	}
 
-	void Campus::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
+	void CampusEscena::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
 		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && Juego::marco->direccion == Arriba)
 			Juego::marco->Detener();
@@ -78,13 +76,9 @@ namespace YuGiOh
 			Juego::marco->Detener();
 		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && Juego::marco->direccion == Derecha)
 			Juego::marco->Detener();
-
-
-		//if (e->KeyCode == Keys::N && cheatKey == 'n')
-		//cheatKey = 'z';
 	}
 
-	void Campus::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
+	void CampusEscena::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
 	{
 		;
 	}

@@ -1,7 +1,7 @@
 #include "Constantes.h"
 #include "Mapa.h"
 #include "Juego.h"
-#include "Objeto.h"
+#include "Objetos.h"
 
 namespace YuGiOh {
 
@@ -56,8 +56,15 @@ namespace YuGiOh {
 
 
 	void Mapa::mostrarTerreno() {
-		BufferedGraphics^ buffer_actual = Escena::getEscenaActual()->buffer;
-		capa_terreno->Render(buffer_actual->Graphics);
+		capa_terreno->Render(Escena::getEscenaActual()->buffer->Graphics);
+	}
+
+	void Mapa::mostrarObjetos() {
+
+		int numero_de_objetos = this->objetos->Length;
+
+		for (int i = 0; i < numero_de_objetos; i++)
+			objetos[i]->mostrar();
 	}
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {
@@ -80,7 +87,8 @@ namespace YuGiOh {
 
 		this->objetos = gcnew array<Objeto^> {
 			gcnew PuertaObjeto(gcnew Posicion(-1, 3, true), PabellonA, gcnew Posicion(19, 3, true), Izquierda),
-				gcnew PuertaObjeto(gcnew Posicion(8, 14, true), PabellonB, gcnew Posicion(8, 0, true), Abajo)
+			gcnew PuertaObjeto(gcnew Posicion(8, 14, true), PabellonB, gcnew Posicion(8, 0, true), Abajo),
+			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha)
 		};
 
 		generarCapaTerreno();
@@ -149,9 +157,8 @@ namespace YuGiOh {
 		case PabellonB:
 			return Juego::pabellonB_mapa;
 			break;
-		//case Derecha:
-		//	return Izquierda;
-		//	break;
+		default:
+			return nullptr;
 		}
 	}
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Escena.h"
+#include "Escenas.h"
 
 using namespace System;
 using namespace System::Drawing;

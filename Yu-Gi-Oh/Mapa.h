@@ -1,5 +1,5 @@
 #pragma once
-#include "Objeto.h"
+#include "Objetos.h"
 
 namespace YuGiOh {
 	public ref class Mapa
@@ -17,6 +17,7 @@ namespace YuGiOh {
 		static Mapa^ obtenerMapa(Pabellon pabellon);
 
 		void mostrarTerreno();
+		void mostrarObjetos();
 	};
 
 	public ref class PlazuelaMapa : public Mapa{ public: PlazuelaMapa(); };

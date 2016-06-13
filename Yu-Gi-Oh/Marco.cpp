@@ -1,7 +1,7 @@
 #include "Marco.h"
 #include "Imagenes.h"
 #include "Juego.h"
-#include "Objeto.h"
+#include "Objetos.h"
 
 namespace YuGiOh
 {
