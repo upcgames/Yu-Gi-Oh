@@ -6,15 +6,13 @@ using namespace System::Windows::Forms;
 using namespace System::Drawing;
 using namespace System;
 
-namespace YuGiOh
-{
-	public ref class Escena
-	{
+namespace YuGiOh {
+	public ref class Escena	{
 	public:
-		int contador;
-		bool activo;
-		bool dibujado;
-		BufferedGraphics^ buffer;
+		int contador_timer;
+		bool escena_activa;
+		bool escena_dibujada;
+		BufferedGraphics^ escena_buffer;
 		KeyEventHandler^ onKeyDown;
 		KeyEventHandler^ onKeyUp;
 		MouseEventHandler^ onMouseClick;
@@ -28,16 +26,14 @@ namespace YuGiOh
 		static void DesactivarEscena(Escena^ escena);
 	};
 
-	public ref class IntroduccionEscena : public Escena
-	{
+	public ref class IntroduccionEscena : public Escena	{
 	public:
 		IntroduccionEscena();
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 	};
 
-	public ref class CampusEscena : public Escena
-	{
+	public ref class CampusEscena : public Escena {
 	public:
 		int pabellon;
 		CampusEscena();
@@ -48,8 +44,7 @@ namespace YuGiOh
 		void teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 	};
 
-	public ref class EscenaDeMapa : public Escena
-	{
+	public ref class EscenaDeMapa : public Escena {
 	public:
 		Direccion direccion_de_regreso;
 		Pabellon pabellon_de_regreso;
@@ -57,8 +52,7 @@ namespace YuGiOh
 		Posicion^ posicion_de_regreso;
 	};
 
-	public ref class TiendaEscena : public EscenaDeMapa
-	{
+	public ref class TiendaEscena : public EscenaDeMapa	{
 	public:
 		TiendaEscena();
 		bool modo_vender;
@@ -68,5 +62,12 @@ namespace YuGiOh
 		void mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		void timerTick(System::Object^  sender, System::EventArgs^  e);
 		void teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+	};
+
+	public ref class Escenas abstract sealed {
+	public:
+		static IntroduccionEscena^ introduccion;
+		static CampusEscena^ campus;
+		static TiendaEscena^ tienda;
 	};
 }

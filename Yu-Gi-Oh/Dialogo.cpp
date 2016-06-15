@@ -3,15 +3,20 @@
 #include "string.h"
 #include<vcclr.h>
 
-namespace YuGiOh
-{
-	Dialogo::Dialogo(array<String^>^ mensajes) {
+namespace YuGiOh {
+
+	Dialogo::Dialogo(... array<String^>^ mensajes) {
 		this->mensajes = mensajes;
 		this->fuente = gcnew Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
 		this->posicion_parrafo = 0;
 		numero_de_oraciones = mensajes->Length;
 		esperando_confirmacion = false;
-		this->empezarAEscribir();	
+		se_escribio_todo = false;
+	}
+
+	void Dialogo::mostarMensaje(... array<String^>^ mensajes) {
+		dialogo = gcnew Dialogo(mensajes);
+		dialogo->empezarAEscribir();
 	}
 
 	void Dialogo::empezarAEscribir() {
@@ -19,7 +24,7 @@ namespace YuGiOh
 		this->escena_anterior = Escena::getEscenaActual();
 		Escena::DesactivarEscena(escena_anterior);
 
-		activo = true;
+		escena_activa = true;
 		onTimerTick = gcnew EventHandler(this, &Dialogo::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &Dialogo::teclaDown);
 		onMouseClick = gcnew MouseEventHandler(this, &Dialogo::mouseClick);
@@ -29,6 +34,7 @@ namespace YuGiOh
 		Juego::myform->MouseClick += this->onMouseClick;
 
 	}
+
 	void Dialogo::terminarDeEscribir() {
 		Juego::myform->timer->Tick -= this->onTimerTick;
 		Juego::myform->KeyDown -= this->onKeyDown;
@@ -64,30 +70,28 @@ namespace YuGiOh
 	{
 		if (posicion_parrafo < numero_de_oraciones) {
 
-			if (!esperando_confirmacion) {
+			if (esperando_confirmacion)
+				return;
 
-				if (posicion_oracion == 0) {
-					this->escena_anterior->buffer->Render(Juego::graphics);
-					Juego::graphics->FillRectangle(gcnew SolidBrush(Color::White), 0, MYFORM_SIZE_HEIGHT * 2 / 3, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT / 3);
-					oracion_actual = mensajes[posicion_parrafo];
-					numero_de_caracteres = oracion_actual->Length;
-					float ancho_de_texto = Juego::graphics->MeasureString(oracion_actual, this->fuente).Width;
-					punto_de_comienzo = (MYFORM_SIZE_WIDTH - ancho_de_texto) / 2;
-					punto_de_comienzo += 24;
-				}
-
-				escribirCaracter();
+			if (posicion_oracion == 0) {
+				escena_anterior->escena_buffer->Render(Juego::graphics);
+				Juego::graphics->FillRectangle(gcnew SolidBrush(Color::White), 0, MYFORM_SIZE_HEIGHT * 2 / 3, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT / 3);
+				oracion_actual = mensajes[posicion_parrafo];
+				numero_de_caracteres = oracion_actual->Length;
+				float ancho_de_texto = Juego::graphics->MeasureString(oracion_actual, this->fuente).Width;
+				punto_de_comienzo = (MYFORM_SIZE_WIDTH - ancho_de_texto) / 2;
+				punto_de_comienzo += 24;
 			}
+
+			escribirCaracter();
 		}
-		else {
+		else if (numero_de_oraciones != 1 || (numero_de_oraciones == 1 && !esperando_confirmacion))
 			terminarDeEscribir();
-		}
-		
 	}
 
 	void Dialogo::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if (activo && esperando_confirmacion)
+		if (escena_activa && esperando_confirmacion)
 		{
 			esperando_confirmacion = false;
 		}
@@ -95,7 +99,7 @@ namespace YuGiOh
 
 	void Dialogo::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
 	{
-		if (activo && esperando_confirmacion)
+		if (escena_activa && esperando_confirmacion)
 		{
 			esperando_confirmacion = false;
 		}

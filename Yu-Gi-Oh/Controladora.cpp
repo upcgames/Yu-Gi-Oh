@@ -1,10 +1,9 @@
 #include "Juego.h"
 #include "Constantes.h"
 #include "Imagenes.h"
+#include "Escenas.h"
 
-namespace YuGiOh
-{
-
+namespace YuGiOh {
 	//Definicion de las constantes
 	const int MYFORM_WIDTH = 20;
 	const int MYFORM_HEIGHT = 14;
@@ -28,8 +27,7 @@ namespace YuGiOh
 	const Keys CONTROLES_MOVER_IZQUIERDA_2 = Keys::Left;
 	const Keys CONTROLES_MOVER_DERECHA_2 = Keys::Right;
 
-	Juego::Juego(void)
-	{
+	Juego::Juego(void) {
 		InitializeComponent();
 		myform = this;
 
@@ -37,27 +35,22 @@ namespace YuGiOh
 		context = BufferedGraphicsManager::Current;
 		aleatorio = gcnew Random();
 
-		imagenes = gcnew Imagenes();
-
 		//Inicializamos las escenas
-		introduccion = gcnew IntroduccionEscena();
-		campus = gcnew CampusEscena();
-		tienda = gcnew TiendaEscena();
+		Escenas::introduccion = gcnew IntroduccionEscena();
+		Escenas::campus = gcnew CampusEscena();
+		Escenas::tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(introduccion);
+		Escena::EmpezarConEscena(Escenas::introduccion);
 	}
 
-	Juego::~Juego()
-	{
-		if (components)
-		{
+	Juego::~Juego() {
+		if (components)	{
 			delete components;
 		}
 	}
 
-	void Juego::InitializeComponent(void)
-	{
+	void Juego::InitializeComponent(void) {
 		this->components = (gcnew System::ComponentModel::Container());
 		System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Juego::typeid));
 		this->timer = (gcnew System::Windows::Forms::Timer(this->components));
@@ -85,13 +78,11 @@ namespace YuGiOh
 
 	}
 
-	System::Void Juego::Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
-	{
+	System::Void Juego::Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		;
 	}
 
-	System::Void Juego::Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
-	{
+	System::Void Juego::Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		;
 	}
 
@@ -113,5 +104,9 @@ namespace YuGiOh
 		default:
 			return Abajo;
 		}
+	}
+
+	void Imagenes::mostarFondo(Image^ imagen, Graphics^ graphics) {
+		graphics->DrawImage(imagen, Rectangle(0, 0, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT));
 	}
 }

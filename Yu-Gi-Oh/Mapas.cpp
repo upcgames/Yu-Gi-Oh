@@ -1,5 +1,5 @@
 #include "Constantes.h"
-#include "Mapa.h"
+#include "Mapas.h"
 #include "Juego.h"
 #include "Objetos.h"
 
@@ -55,16 +55,16 @@ namespace YuGiOh {
 	}
 
 
-	void Mapa::mostrarTerreno() {
-		capa_terreno->Render(Escena::getEscenaActual()->buffer->Graphics);
+	void Mapa::mostrarTerreno(Graphics^ graphics) {
+		capa_terreno->Render(graphics);
 	}
 
-	void Mapa::mostrarObjetos() {
+	void Mapa::mostrarObjetos(Graphics^ graphics) {
 
 		int numero_de_objetos = this->objetos->Count;
 
 		for (int i = 0; i < numero_de_objetos; i++)
-			objetos[i]->mostrar();
+			objetos[i]->mostrar(graphics);
 	}
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {
@@ -159,13 +159,13 @@ namespace YuGiOh {
 		switch (pabellon)
 		{
 		case Plazuela:
-			return Juego::plazuela_mapa;
+			return Mapas::plazuela_mapa;
 			break;
 		case PabellonA:
-			return Juego::pabellonA_mapa;
+			return Mapas::pabellonA_mapa;
 			break;
 		case PabellonB:
-			return Juego::pabellonB_mapa;
+			return Mapas::pabellonB_mapa;
 			break;
 		default:
 			return nullptr;

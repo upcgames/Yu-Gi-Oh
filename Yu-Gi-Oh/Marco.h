@@ -6,12 +6,16 @@ namespace YuGiOh
 	public ref class Marco : public Duelista
 	{
 	public:
-		static bool moviendose;
+		static bool debe_avanzar;
 		Direccion direccion;
 		int velocidad;
 		Marco(Posicion^ p);
-		void MostrarMarco(Graphics^ graphics);
-		void Avanzar(Direccion direccion);
+
+		static Marco^ marco;
+		static void mostrarloEn(Graphics^ graphics);
+
+		void intentarAvanzar(Direccion direccion);
+		void avanzarUnPaso();
 		void Detener();
 	};
 }

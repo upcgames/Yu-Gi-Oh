@@ -5,7 +5,6 @@
 #include "Escenas.h"
 #include "Dialogo.h"
 #include "Objetos.h"
-#include "Mapa.h"
 
 using namespace System;
 using namespace System::Drawing;
@@ -15,26 +14,12 @@ using namespace System::Data;
 
 namespace YuGiOh
 {
-	public ref class Juego : public System::Windows::Forms::Form
-	{
+	public ref class Juego : public System::Windows::Forms::Form {
 	public:
 		//aleatorio generara todos los numeros random en el futuro
 		static Random^ aleatorio;
-		static Imagenes^ imagenes;
-		static Dialogo^ dialogo;
 
-		static Marco^ marco;
-
-		static IntroduccionEscena^ introduccion;
-		static CampusEscena^ campus;
-		static TiendaEscena^ tienda;
-
-		static Mapa^ mapa_actual;
 		static array<Objeto^>^ objetos;
-
-		static PlazuelaMapa^ plazuela_mapa;
-		static PabellonAMapa^ pabellonA_mapa;
-		static PabellonBMapa^ pabellonB_mapa;
 
 		//myform, graphics y context serviran para mostar los graficos.
 		static Juego^ myform;

@@ -1,81 +1,81 @@
 #include "Escenas.h"
 #include "Marco.h"
 #include "Juego.h"
+#include "Mapas.h"
 
 namespace YuGiOh
 {
 	CampusEscena::CampusEscena()
 	{
-		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Marco::marco = gcnew Marco(gcnew Posicion(0, 0));
 		onTimerTick = gcnew EventHandler(this, &CampusEscena::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &CampusEscena::teclaDown);
 		onKeyUp = gcnew KeyEventHandler(this, &CampusEscena::teclaUp);
 		onMouseClick = gcnew MouseEventHandler(this, &CampusEscena::mouseClick);
 
-		Juego::marco = gcnew Marco(gcnew Posicion(0, 0));
-		Juego::plazuela_mapa = gcnew PlazuelaMapa();
-		Juego::pabellonA_mapa = gcnew PabellonAMapa();
-		Juego::pabellonB_mapa = gcnew PabellonBMapa();
+		Marco::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Mapas::plazuela_mapa = gcnew PlazuelaMapa();
+		Mapas::pabellonA_mapa = gcnew PabellonAMapa();
+		Mapas::pabellonB_mapa = gcnew PabellonBMapa();
 
-		Juego::mapa_actual = Juego::plazuela_mapa;
+		Mapa::mapa_actual = Mapas::plazuela_mapa;
 	}
 
 	void CampusEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
 	{
-		if (activo)
+		if (escena_activa)
 		{
-			contador++;
-			Juego::mapa_actual->mostrarTerreno();
-			Juego::mapa_actual->mostrarObjetos();
-			Juego::marco->MostrarMarco(buffer->Graphics);
-			buffer->Render(Juego::graphics);
-			dibujado = true;
+			contador_timer++;
+
+			if (Marco::marco->debe_avanzar)
+				Marco::marco->intentarAvanzar(Marco::marco->direccion);
+
+			Mapa::mapa_actual->mostrarTerreno(escena_buffer->Graphics);
+			Mapa::mapa_actual->mostrarObjetos(escena_buffer->Graphics);
+			Marco::mostrarloEn(escena_buffer->Graphics);
+
+			escena_buffer->Render(Juego::graphics);
+			escena_dibujada = true;
 		}
 	}
 
 	void CampusEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if (activo && dibujado)
+		if (escena_activa && escena_dibujada)
 		{
 			if (e->KeyCode == Keys::W || e->KeyCode == Keys::Up)
 			{
-				Juego::marco->moviendose = true;
-				Juego::marco->direccion = Arriba;
+				Marco::marco->debe_avanzar = true;
+				Marco::marco->direccion = Arriba;
 			}
 			else if (e->KeyCode == Keys::S || e->KeyCode == Keys::Down)
 			{
-				Juego::marco->moviendose = true;
-				Juego::marco->direccion = Abajo;
+				Marco::marco->debe_avanzar = true;
+				Marco::marco->direccion = Abajo;
 			}
 			else if (e->KeyCode == Keys::A || e->KeyCode == Keys::Left)
 			{
-				Juego::marco->moviendose = true;
-				Juego::marco->direccion = Izquierda;
+				Marco::marco->debe_avanzar = true;
+				Marco::marco->direccion = Izquierda;
 			}
 			else if (e->KeyCode == Keys::D || e->KeyCode == Keys::Right)
 			{
-				Juego::marco->moviendose = true;
-				Juego::marco->direccion = Derecha;
-			}
-
-			else if (e->KeyCode == Keys::P)
-			{
-				DesactivarEscena(this);
-				//ActivarEscena(Juego::pausa);
+				Marco::marco->debe_avanzar = true;
+				Marco::marco->direccion = Derecha;
 			}
 		}
 	}
 
 	void CampusEscena::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && Juego::marco->direccion == Arriba)
-			Juego::marco->Detener();
-		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && Juego::marco->direccion == Abajo)
-			Juego::marco->Detener();
-		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && Juego::marco->direccion == Izquierda)
-			Juego::marco->Detener();
-		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && Juego::marco->direccion == Derecha)
-			Juego::marco->Detener();
+		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && Marco::marco->direccion == Arriba)
+			Marco::marco->Detener();
+		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && Marco::marco->direccion == Abajo)
+			Marco::marco->Detener();
+		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && Marco::marco->direccion == Izquierda)
+			Marco::marco->Detener();
+		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && Marco::marco->direccion == Derecha)
+			Marco::marco->Detener();
 	}
 
 	void CampusEscena::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)

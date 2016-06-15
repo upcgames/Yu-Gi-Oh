@@ -5,21 +5,21 @@ namespace YuGiOh
 {
 	Escena::Escena()
 	{
-		buffer = Juego::context->Allocate(Juego::graphics, Juego::myform->ClientRectangle);
-		activo = false;
-		dibujado = false;
-		contador = 0;
+		escena_buffer = Juego::context->Allocate(Juego::graphics, Juego::myform->ClientRectangle);
+		escena_activa = false;
+		escena_dibujada = false;
+		contador_timer = 0;
 	}
 
 	Escena^ Escena::getEscenaActual() {
-		if (Juego::campus->activo)
-			return Juego::campus;
+		if (Escenas::campus->escena_activa)
+			return Escenas::campus;
 
-		else if (Juego::introduccion->activo)
-			return Juego::introduccion;
+		else if (Escenas::introduccion->escena_activa)
+			return Escenas::introduccion;
 
-		else if (Juego::tienda->activo)
-			return Juego::tienda;
+		else if (Escenas::tienda->escena_activa)
+			return Escenas::tienda;
 		
 		return nullptr;
 	}
@@ -40,7 +40,7 @@ namespace YuGiOh
 
 	void Escena::ActivarEscena(Escena^ escena)
 	{
-		escena->activo = true;
+		escena->escena_activa = true;
 
 		if (escena->onTimerTick != nullptr)
 			Juego::myform->timer->Tick += escena->onTimerTick;
@@ -54,7 +54,7 @@ namespace YuGiOh
 
 	void Escena::DesactivarEscena(Escena^ escena)
 	{
-		escena->activo = false;
+		escena->escena_activa = false;
 
 		if (escena->onTimerTick != nullptr)
 			Juego::myform->timer->Tick -= escena->onTimerTick;
@@ -65,20 +65,20 @@ namespace YuGiOh
 		if (escena->onMouseClick != nullptr)
 			Juego::myform->MouseClick -= escena->onMouseClick;
 
-		escena->dibujado = false;
+		escena->escena_dibujada = false;
 	}
 
 	Escena^ Escena::getEscenaTipo(TipoEscena tipo) {
 		switch (tipo)
 		{
 		case Introduccion:
-			return Juego::introduccion;
+			return Escenas::introduccion;
 			break;
 		case Campus:
-			return Juego::campus;
+			return Escenas::campus;
 			break;
 		case Tienda:
-			return Juego::tienda;
+			return Escenas::tienda;
 			break;
 		default:
 			return nullptr;

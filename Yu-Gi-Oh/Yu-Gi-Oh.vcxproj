@@ -96,7 +96,7 @@
     <ClInclude Include="Escenas.h" />
     <ClInclude Include="Figuras.h" />
     <ClInclude Include="Imagenes.h" />
-    <ClInclude Include="Mapa.h" />
+    <ClInclude Include="Mapas.h" />
     <ClInclude Include="Marco.h" />
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>

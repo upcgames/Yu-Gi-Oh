@@ -2,10 +2,11 @@
 
 namespace YuGiOh
 {
-	public ref class Imagenes
+	public ref class Imagenes abstract sealed
 	{
 	public:
-		Imagenes();
+		static void mostarFondo(Image^ imagen, Graphics^ graphics);
+
 		static Image^ MARCO_SPRITE;
 		static Image^ MONEDA_SPRITE;
 		

@@ -1,18 +1,19 @@
 #include "Objetos.h"
 #include "Juego.h"
-#include "Mapa.h"
+#include "Mapas.h"
 
 namespace YuGiOh {
+
 	Objeto::Objeto(Posicion^ posicion) {
 		this->posicion = posicion;
 	}
 
-	void Objeto::mostrar() {
+	void Objeto::mostrar(Graphics^ graphics) {
 		;
 	}
 
-	void Objeto::accionar() {
-		;
+	bool Objeto::interactuarConMarco() {
+		return false;
 	}
 
 	ObjetoStatico::ObjetoStatico(Posicion^ posicion) : Objeto(posicion) {
@@ -36,12 +37,16 @@ namespace YuGiOh {
 		this->direccion_de_salida = direccion_de_salida;
 	}
 
-	void ObjetoAnimado::mostrar() {
-		Graphics^ graphics_actual = Escena::getEscenaActual()->buffer->Graphics;
-		graphics_actual->DrawImage(
+	void ObjetoAnimado::mostrar(Graphics^ graphics) {
+		graphics->DrawImage(
 			sprite->imagen,
 			Rectangle(posicion->x, posicion->y, ancho, alto),
-			Rectangle(sprite->indice / 2 * sprite->ancho, sprite->subindice * sprite->alto, sprite->ancho, sprite->alto),
+			Rectangle(
+				sprite->indice / 2 * sprite->ancho,
+				sprite->subindice * sprite->alto,
+				sprite->ancho,
+				sprite->alto
+			),
 			GraphicsUnit::Pixel);
 		
 		sprite->indice++;
@@ -64,16 +69,19 @@ namespace YuGiOh {
 		alto = RESOLUCION_Y;
 	}
 
-	void MonedaObjeto::accionar(){
-		Juego::dialogo = gcnew Dialogo(gcnew array<String^>{"Encontraste " + dinero_sorpresa + " soles!!"});
-		Juego::mapa_actual->objetos->Remove(this);
-		Juego::marco->Detener();
+	bool MonedaObjeto::interactuarConMarco(){
+
+		Dialogo::mostarMensaje("Encontraste " + dinero_sorpresa + " soles!!");
+		Mapa::mapa_actual->objetos->Remove(this);
+		Marco::marco->Detener();
+		return true;
 	}
 
-	void PuertaObjeto::accionar() {
-		Juego::marco->posicion->IgualarA(this->posicion_de_salida);
-		Juego::marco->direccion = this->direccion_de_salida;
-		Juego::mapa_actual = Mapa::obtenerMapa(pabellon_de_salida);
+	bool PuertaObjeto::interactuarConMarco() {
+		Marco::marco->posicion->igualarA(this->posicion_de_salida);
+		Marco::marco->direccion = this->direccion_de_salida;
+		Mapa::mapa_actual = Mapa::obtenerMapa(pabellon_de_salida);
+		return false;
 	}
 
 	PuertaEscenaObjeto::PuertaEscenaObjeto(
@@ -93,7 +101,7 @@ namespace YuGiOh {
 		
 	}
 	
-	void PuertaEscenaObjeto::accionar() {
+	bool PuertaEscenaObjeto::interactuarConMarco() {
 		Escena::CambiarEscena(Escena::getEscenaTipo(escena_a_mostrar));
 		Escena^ escena = Escena::getEscenaTipo(escena_a_mostrar);
 		EscenaDeMapa^ escena_de_mapa = dynamic_cast<EscenaDeMapa^>(escena);
@@ -102,10 +110,10 @@ namespace YuGiOh {
 		escena_de_mapa->pabellon_de_regreso = pabellon_de_regreso;
 		escena_de_mapa->posicion_de_regreso = posicion_de_regreso;
 		escena_de_mapa->direccion_de_regreso = direccion_de_regreso;
+		return false;
 	}
 
-	void PuertaEscenaObjeto::mostrar() {
-		Graphics^ graphics_actual = Escena::getEscenaActual()->buffer->Graphics;
-		graphics_actual->DrawImage(imagen, Rectangle(posicion->x, posicion->y, RESOLUCION_X, RESOLUCION_Y));
+	void PuertaEscenaObjeto::mostrar(Graphics^ graphics) {
+		graphics->DrawImage(imagen, Rectangle(posicion->x, posicion->y, RESOLUCION_X, RESOLUCION_Y));
 	}
 }

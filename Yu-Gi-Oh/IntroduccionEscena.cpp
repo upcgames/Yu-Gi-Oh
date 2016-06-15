@@ -3,23 +3,20 @@
 #include "Juego.h"
 #include "Dialogo.h"
 
-namespace YuGiOh
-{
-	IntroduccionEscena::IntroduccionEscena()
-	{
+namespace YuGiOh {
+
+	IntroduccionEscena::IntroduccionEscena() {
 		onTimerTick = gcnew EventHandler(this, &IntroduccionEscena::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &IntroduccionEscena::teclaDown);
 	}
 
-	void IntroduccionEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
-	{
-		if (activo)
-		{
-			if (!dibujado)
-			{
-				buffer->Graphics->DrawImage(Imagenes::INTRODUCCION_FONDO, Rectangle(0, 0, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT));
-				buffer->Render(Juego::graphics);
-				Juego::dialogo = gcnew Dialogo(gcnew array<String^> {
+	void IntroduccionEscena::timerTick(System::Object^  sender, System::EventArgs^  e) {
+		if (escena_activa) {
+			if (!escena_dibujada) {
+				Imagenes::mostarFondo(Imagenes::INTRODUCCION_FONDO, escena_buffer->Graphics);
+				escena_buffer->Render(Juego::graphics);
+				
+				 Dialogo::mostarMensaje(
 					"Bienvenido al mundo YuGiOh!!!",
 					"Para moverte usa las flechas del teclado",
 					"Estas en el Campus de la UPC!!",
@@ -28,22 +25,17 @@ namespace YuGiOh
 					"Tu objetivo es derrotar a 4 profesores",
 					"Puedes intercambiar monedas por cartas",
 					"Que empieze tu aventura!"
-				});
-				dibujado = true;
+				);
+
+				escena_dibujada = true;
 			}
 		}
 	}
 
-	void IntroduccionEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
-	{
-		if (activo && dibujado)
-		{
-			if (e->KeyCode == Keys::Enter)
-			{
+	void IntroduccionEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+		if (escena_activa && escena_dibujada) {
 				DesactivarEscena(this);
-				ActivarEscena(Juego::campus);
-			}
-
+				ActivarEscena(Escenas::campus);
 		}
 	}
 }

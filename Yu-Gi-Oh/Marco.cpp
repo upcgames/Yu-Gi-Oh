@@ -1,68 +1,79 @@
 #include "Marco.h"
 #include "Imagenes.h"
-#include "Juego.h"
+#include "Mapas.h"
 #include "Objetos.h"
 
 namespace YuGiOh
 {
-	Marco::Marco(Posicion^ p)
-	{
+	Marco::Marco(Posicion^ p) {
 		sprite = gcnew Sprite(Imagenes::MARCO_SPRITE);
 		sprite->indice = 0;
 		sprite->ancho = 24;
 		sprite->alto = 24;
 		sprite->numero_de_columnas = 8;
 		sprite->numero_de_filas = 6;
+		sprite->se_para_en_el_medio = true;
 
 		direccion = Direccion::Abajo;
 		velocidad = 8;
 		posicion = p;
 		ancho = RESOLUCION_X;
 		alto = RESOLUCION_Y;
-		moviendose = false;
+		debe_avanzar = false;
 	}
 
-	void Marco::MostrarMarco(Graphics^ graphics)
-	{
-		if (direccion == Arriba)
-			sprite->subindice = 0;
-		else if (direccion == Abajo)
-			sprite->subindice = 1;
-		else if (direccion == Izquierda)
-			sprite->subindice = 2;
-		else if (direccion == Derecha)
-			sprite->subindice = 3;
+	void Marco::mostrarloEn(Graphics^ graphics)	{
+		Marco^ marco = Marco::marco;
+		Sprite^ marco_sprite = marco->sprite;
 
-		if (moviendose)
-			Avanzar(direccion);
+		marco_sprite->cambiarSubindice((int)marco->direccion);
 
-		graphics->DrawImage(sprite->imagen, Rectangle(posicion->x, posicion->y, ancho, alto), Rectangle(sprite->indice / 2 * sprite->ancho, sprite->subindice * sprite->alto, sprite->ancho, sprite->alto), GraphicsUnit::Pixel);
+		graphics->DrawImage(
+			marco_sprite->imagen,
+			Rectangle(
+				marco->posicion->x,
+				marco->posicion->y,
+				marco->ancho, 
+				marco->alto
+			),
+			Rectangle(
+				marco_sprite->indice / 2 * marco_sprite->ancho,
+				marco_sprite->subindice * marco_sprite->alto,
+				marco_sprite->ancho,
+				marco_sprite->alto
+			),
+			GraphicsUnit::Pixel
+		);
 	}
 
-	void Marco::Avanzar(Direccion direccion)
-	{
-		this->direccion = direccion;
+	void Marco::intentarAvanzar(Direccion direccion) {
 
-		sprite->indice++;
+		sprite->siguienteIndice();
 
-		if (sprite->indice == 8)
-			sprite->indice = 10;
+		Posicion^ siguiente_posicion_de_marco = posicion->getSiguientePosicion(direccion, velocidad);
+		Objeto^ siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion_de_marco);
 
-		else if (sprite->indice == 16)
-			sprite->indice = 0;
-
-		Objeto^ siguiente_bloque = Juego::mapa_actual->getObjeto(posicion->getPosicionIncrementada(direccion, velocidad));
-
-		if (siguiente_bloque == nullptr)
-			posicion->Aumentar(this->direccion, velocidad);
+		if (siguiente_bloque == nullptr) {
+			this->avanzarUnPaso();
+		}
 		else {
-			siguiente_bloque->accionar();
+			//Se choca con un objeto y se interactua con este
+			Objeto^ objeto_dinamico = siguiente_bloque;
+			bool debe_dar_un_paso_mas = objeto_dinamico->interactuarConMarco();
+			
+			//Algunos objetos detienen a marco por completo y otros no...
+			if (debe_dar_un_paso_mas) {
+				this->avanzarUnPaso();
+			}
 		}
 	}
 
-	void Marco::Detener()
-	{
+	void Marco::avanzarUnPaso() {
+		posicion->Aumentar(this->direccion, this->velocidad);
+	}
+
+	void Marco::Detener() {
 		sprite->indice = 0;
-		moviendose = false;
+		debe_avanzar = false;
 	}
 }

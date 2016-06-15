@@ -2,32 +2,33 @@
 #include "Figuras.h"
 
 namespace YuGiOh {
-	public ref class Objeto: public Figura
-	{
+
+	public ref class Objeto: public Figura {
 	public:
-		Objeto(Posicion^ posicion);
 		Objetos tipo;
 		Posicion^ posicion;
-		virtual void mostrar();
-		virtual void accionar();
+		
+		virtual void mostrar(Graphics^ graphics);
+		virtual bool interactuarConMarco();
+
+		Objeto(Posicion^ posicion);
 	};
 
-	public ref class ObjetoStatico: public Objeto
-	{
+	public ref class ObjetoStatico: public Objeto {
 	public:
 		ObjetoStatico(Posicion^ posicion);
 	};
 
-	public ref class ObjetoAnimado : public Objeto
-	{
+	public ref class ObjetoAnimado : public Objeto {
 	public:
 		Sprite^ sprite;
+		
+		virtual void mostrar(Graphics^ graphics) override;
+		
 		ObjetoAnimado(Posicion^ posicion);
-		virtual void mostrar() override;
 	};
 
-	public ref class PuertaObjeto: public ObjetoStatico
-	{
+	public ref class PuertaObjeto: public ObjetoStatico {
 	public:
 		Direccion direccion_de_salida;
 		Pabellon pabellon_de_salida;
@@ -38,18 +39,19 @@ namespace YuGiOh {
 			Posicion^ posicion_de_salida,
 			Direccion direccion_de_salida
 		);
-		virtual void accionar() override;
+		virtual bool interactuarConMarco() override;
 	};
 
 	public ref class MonedaObjeto : public ObjetoAnimado {
 	public:
 		int dinero_sorpresa;
+		
+		virtual bool interactuarConMarco() override;
+		
 		MonedaObjeto(Posicion^ posicion);
-		virtual void accionar() override;
 	};
 
-	public ref class PuertaEscenaObjeto : public ObjetoStatico
-	{
+	public ref class PuertaEscenaObjeto : public ObjetoStatico {
 	public:
 		Direccion direccion_de_regreso;
 		Pabellon pabellon_de_regreso;
@@ -62,8 +64,9 @@ namespace YuGiOh {
 			Posicion^ posicion_de_regreso,
 			Direccion direccion_de_regreso
 			);
-		virtual void accionar() override;
-		virtual void mostrar() override;
+
+		virtual void mostrar(Graphics^ graphics) override;
+		virtual bool interactuarConMarco() override;
 	};
 }
 	
