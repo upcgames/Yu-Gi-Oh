@@ -3,10 +3,10 @@
 #include "Mapas.h"
 #include "Objetos.h"
 
-namespace YuGiOh
-{
+namespace YuGiOh {
+
 	Marco::Marco(Posicion^ p) {
-		sprite = gcnew Sprite(Imagenes::MARCO_SPRITE);
+		sprite = gcnew Sprite(IMAGENES::MARCO_SPRITE);
 		sprite->indice = 0;
 		sprite->ancho = 24;
 		sprite->alto = 24;
@@ -50,11 +50,20 @@ namespace YuGiOh
 
 		sprite->siguienteIndice();
 
-		Posicion^ siguiente_posicion_de_marco = posicion->getSiguientePosicion(direccion, velocidad);
-		Objeto^ siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion_de_marco);
+		Posicion^ siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
+		Posicion^ coordenada_pie_izquierdo = siguiente_posicion->getPieIzquierdo(direccion)->toCoordenadas();
+		Posicion^ coordenada_pie_derecho = siguiente_posicion->getPieDerecho(direccion)->toCoordenadas();
 
-		if (siguiente_bloque == nullptr) {
-			this->avanzarUnPaso();
+		Terreno terreno1 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_izquierdo);
+		Terreno terreno2 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_derecho);
+		
+		if (Colisiona(terreno1) || Colisiona(terreno2))
+			return; // No avanza 
+
+		Objeto^ siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);
+
+		if (noHayONoExsite(siguiente_bloque)) {
+			marco->avanzarUnPaso();
 		}
 		else {
 			//Se choca con un objeto y se interactua con este
@@ -63,7 +72,7 @@ namespace YuGiOh
 			
 			//Algunos objetos detienen a marco por completo y otros no...
 			if (debe_dar_un_paso_mas) {
-				this->avanzarUnPaso();
+				marco->avanzarUnPaso();
 			}
 		}
 	}

@@ -3,24 +3,31 @@
 
 namespace YuGiOh
 {
-	public ref class Posicion
-	{
+	public ref class Posicion {
 	public:
 		int x;
 		int y;
-		Posicion(int x, int y);
-		Posicion(int x, int y, bool multiplicar_automaticamente);
-		static bool	operator ==(const Posicion^ p1, const Posicion^ p2);
+		
 		void igualarA(Posicion^ p);
 		void igualarA(int x, int y);
 		void Aumentar(Direccion direccion, int velocidad);
-		void toZero();
+		Posicion^ toZero();
+		Posicion^ toCoordenadas();
+
 		Rectangle getCuerpo(int ancho, int alto);
 		Posicion^ getSiguientePosicion(Direccion direccion, int velocidad);
+		Posicion^ getPieIzquierdo(Direccion direccion);
+		Posicion^ getPieDerecho(Direccion direccion);
+
+		bool chocaCon(Rectangle cuerpo);
+
+		Posicion(int x, int y);
+		Posicion(int x, int y, bool multiplicar_automaticamente);
+		
+		static bool	operator ==(const Posicion^ p1, const Posicion^ p2);
 	};
 
-	public ref class Figura
-	{
+	public ref class Figura {
 	public:
 		Image^ imagen;
 		Posicion^ posicion;
@@ -28,11 +35,10 @@ namespace YuGiOh
 		int ancho;
 		Figura();
 		Rectangle getCuerpo();
-		static Rectangle getCuerpo(int x, int y, int ancho, int alto);
+		static Rectangle crearCuerpo(int x, int y, int ancho, int alto);
 	};
 
-	public ref class Sprite
-	{
+	public ref class Sprite {
 	public:
 		Image^ imagen;
 		int indice;
@@ -43,19 +49,18 @@ namespace YuGiOh
 		int numero_de_columnas;
 		bool se_para_en_el_medio;
 
-		Sprite(Image^ image);
 		void siguienteIndice();
 		void cambiarSubindice(int subindice);
+		
+		Sprite(Image^ image);
 	};
 
-	public ref class Animado : Figura
-	{
+	public ref class Animado : Figura {
 	public:
 		Sprite^ sprite;
 	};
 
-	public ref class Duelista : public Animado
-	{
+	public ref class Duelista : public Animado {
 		public:
 	};
 }

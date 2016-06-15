@@ -13,7 +13,7 @@ namespace YuGiOh
 		onKeyUp = gcnew KeyEventHandler(this, &CampusEscena::teclaUp);
 		onMouseClick = gcnew MouseEventHandler(this, &CampusEscena::mouseClick);
 
-		Marco::marco = gcnew Marco(gcnew Posicion(0, 0));
+		Marco::marco = gcnew Marco(gcnew Posicion(9, 9, true));
 		Mapas::plazuela_mapa = gcnew PlazuelaMapa();
 		Mapas::pabellonA_mapa = gcnew PabellonAMapa();
 		Mapas::pabellonB_mapa = gcnew PabellonBMapa();
@@ -68,13 +68,13 @@ namespace YuGiOh
 
 	void CampusEscena::teclaUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
 	{
-		if ((e->KeyCode == Keys::W || e->KeyCode == Keys::Up) && Marco::marco->direccion == Arriba)
+		if ((e->KeyCode == CONTROLES::MOVER_ARRIBA_1 || e->KeyCode == CONTROLES::MOVER_ARRIBA_2) && Marco::marco->direccion == Arriba)
 			Marco::marco->Detener();
-		else if ((e->KeyCode == Keys::S || e->KeyCode == Keys::Down) && Marco::marco->direccion == Abajo)
+		else if ((e->KeyCode == CONTROLES::MOVER_ABAJO_1 || e->KeyCode == CONTROLES::MOVER_ABAJO_2) && Marco::marco->direccion == Abajo)
 			Marco::marco->Detener();
-		else if ((e->KeyCode == Keys::A || e->KeyCode == Keys::Left) && Marco::marco->direccion == Izquierda)
+		else if ((e->KeyCode == CONTROLES::MOVER_IZQUIERDA_1 || e->KeyCode == CONTROLES::MOVER_IZQUIERDA_2) && Marco::marco->direccion == Izquierda)
 			Marco::marco->Detener();
-		else if ((e->KeyCode == Keys::D || e->KeyCode == Keys::Right) && Marco::marco->direccion == Derecha)
+		else if ((e->KeyCode == CONTROLES::MOVER_DERECHA_1 || e->KeyCode == CONTROLES::MOVER_DERECHA_2) && Marco::marco->direccion == Derecha)
 			Marco::marco->Detener();
 	}
 

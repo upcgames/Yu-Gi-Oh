@@ -10,32 +10,38 @@ namespace YuGiOh {
 	}
 
 	void Mapa::generarCapaTerreno() {
-		for (int y = 0; y < MYFORM_HEIGHT; y++)
-		{
-			for (int x = 0; x < MYFORM_WIDTH; x++)
-			{
-				Image^ imagen_terreno;
-				int coordenada_x = x * RESOLUCION_X;
-				int coordenada_y = y * RESOLUCION_Y;
+		for (int y = 0; y < MYFORM_HEIGHT; y++) {
+			for (int x = 0; x < MYFORM_WIDTH; x++) {
 
-				switch (matriz_terreno[y,x])
-				{
+				Image^ imagen_terreno;
+				float coordenada_x = x * RESOLUCION_X;
+				float coordenada_y = y * RESOLUCION_Y;
+
+				switch (matriz_terreno[y,x]) {
 				case Loceta:
-					imagen_terreno = Imagenes::LOCETA;
+					imagen_terreno = IMAGENES::LOCETA;
 					break;
 				case Pasto:
-					imagen_terreno = Imagenes::PASTO;
+					imagen_terreno = IMAGENES::PASTO;
 					break;
 				case Agua:
-					imagen_terreno = Imagenes::AGUA;
+					imagen_terreno = IMAGENES::AGUA;
 					break;
 				case Maceta:
-					imagen_terreno = Imagenes::MACETA;
+					imagen_terreno = IMAGENES::MACETA;
 					break;
 				}
 
 				capa_terreno->Graphics->DrawImage(imagen_terreno, Rectangle(coordenada_x, coordenada_y, RESOLUCION_X, RESOLUCION_Y));
-
+				
+				if (DEBUG_MODE)
+					capa_terreno->Graphics->DrawString(
+						coordenada_x + "," + coordenada_y,
+						gcnew Font("Arial", 8.0f),
+						gcnew SolidBrush(Color::Black),
+						coordenada_x,
+						coordenada_y
+					);
 			}
 		}
 	}
@@ -44,8 +50,7 @@ namespace YuGiOh {
 
 		int numero_de_objetos = this->objetos->Count;
 		
-		for (int i = 0; i < numero_de_objetos; i++)
-		{
+		for (int i = 0; i < numero_de_objetos; i++) {
 			if (objetos[i]->posicion == posicion) {
 				return objetos[i];
 			}
@@ -54,6 +59,19 @@ namespace YuGiOh {
 		return nullptr;
 	}
 
+	Terreno Mapa::getTerrenoEnCoordenada(Posicion^ posicion) {
+		
+		// Se invierte, porque los mapas se guardan en forma x,y
+		int x = posicion->y;
+		int	y = posicion->x;
+
+		if (posicion->x < 0 || posicion->x >= matriz_terreno->GetLength(0))
+			x = 0;
+		if (posicion->y < 0 || posicion->y >= matriz_terreno->GetLength(1))
+			y = 0;
+
+		return matriz_terreno[x, y];
+	}
 
 	void Mapa::mostrarTerreno(Graphics^ graphics) {
 		capa_terreno->Render(graphics);

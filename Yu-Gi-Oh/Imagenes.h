@@ -2,7 +2,7 @@
 
 namespace YuGiOh
 {
-	public ref class Imagenes abstract sealed
+	public ref class IMAGENES abstract sealed
 	{
 	public:
 		static void mostarFondo(Image^ imagen, Graphics^ graphics);

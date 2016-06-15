@@ -1,9 +1,13 @@
+#include <algorithm>
+#include <iterator>
+
 #include "Juego.h"
 #include "Constantes.h"
 #include "Imagenes.h"
 #include "Escenas.h"
 
 namespace YuGiOh {
+
 	//Definicion de las constantes
 	const int MYFORM_WIDTH = 20;
 	const int MYFORM_HEIGHT = 14;
@@ -11,23 +15,13 @@ namespace YuGiOh {
 	const int RESOLUCION_Y = 48;
 	const int MYFORM_SIZE_WIDTH = MYFORM_WIDTH * RESOLUCION_X;
 	const int MYFORM_SIZE_HEIGHT = MYFORM_HEIGHT * RESOLUCION_Y;
-	const float TAMANIO_LETRAS = 24.0f;
+	const float TAMANIO_LETRAS = 20.0f;
 	const int VELOCIDAD_TIMER = 50;
-	
-	//Controles
-	const Keys CONTROLES_CAMBIO_ESCENA = Keys::E;
-	
-	const Keys CONTROLES_MOVER_ARRIBA_1 = Keys::W;
-	const Keys CONTROLES_MOVER_ABAJO_1 = Keys::S;
-	const Keys CONTROLES_MOVER_IZQUIERDA_1 = Keys::A;
-	const Keys CONTROLES_MOVER_DERECHA_1 = Keys::D;
 
-	const Keys CONTROLES_MOVER_ARRIBA_2 = Keys::Up;
-	const Keys CONTROLES_MOVER_ABAJO_2 = Keys::Down;
-	const Keys CONTROLES_MOVER_IZQUIERDA_2 = Keys::Left;
-	const Keys CONTROLES_MOVER_DERECHA_2 = Keys::Right;
+	Terreno TERRENOS_COLISIONANTES[] = { Maceta };
 
 	Juego::Juego(void) {
+		inicializarComponentes();
 		InitializeComponent();
 		myform = this;
 
@@ -36,12 +30,12 @@ namespace YuGiOh {
 		aleatorio = gcnew Random();
 
 		//Inicializamos las escenas
-		Escenas::introduccion = gcnew IntroduccionEscena();
-		Escenas::campus = gcnew CampusEscena();
-		Escenas::tienda = gcnew TiendaEscena();
+		ESCENAS::introduccion = gcnew IntroduccionEscena();
+		ESCENAS::campus = gcnew CampusEscena();
+		ESCENAS::tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(Escenas::introduccion);
+		Escena::EmpezarConEscena(ESCENAS::introduccion);
 	}
 
 	Juego::~Juego() {
@@ -86,7 +80,40 @@ namespace YuGiOh {
 		;
 	}
 
-	Direccion Utils::obtenerDireccionInvertida(Direccion direccion) {
+	void Juego::inicializarComponentes() {
+		//Sprites
+		IMAGENES::MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Marco_Sprite.png");
+		IMAGENES::MONEDA_SPRITE = Image::FromFile("Imagenes\\Objetos\\Moneda_Sprite.png");
+
+		//Objetos
+		IMAGENES::LOCETA = Image::FromFile("Imagenes\\Objetos\\Piso4.png");
+		IMAGENES::PUERTA = Image::FromFile("Imagenes\\Objetos\\Caja1.png");
+		IMAGENES::MONEDA = Image::FromFile("Imagenes\\Objetos\\Caja4.png");
+		IMAGENES::AGUA = Image::FromFile("Imagenes\\Objetos\\Piso3.png");
+		IMAGENES::MACETA = Image::FromFile("Imagenes\\Objetos\\Bloque5.png");
+		IMAGENES::PASTO = Image::FromFile("Imagenes\\Objetos\\Piso2.png");
+		
+		IMAGENES::INTRODUCCION_FONDO = Image::FromFile("Imagenes\\Interfaces\\Introduccion.png");
+		IMAGENES::FONDO_TIENDA_VENDER = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
+		IMAGENES::FONDO_TIENDA_COMPRAR = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
+
+		CONTROLES::CAMBIO_ESCENA = Keys::E;
+		CONTROLES::SALIR = Keys::Escape;
+		CONTROLES::MOVER_ARRIBA_1 = Keys::W;
+		CONTROLES::MOVER_ABAJO_1 = Keys::S;
+		CONTROLES::MOVER_IZQUIERDA_1 = Keys::A;
+		CONTROLES::MOVER_DERECHA_1 = Keys::D;
+		CONTROLES::MOVER_ARRIBA_2 = Keys::Up;
+		CONTROLES::MOVER_ABAJO_2 = Keys::Down;
+		CONTROLES::MOVER_IZQUIERDA_2 = Keys::Left;
+		CONTROLES::MOVER_DERECHA_2 = Keys::Right;
+	}
+
+	void IMAGENES::mostarFondo(Image^ imagen, Graphics^ graphics) {
+		graphics->DrawImage(imagen, Rectangle(0, 0, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT));
+	}
+
+	Direccion obtenerDireccionInvertida(Direccion direccion) {
 		switch (direccion)
 		{
 		case Arriba:
@@ -106,7 +133,22 @@ namespace YuGiOh {
 		}
 	}
 
-	void Imagenes::mostarFondo(Image^ imagen, Graphics^ graphics) {
-		graphics->DrawImage(imagen, Rectangle(0, 0, MYFORM_SIZE_WIDTH, MYFORM_SIZE_HEIGHT));
+	bool noHayONoExsite(Object^ objeto) {
+		if (objeto == nullptr)
+			return true;
+		else
+			return false;
+	}
+
+	bool Colisiona(Terreno terreno) {
+		Terreno* indice_terreno = std::find(
+			std::begin(TERRENOS_COLISIONANTES),
+			std::end(TERRENOS_COLISIONANTES),
+			terreno
+		);
+
+		bool impide = indice_terreno != std::end(TERRENOS_COLISIONANTES);
+
+		return impide;
 	}
 }

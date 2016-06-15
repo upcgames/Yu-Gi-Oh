@@ -1,7 +1,6 @@
 #include "Figuras.h"
 
-namespace YuGiOh
-{
+namespace YuGiOh {
 	Posicion::Posicion(int x, int y) {
 		this->x = x;
 		this->y = y;
@@ -40,9 +39,44 @@ namespace YuGiOh
 			x += velocidad;
 	}
 
-	void Posicion::toZero() {
-		this->x = 0;
-		this->y = 0;
+	Posicion^ Posicion::toZero() {
+		x = 0;
+		y = 0;
+
+		return this;
+	}
+
+	Posicion^ Posicion::getPieIzquierdo(Direccion direccion) {
+		if (direccion == Arriba)
+			return gcnew Posicion(x, y);
+		else if (direccion == Abajo)
+			return gcnew Posicion(x + RESOLUCION_X - 1, y + RESOLUCION_Y - 1);
+		else if (direccion == Izquierda)
+			return gcnew Posicion(x, y + RESOLUCION_Y - 1);
+		else // if (direccion == Derecha)
+			return gcnew Posicion(x +  RESOLUCION_X - 1, y);
+	}
+
+	Posicion^ Posicion::getPieDerecho(Direccion direccion) {
+		if (direccion == Arriba)
+			return gcnew Posicion(x + RESOLUCION_X - 1, y);
+		else if (direccion == Abajo)
+			return gcnew Posicion(x, y + RESOLUCION_Y - 1);
+		else if (direccion == Izquierda)
+			return gcnew Posicion(x, y);
+		else // if (direccion == Derecha)
+			return gcnew Posicion(x + RESOLUCION_X - 1, y + RESOLUCION_Y - 1);
+	}
+
+	bool Posicion::chocaCon(Rectangle cuerpo) {
+		return cuerpo.Contains(x, y);
+	}
+
+	Posicion^ Posicion::toCoordenadas() {
+		x /= RESOLUCION_X;
+		y /= RESOLUCION_Y;
+
+		return this;
 	}
 
 	Rectangle Posicion::getCuerpo(int ancho, int alto) {
@@ -85,13 +119,11 @@ namespace YuGiOh
 
 	Figura::Figura() { ; }
 
-	Rectangle Figura::getCuerpo()
-	{
+	Rectangle Figura::getCuerpo() {
 		return Rectangle(posicion->x, posicion->y, ancho, alto);
 	}
 
-	Rectangle Figura::getCuerpo(int x, int y, int ancho, int alto)
-	{
+	Rectangle Figura::crearCuerpo(int x, int y, int ancho, int alto) {
 		return Rectangle(x, y, ancho, alto);
 	}
 }

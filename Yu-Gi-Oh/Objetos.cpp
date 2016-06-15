@@ -58,7 +58,7 @@ namespace YuGiOh {
 	MonedaObjeto::MonedaObjeto(Posicion^ posicion) : ObjetoAnimado(posicion) {
 		dinero_sorpresa = (Juego::aleatorio->Next(10) + 1) * 10;
 
-		sprite = gcnew Sprite(Imagenes::MONEDA_SPRITE);
+		sprite = gcnew Sprite(IMAGENES::MONEDA_SPRITE);
 		sprite->indice = 0;
 		sprite->subindice = 0;
 		sprite->ancho = 122;
@@ -92,7 +92,7 @@ namespace YuGiOh {
 		Direccion direccion_de_regreso
 		) : ObjetoStatico(posicion) {
 		
-		imagen = Imagenes::PUERTA;
+		imagen = IMAGENES::PUERTA;
 		tipo = PuertaEscena;
 		this->escena_a_mostrar = escena_a_mostrar;
 		this->pabellon_de_regreso = pabellon_de_regreso;

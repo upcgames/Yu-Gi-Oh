@@ -6,14 +6,11 @@
 #include "Dialogo.h"
 #include "Objetos.h"
 
-using namespace System;
-using namespace System::Drawing;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Data;
 
-namespace YuGiOh
-{
+namespace YuGiOh {
 	public ref class Juego : public System::Windows::Forms::Form {
 	public:
 		//aleatorio generara todos los numeros random en el futuro
@@ -32,14 +29,8 @@ namespace YuGiOh
 		Juego(void);
 		~Juego();
 		void InitializeComponent(void);
+		void inicializarComponentes();
 		private: System::Void Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
 		private: System::Void Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-
-	};
-
-	public ref class Utils
-	{
-	public:
-		static Direccion obtenerDireccionInvertida(Direccion direccion);
 	};
 }

@@ -1,7 +1,6 @@
 #include "Dialogo.h"
 #include "Juego.h"
 #include "string.h"
-#include<vcclr.h>
 
 namespace YuGiOh {
 
@@ -55,7 +54,12 @@ namespace YuGiOh {
 			else
 				ancho_de_caracter = TAMANIO_LETRAS / 2;
 
-			Juego::graphics->DrawString(caracter, fuente, gcnew SolidBrush(Color::Black), punto_de_comienzo, MYFORM_SIZE_HEIGHT * 7.5F / 9, StringFormat::GenericTypographic);
+			Juego::graphics->DrawString (
+				caracter, fuente,
+				gcnew SolidBrush(Color::Black),
+				punto_de_comienzo, MYFORM_SIZE_HEIGHT * 7.5F / 9,
+				StringFormat::GenericTypographic
+			);
 			punto_de_comienzo += ancho_de_caracter;
 			posicion_oracion++;
 		}
@@ -66,8 +70,7 @@ namespace YuGiOh {
 		}
 	}
 
-	void Dialogo::timerTick(System::Object^  sender, System::EventArgs^  e)
-	{
+	void Dialogo::timerTick(System::Object^  sender, System::EventArgs^  e) {
 		if (posicion_parrafo < numero_de_oraciones) {
 
 			if (esperando_confirmacion)
@@ -80,7 +83,7 @@ namespace YuGiOh {
 				numero_de_caracteres = oracion_actual->Length;
 				float ancho_de_texto = Juego::graphics->MeasureString(oracion_actual, this->fuente).Width;
 				punto_de_comienzo = (MYFORM_SIZE_WIDTH - ancho_de_texto) / 2;
-				punto_de_comienzo += 24;
+				punto_de_comienzo += TAMANIO_LETRAS;
 			}
 
 			escribirCaracter();
@@ -89,18 +92,14 @@ namespace YuGiOh {
 			terminarDeEscribir();
 	}
 
-	void Dialogo::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e)
-	{
-		if (escena_activa && esperando_confirmacion)
-		{
+	void Dialogo::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+		if (escena_activa && esperando_confirmacion) {
 			esperando_confirmacion = false;
 		}
 	}
 
-	void Dialogo::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
-	{
-		if (escena_activa && esperando_confirmacion)
-		{
+	void Dialogo::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		if (escena_activa && esperando_confirmacion) {
 			esperando_confirmacion = false;
 		}
 	}

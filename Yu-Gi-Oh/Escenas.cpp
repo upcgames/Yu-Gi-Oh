@@ -1,10 +1,9 @@
 #include "Escenas.h"
 #include "Juego.h"
 
-namespace YuGiOh
-{
-	Escena::Escena()
-	{
+namespace YuGiOh {
+
+	Escena::Escena() {
 		escena_buffer = Juego::context->Allocate(Juego::graphics, Juego::myform->ClientRectangle);
 		escena_activa = false;
 		escena_dibujada = false;
@@ -12,34 +11,31 @@ namespace YuGiOh
 	}
 
 	Escena^ Escena::getEscenaActual() {
-		if (Escenas::campus->escena_activa)
-			return Escenas::campus;
+		if (ESCENAS::campus->escena_activa)
+			return ESCENAS::campus;
 
-		else if (Escenas::introduccion->escena_activa)
-			return Escenas::introduccion;
+		else if (ESCENAS::introduccion->escena_activa)
+			return ESCENAS::introduccion;
 
-		else if (Escenas::tienda->escena_activa)
-			return Escenas::tienda;
+		else if (ESCENAS::tienda->escena_activa)
+			return ESCENAS::tienda;
 		
 		return nullptr;
 	}
 
-	void Escena::CambiarEscena(Escena^ escena)
-	{
+	void Escena::CambiarEscena(Escena^ escena) {
 		Escena^ escena_actual = getEscenaActual();
 		DesactivarEscena(escena_actual);
 
 		ActivarEscena(escena);
 	}
 
-	void Escena::EmpezarConEscena(Escena^ escena)
-	{
+	void Escena::EmpezarConEscena(Escena^ escena) {
 		ActivarEscena(escena);
 	}
 
 
-	void Escena::ActivarEscena(Escena^ escena)
-	{
+	void Escena::ActivarEscena(Escena^ escena) {
 		escena->escena_activa = true;
 
 		if (escena->onTimerTick != nullptr)
@@ -52,8 +48,7 @@ namespace YuGiOh
 			Juego::myform->MouseClick += escena->onMouseClick;
 	}
 
-	void Escena::DesactivarEscena(Escena^ escena)
-	{
+	void Escena::DesactivarEscena(Escena^ escena) {
 		escena->escena_activa = false;
 
 		if (escena->onTimerTick != nullptr)
@@ -69,16 +64,15 @@ namespace YuGiOh
 	}
 
 	Escena^ Escena::getEscenaTipo(TipoEscena tipo) {
-		switch (tipo)
-		{
+		switch (tipo) {
 		case Introduccion:
-			return Escenas::introduccion;
+			return ESCENAS::introduccion;
 			break;
 		case Campus:
-			return Escenas::campus;
+			return ESCENAS::campus;
 			break;
 		case Tienda:
-			return Escenas::tienda;
+			return ESCENAS::tienda;
 			break;
 		default:
 			return nullptr;

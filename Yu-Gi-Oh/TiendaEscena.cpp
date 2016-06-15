@@ -14,7 +14,7 @@ namespace YuGiOh {
 		modo_vender = false;
 	}
 
-	Rectangle TiendaEscena::getBodyCartaNumero(int posicion_carta) {
+	Rectangle TiendaEscena::getCuerpoDeCarta(int posicion_carta) {
 		
 		if (posicion_carta < 5) {
 			return Rectangle(192 * posicion_carta + 24, 228, 144, 192);
@@ -30,18 +30,16 @@ namespace YuGiOh {
 		Marco::marco->Detener();
 		Marco::marco->posicion->igualarA(this->posicion_de_regreso);
 		Marco::marco->direccion = this->direccion_de_regreso;
-		ActivarEscena(Escenas::campus);
+		ActivarEscena(ESCENAS::campus);
 	}
 
 	void TiendaEscena::timerTick(System::Object^  sender, System::EventArgs^  e) {
-		if (escena_activa)
-		{
-			if (!escena_dibujada)
-			{
+		if (escena_activa) {
+			if (!escena_dibujada) {
 				if (modo_comprar)
-					Imagenes::mostarFondo(Imagenes::FONDO_TIENDA_COMPRAR, escena_buffer->Graphics);
+					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, escena_buffer->Graphics);
 				if (modo_vender)
-					Imagenes::mostarFondo(Imagenes::FONDO_TIENDA_VENDER, escena_buffer->Graphics);
+					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, escena_buffer->Graphics);
 				
 				escena_buffer->Render(Juego::graphics);
 				escena_dibujada = true;
@@ -50,24 +48,20 @@ namespace YuGiOh {
 	}
 
 	void TiendaEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
-		if (escena_activa && escena_dibujada)
-		{
-			if (e->KeyCode == Keys::Escape)
-			{
+		if (escena_activa && escena_dibujada) {
+			if (e->KeyCode == CONTROLES::SALIR) {
 				salirDeTienda();
 			}
-
 		}
 	}
 
 	void TiendaEscena::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (escena_activa && escena_dibujada)
-		{
+		if (escena_activa && escena_dibujada) {
 
 			Rectangle mouse_rectangle = Rectangle(e->X, e->Y, 1, 1);
 
 			for (int i = 0; i < 10; i++) {
-				if (getBodyCartaNumero(i).IntersectsWith(mouse_rectangle)) {
+				if (getCuerpoDeCarta(i).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
 						Dialogo::mostarMensaje("Vendiste la carta!!!");
 					if (modo_comprar)

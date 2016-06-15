@@ -10,15 +10,16 @@ namespace YuGiOh {
 		void generarCapaTerreno();
 	public:
 		Mapa();
-		array<Terreno, 2>^ matriz_terreno;
-		List<Objeto^>^ objetos;
-		BufferedGraphics^ capa_terreno;
+		array<Terreno, 2> ^matriz_terreno;
+		List<Objeto ^> ^objetos;
+		BufferedGraphics ^capa_terreno;
 
 		Objeto^ getObjeto(Posicion^ posicion);
 		
 		static Mapa^ mapa_actual;
 		static Mapa^ obtenerMapa(Pabellon pabellon);
 		
+		Terreno getTerrenoEnCoordenada(Posicion^ posicion);
 		void mostrarTerreno(Graphics^ graphics);
 		void mostrarObjetos(Graphics^ graphics);
 	};

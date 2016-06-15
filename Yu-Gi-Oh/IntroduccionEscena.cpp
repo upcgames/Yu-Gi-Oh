@@ -13,7 +13,7 @@ namespace YuGiOh {
 	void IntroduccionEscena::timerTick(System::Object^  sender, System::EventArgs^  e) {
 		if (escena_activa) {
 			if (!escena_dibujada) {
-				Imagenes::mostarFondo(Imagenes::INTRODUCCION_FONDO, escena_buffer->Graphics);
+				IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO, escena_buffer->Graphics);
 				escena_buffer->Render(Juego::graphics);
 				
 				 Dialogo::mostarMensaje(
@@ -35,7 +35,7 @@ namespace YuGiOh {
 	void IntroduccionEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		if (escena_activa && escena_dibujada) {
 				DesactivarEscena(this);
-				ActivarEscena(Escenas::campus);
+				ActivarEscena(ESCENAS::campus);
 		}
 	}
 }
