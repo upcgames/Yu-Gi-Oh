@@ -22,7 +22,7 @@ namespace YuGiOh {
 		
 		Mapa();
 		
-		static Mapa^ obtenerMapa(Pabellon pabellon);
+		static Mapa^ obtenerMapa(MapaTipo pabellon);
 		static Mapa^ mapa_actual;
 	};
 

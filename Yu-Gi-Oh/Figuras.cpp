@@ -81,6 +81,10 @@ namespace YuGiOh {
 		return this;
 	}
 
+	Rectangle Posicion::getCuerpo() {
+		return Rectangle(x, y, RESOLUCION_X, RESOLUCION_Y);
+	}
+
 	Rectangle Posicion::getCuerpo(int ancho, int alto) {
 		return Rectangle(x, y, ancho, alto);
 	}
@@ -126,6 +130,7 @@ namespace YuGiOh {
 		return Rectangle(x, y, ancho, alto);
 	}
 
+	//Ideal para verificar colisiones cuando algun personaje se esta moviendo
 	bool Animado::colisionaConMapaActual(Posicion^ posicion, Direccion direccion) {
 		Posicion^ coordenada_pie_izquierdo = posicion->getPieIzquierdo(direccion)->toCoordenadas();
 		Posicion^ coordenada_pie_derecho = posicion->getPieDerecho(direccion)->toCoordenadas();

@@ -31,7 +31,7 @@ namespace YuGiOh {
 	public enum ModoBatalla { Defensa, Ataque };
 	public enum Objetos { Puerta, PuertaEscena, Moneda };
 	public enum Terreno { Loceta, Agua, Maceta, Pasto };
-	public enum Pabellon { Plazuela, PabellonA, PabellonB, Jardin, Sotano };
+	public enum MapaTipo { Plazuela, PabellonA, PabellonB, Jardin, Sotano };
 
 	extern Terreno TERRENOS_COLISIONANTES[];
 	// Funciones Utiles

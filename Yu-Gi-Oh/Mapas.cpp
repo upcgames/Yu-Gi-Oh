@@ -51,7 +51,7 @@ namespace YuGiOh {
 		int numero_de_objetos = this->objetos->Count;
 		
 		for (int i = 0; i < numero_de_objetos; i++) {
-			if (objetos[i]->posicion == posicion) {
+			if (objetos[i]->getCuerpo().IntersectsWith(posicion->getCuerpo())) {
 				return objetos[i];
 			}
 		}
@@ -87,7 +87,7 @@ namespace YuGiOh {
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {
 		this->matriz_terreno = gcnew array<Terreno,2> {
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta },
+			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta },
 			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta},
 			{ Maceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
 			{ Loceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
@@ -105,8 +105,8 @@ namespace YuGiOh {
 
 		this->objetos = gcnew List<Objeto^>();
 		this->objetos->AddRange(gcnew array<Objeto^>{
-			gcnew PuertaObjeto(gcnew Posicion(-1, 3, true), PabellonA, gcnew Posicion(19, 3, true), Izquierda),
-			gcnew PuertaObjeto(gcnew Posicion(8, 14, true), PabellonB, gcnew Posicion(8, 0, true), Abajo),
+			gcnew PuertaObjeto(PabellonA, gcnew Posicion(-1, 3, true), gcnew Posicion(19, 3, true), Izquierda),
+			gcnew PuertaObjeto(PabellonB, gcnew Posicion(8, 14, true), gcnew Posicion(8, 0, true), Abajo),
 			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha),
 			gcnew MonedaObjeto(gcnew Posicion(1, 1, true)),
 			gcnew MonedaObjeto(gcnew Posicion(1, 12, true)),
@@ -140,7 +140,7 @@ namespace YuGiOh {
 
 		this->objetos = gcnew List<Objeto^>();
 		this->objetos->AddRange(gcnew array<Objeto^>{
-			gcnew PuertaObjeto(gcnew Posicion(20, 3, true), Plazuela, gcnew Posicion(0, 3, true), Derecha)
+			gcnew PuertaObjeto(Plazuela, gcnew Posicion(20, 3, true), gcnew Posicion(0, 3, true), Derecha)
 		});
 
 		generarCapaTerreno();
@@ -166,13 +166,13 @@ namespace YuGiOh {
 
 		this->objetos = gcnew List<Objeto^>();
 		this->objetos->AddRange(gcnew array<Objeto^>{
-			gcnew PuertaObjeto(gcnew Posicion(8, -1, true), Plazuela, gcnew Posicion(8, 13, true), Arriba)
+			gcnew PuertaObjeto(Plazuela, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba)
 		});
 
 		generarCapaTerreno();
 	}
 
-	Mapa^ Mapa::obtenerMapa(Pabellon pabellon) {
+	Mapa^ Mapa::obtenerMapa(MapaTipo pabellon) {
 		
 		switch (pabellon)
 		{

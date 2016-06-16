@@ -14,6 +14,7 @@ namespace YuGiOh {
 		Posicion^ toZero();
 		Posicion^ toCoordenadas();
 
+		Rectangle getCuerpo();
 		Rectangle getCuerpo(int ancho, int alto);
 		Posicion^ getSiguientePosicion(Direccion direccion, int velocidad);
 		Posicion^ getPieIzquierdo(Direccion direccion);
