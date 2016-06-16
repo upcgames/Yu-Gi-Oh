@@ -1,24 +1,23 @@
 #pragma once
 
-namespace YuGiOh
-{
-	public ref class IMAGENES abstract sealed
-	{
+namespace YuGiOh {
+
+	public ref class IMAGENES abstract sealed {
 	public:
-		static void mostarFondo(Image^ imagen, Graphics^ graphics);
+		static void mostarFondo(Image ^imagen, Graphics ^graphics);
 
-		static Image^ MARCO_SPRITE;
-		static Image^ MONEDA_SPRITE;
-		
-		static Image^ LOCETA;
-		static Image^ PUERTA;
-		static Image^ MONEDA;
-		static Image^ AGUA;
-		static Image^ MACETA;
-		static Image^ PASTO;
-
-		static Image^ INTRODUCCION_FONDO;
-		static Image^ FONDO_TIENDA_VENDER;
-		static Image^ FONDO_TIENDA_COMPRAR;
+		static Image ^MARCO_SPRITE;
+		static Image ^MONEDA_SPRITE;
+					 
+		static Image ^LOCETA;
+		static Image ^PUERTA;
+		static Image ^MONEDA;
+		static Image ^AGUA;
+		static Image ^MACETA;
+		static Image ^PASTO;
+					 
+		static Image ^INTRODUCCION_FONDO;
+		static Image ^FONDO_TIENDA_VENDER;
+		static Image ^FONDO_TIENDA_COMPRAR;
 	};
 }

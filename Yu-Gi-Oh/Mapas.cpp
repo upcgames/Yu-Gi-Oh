@@ -13,7 +13,7 @@ namespace YuGiOh {
 		for (int y = 0; y < MYFORM_HEIGHT; y++) {
 			for (int x = 0; x < MYFORM_WIDTH; x++) {
 
-				Image^ imagen_terreno;
+				Image ^imagen_terreno;
 				int coordenada_x = x * RESOLUCION_X;
 				int coordenada_y = y * RESOLUCION_Y;
 
@@ -46,7 +46,7 @@ namespace YuGiOh {
 		}
 	}
 
-	Objeto^ Mapa::getObjeto(Posicion^ posicion) {
+	Objeto ^Mapa::getObjeto(Posicion ^posicion) {
 
 		int numero_de_objetos = this->objetos->Count;
 		
@@ -59,7 +59,7 @@ namespace YuGiOh {
 		return nullptr;
 	}
 
-	Terreno Mapa::getTerrenoEnCoordenada(Posicion^ posicion) {
+	Terreno Mapa::getTerrenoEnCoordenada(Posicion ^posicion) {
 		
 		// Se invierte, porque los mapas se guardan en forma x,y
 		int y = posicion->y;
@@ -73,16 +73,34 @@ namespace YuGiOh {
 		return matriz_terreno[y, x];
 	}
 
-	void Mapa::mostrarTerreno(Graphics^ graphics) {
+	void Mapa::mostrarTerreno(Graphics ^graphics) {
 		capa_terreno->Render(graphics);
 	}
 
-	void Mapa::mostrarObjetos(Graphics^ graphics) {
+	void Mapa::mostrarObjetos(Graphics ^graphics) {
 
 		int numero_de_objetos = this->objetos->Count;
 
 		for (int i = 0; i < numero_de_objetos; i++)
 			objetos[i]->mostrar(graphics);
+	}
+
+	Mapa ^Mapa::obtenerMapa(MapaTipo pabellon) {
+
+		switch (pabellon)
+		{
+		case Plazuela:
+			return Mapas::plazuela_mapa;
+			break;
+		case PabellonA:
+			return Mapas::pabellonA_mapa;
+			break;
+		case PabellonB:
+			return Mapas::pabellonB_mapa;
+			break;
+		default:
+			return nullptr;
+		}
 	}
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {
@@ -103,8 +121,8 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew List<Objeto^>();
-		this->objetos->AddRange(gcnew array<Objeto^>{
+		this->objetos = gcnew List<Objeto ^>();
+		this->objetos->AddRange(gcnew array<Objeto ^>{
 			gcnew PuertaObjeto(PabellonA, gcnew Posicion(-1, 3, true), gcnew Posicion(19, 3, true), Izquierda),
 			gcnew PuertaObjeto(PabellonB, gcnew Posicion(8, 14, true), gcnew Posicion(8, 0, true), Abajo),
 			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha),
@@ -138,8 +156,8 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew List<Objeto^>();
-		this->objetos->AddRange(gcnew array<Objeto^>{
+		this->objetos = gcnew List<Objeto ^>();
+		this->objetos->AddRange(gcnew array<Objeto ^>{
 			gcnew PuertaObjeto(Plazuela, gcnew Posicion(20, 3, true), gcnew Posicion(0, 3, true), Derecha)
 		});
 
@@ -164,30 +182,11 @@ namespace YuGiOh {
 			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
 		};
 
-		this->objetos = gcnew List<Objeto^>();
-		this->objetos->AddRange(gcnew array<Objeto^>{
+		this->objetos = gcnew List<Objeto ^>();
+		this->objetos->AddRange(gcnew array<Objeto ^>{
 			gcnew PuertaObjeto(Plazuela, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba)
 		});
 
 		generarCapaTerreno();
 	}
-
-	Mapa^ Mapa::obtenerMapa(MapaTipo pabellon) {
-		
-		switch (pabellon)
-		{
-		case Plazuela:
-			return Mapas::plazuela_mapa;
-			break;
-		case PabellonA:
-			return Mapas::pabellonA_mapa;
-			break;
-		case PabellonB:
-			return Mapas::pabellonB_mapa;
-			break;
-		default:
-			return nullptr;
-		}
-	}
-
 }

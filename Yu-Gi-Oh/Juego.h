@@ -14,23 +14,23 @@ namespace YuGiOh {
 	public ref class Juego : public System::Windows::Forms::Form {
 	public:
 		//aleatorio generara todos los numeros random en el futuro
-		static Random^ aleatorio;
+		static Random ^aleatorio;
 
-		static array<Objeto^>^ objetos;
+		static array<Objeto^> ^objetos;
 
 		//myform, graphics y context serviran para mostar los graficos.
-		static Juego^ myform;
-		static Graphics^ graphics;
-		static BufferedGraphicsContext^ context;
-		static System::Windows::Forms::Timer^  timer;
-		System::ComponentModel::IContainer^  components;
+		static Juego ^myform;
+		static Graphics ^graphics;
+		static BufferedGraphicsContext ^context;
+		static System::Windows::Forms::Timer ^ timer;
+		System::ComponentModel::IContainer ^ components;
 
 		//Funciones del Juego
 		Juego(void);
 		~Juego();
 		void InitializeComponent(void);
 		void inicializarComponentes();
-		private: System::Void Juego_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-		private: System::Void Juego_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+		private: System::Void Juego_KeyDown(System::Object ^ sender, System::Windows::Forms::KeyEventArgs ^ e);
+		private: System::Void Juego_KeyUp(System::Object ^ sender, System::Windows::Forms::KeyEventArgs ^ e);
 	};
 }

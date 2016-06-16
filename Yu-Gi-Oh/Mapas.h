@@ -13,17 +13,17 @@ namespace YuGiOh {
 		List<Objeto ^> ^objetos;
 		BufferedGraphics ^capa_terreno;
 
-		Objeto^ getObjeto(Posicion^ posicion);
+		Objeto ^getObjeto(Posicion ^posicion);
 		
-		Terreno getTerrenoEnCoordenada(Posicion^ posicion);
+		Terreno getTerrenoEnCoordenada(Posicion ^posicion);
 
-		void mostrarTerreno(Graphics^ graphics);
-		void mostrarObjetos(Graphics^ graphics);
+		void mostrarTerreno(Graphics ^graphics);
+		void mostrarObjetos(Graphics ^graphics);
 		
 		Mapa();
 		
-		static Mapa^ obtenerMapa(MapaTipo pabellon);
-		static Mapa^ mapa_actual;
+		static Mapa ^obtenerMapa(MapaTipo pabellon);
+		static Mapa ^mapa_actual;
 	};
 
 	public ref class PlazuelaMapa : public Mapa{ public: PlazuelaMapa(); };
@@ -32,8 +32,8 @@ namespace YuGiOh {
 
 	public ref class Mapas abstract sealed {
 	public:
-		static PlazuelaMapa^ plazuela_mapa;
-		static PabellonAMapa^ pabellonA_mapa;
-		static PabellonBMapa^ pabellonB_mapa;
+		static PlazuelaMapa ^plazuela_mapa;
+		static PabellonAMapa ^pabellonA_mapa;
+		static PabellonBMapa ^pabellonB_mapa;
 	};
 }

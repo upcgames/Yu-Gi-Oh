@@ -5,7 +5,7 @@
 
 namespace YuGiOh {
 
-	Marco::Marco(Posicion^ p) {
+	Marco::Marco(Posicion ^p) {
 		sprite = gcnew Sprite(IMAGENES::MARCO_SPRITE);
 		sprite->indice = 0;
 		sprite->ancho = 24;
@@ -21,9 +21,9 @@ namespace YuGiOh {
 		debe_avanzar = false;
 	}
 
-	void Marco::mostrarloEn(Graphics^ graphics)	{
-		Marco^ marco = Marco::marco;
-		Sprite^ marco_sprite = marco->sprite;
+	void Marco::mostrarloEn(Graphics ^graphics)	{
+		Marco ^marco = Marco::marco;
+		Sprite ^marco_sprite = marco->sprite;
 
 		marco_sprite->cambiarSubindice((int)marco->direccion);
 
@@ -48,19 +48,19 @@ namespace YuGiOh {
 	void Marco::intentarAvanzar(Direccion direccion) {
 
 		sprite->siguienteIndice();
-		Posicion^ siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
+		Posicion ^siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
 		
 		if (marco->colisionaConMapaActual(siguiente_posicion, direccion))
 			return; // No avanza 
 
-		Objeto^ siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);
+		Objeto ^siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);
 
 		if (noHayONoExsite(siguiente_bloque)) {
 			marco->avanzarUnPaso();
 		}
 		else {
 			//Se choca con un objeto y se interactua con este
-			Objeto^ objeto_dinamico = siguiente_bloque;
+			Objeto ^objeto_dinamico = siguiente_bloque;
 			bool debe_dar_un_paso_mas = objeto_dinamico->interactuarConMarco();
 			
 			//Algunos objetos detienen a marco por completo y otros no...

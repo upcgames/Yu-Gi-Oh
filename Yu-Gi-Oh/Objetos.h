@@ -9,7 +9,7 @@ namespace YuGiOh {
 		
 		Objeto(Posicion ^posicion);
 
-		virtual void mostrar(Graphics^ graphics);
+		virtual void mostrar(Graphics ^graphics);
 		virtual bool interactuarConMarco();
 	};
 

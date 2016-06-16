@@ -16,11 +16,11 @@ namespace YuGiOh {
 		return false;
 	}
 
-	ObjetoStatico::ObjetoStatico(Posicion^ posicion) : Objeto(posicion) {
+	ObjetoStatico::ObjetoStatico(Posicion ^posicion) : Objeto(posicion) {
 		this->posicion = posicion;
 	}
 
-	ObjetoAnimado::ObjetoAnimado(Posicion^ posicion) : Objeto(posicion) {
+	ObjetoAnimado::ObjetoAnimado(Posicion ^posicion) : Objeto(posicion) {
 		this->posicion = posicion;
 	}
 
@@ -107,7 +107,7 @@ namespace YuGiOh {
 	bool PuertaEscenaObjeto::interactuarConMarco() {
 		Escena::CambiarEscena(Escena::getEscenaTipo(escena_a_mostrar));
 		Escena ^escena = Escena::getEscenaTipo(escena_a_mostrar);
-		EscenaDeMapa^ escena_de_mapa = dynamic_cast<EscenaDeMapa ^>(escena);
+		EscenaDeMapa ^escena_de_mapa = dynamic_cast<EscenaDeMapa ^>(escena);
 
 		escena_de_mapa->escena_a_mostrar = escena_a_mostrar;
 		escena_de_mapa->pabellon_de_regreso = pabellon_de_regreso;

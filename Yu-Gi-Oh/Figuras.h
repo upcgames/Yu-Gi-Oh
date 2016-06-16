@@ -8,30 +8,31 @@ namespace YuGiOh {
 		int x;
 		int y;
 		
-		void igualarA(Posicion^ p);
+		void igualarA(Posicion ^p);
 		void igualarA(int x, int y);
 		void Aumentar(Direccion direccion, int velocidad);
-		Posicion^ toZero();
-		Posicion^ toCoordenadas();
+
+		Posicion ^toZero();
+		Posicion ^toCoordenadas();
 
 		Rectangle getCuerpo();
 		Rectangle getCuerpo(int ancho, int alto);
-		Posicion^ getSiguientePosicion(Direccion direccion, int velocidad);
-		Posicion^ getPieIzquierdo(Direccion direccion);
-		Posicion^ getPieDerecho(Direccion direccion);
+		Posicion ^getSiguientePosicion(Direccion direccion, int velocidad);
+		Posicion ^getPieIzquierdo(Direccion direccion);
+		Posicion ^getPieDerecho(Direccion direccion);
 
 		bool chocaCon(Rectangle cuerpo);
 
 		Posicion(int x, int y);
 		Posicion(int x, int y, bool multiplicar_automaticamente);
 		
-		static bool	operator ==(const Posicion^ p1, const Posicion^ p2);
+		static bool	operator == (const Posicion ^p1, const Posicion ^p2);
 	};
 
 	public ref class Figura {
 	public:
-		Image^ imagen;
-		Posicion^ posicion;
+		Image ^imagen;
+		Posicion ^posicion;
 		int alto;
 		int ancho;
 		Figura();
@@ -41,7 +42,7 @@ namespace YuGiOh {
 
 	public ref class Sprite {
 	public:
-		Image^ imagen;
+		Image ^imagen;
 		int indice;
 		int subindice;
 		int ancho;
@@ -52,18 +53,16 @@ namespace YuGiOh {
 		void siguienteIndice();
 		void cambiarSubindice(int subindice);
 		
-		Sprite(Image^ image);
+		Sprite(Image ^image);
 	};
 
 	public ref class Animado : Figura {
 	public:
-		Sprite^ sprite;
+		Sprite ^sprite;
 
 		//Ideal para verificar colisiones cuando algun personaje se esta moviendo
-		bool colisionaConMapaActual(Posicion^ posicion, Direccion direccion);
+		bool colisionaConMapaActual(Posicion ^posicion, Direccion direccion);
 	};
 
-	public ref class Duelista : public Animado {
-		public:
-	};
+	public ref class Duelista : public Animado { };
 }

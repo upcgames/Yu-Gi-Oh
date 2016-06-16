@@ -23,19 +23,19 @@ namespace YuGiOh {
 		return nullptr;
 	}
 
-	void Escena::CambiarEscena(Escena^ escena) {
+	void Escena::CambiarEscena(Escena ^escena) {
 		Escena^ escena_actual = getEscenaActual();
 		DesactivarEscena(escena_actual);
 
 		ActivarEscena(escena);
 	}
 
-	void Escena::EmpezarConEscena(Escena^ escena) {
+	void Escena::EmpezarConEscena(Escena ^escena) {
 		ActivarEscena(escena);
 	}
 
 
-	void Escena::ActivarEscena(Escena^ escena) {
+	void Escena::ActivarEscena(Escena ^escena) {
 		escena->escena_activa = true;
 
 		if (escena->onTimerTick != nullptr)
@@ -48,7 +48,7 @@ namespace YuGiOh {
 			Juego::myform->MouseClick += escena->onMouseClick;
 	}
 
-	void Escena::DesactivarEscena(Escena^ escena) {
+	void Escena::DesactivarEscena(Escena ^escena) {
 		escena->escena_activa = false;
 
 		if (escena->onTimerTick != nullptr)

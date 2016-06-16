@@ -13,14 +13,14 @@ namespace YuGiOh {
 		this->y = y * RESOLUCION_Y;
 	}
 
-	bool Posicion::operator ==(const Posicion^ p1, const Posicion^ p2) {
+	bool Posicion::operator ==(const Posicion ^p1, const Posicion ^p2) {
 		if (p1->x == p2->x && p1->y == p2->y)
 			return true;
 		else
 			return false;
 	}
 
-	void Posicion::igualarA(Posicion^ p) {
+	void Posicion::igualarA(Posicion ^p) {
 		this->x = p->x;
 		this->y = p->y;
 	}
@@ -41,14 +41,14 @@ namespace YuGiOh {
 			x += velocidad;
 	}
 
-	Posicion^ Posicion::toZero() {
+	Posicion ^Posicion::toZero() {
 		x = 0;
 		y = 0;
 
 		return this;
 	}
 
-	Posicion^ Posicion::getPieIzquierdo(Direccion direccion) {
+	Posicion ^Posicion::getPieIzquierdo(Direccion direccion) {
 		if (direccion == Arriba)
 			return gcnew Posicion(x, y);
 		else if (direccion == Abajo)
@@ -59,7 +59,7 @@ namespace YuGiOh {
 			return gcnew Posicion(x +  RESOLUCION_X - 1, y);
 	}
 
-	Posicion^ Posicion::getPieDerecho(Direccion direccion) {
+	Posicion ^Posicion::getPieDerecho(Direccion direccion) {
 		if (direccion == Arriba)
 			return gcnew Posicion(x + RESOLUCION_X - 1, y);
 		else if (direccion == Abajo)
@@ -74,7 +74,7 @@ namespace YuGiOh {
 		return cuerpo.Contains(x, y);
 	}
 
-	Posicion^ Posicion::toCoordenadas() {
+	Posicion ^Posicion::toCoordenadas() {
 		x /= RESOLUCION_X;
 		y /= RESOLUCION_Y;
 
@@ -89,7 +89,7 @@ namespace YuGiOh {
 		return Rectangle(x, y, ancho, alto);
 	}
 
-	Posicion^ Posicion::getSiguientePosicion(Direccion direccion, int velocidad) {
+	Posicion ^Posicion::getSiguientePosicion(Direccion direccion, int velocidad) {
 		int auxiliar_x = x;
 		int auxiliar_y = y;
 
@@ -105,7 +105,7 @@ namespace YuGiOh {
 		return gcnew Posicion(auxiliar_x, auxiliar_y);
 	}
 
-	Sprite::Sprite(Image^ imagen) {
+	Sprite::Sprite(Image ^imagen) {
 		this->imagen = imagen;
 	}
 
@@ -131,9 +131,9 @@ namespace YuGiOh {
 	}
 
 	//Ideal para verificar colisiones cuando algun personaje se esta moviendo
-	bool Animado::colisionaConMapaActual(Posicion^ posicion, Direccion direccion) {
-		Posicion^ coordenada_pie_izquierdo = posicion->getPieIzquierdo(direccion)->toCoordenadas();
-		Posicion^ coordenada_pie_derecho = posicion->getPieDerecho(direccion)->toCoordenadas();
+	bool Animado::colisionaConMapaActual(Posicion ^posicion, Direccion direccion) {
+		Posicion ^coordenada_pie_izquierdo = posicion->getPieIzquierdo(direccion)->toCoordenadas();
+		Posicion ^coordenada_pie_derecho = posicion->getPieDerecho(direccion)->toCoordenadas();
 
 		Terreno terreno1 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_izquierdo);
 		Terreno terreno2 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_derecho);
@@ -143,5 +143,4 @@ namespace YuGiOh {
 		else
 			return false;
 	}
-
 }

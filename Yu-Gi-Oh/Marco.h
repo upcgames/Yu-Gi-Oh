@@ -13,9 +13,9 @@ namespace YuGiOh {
 		void avanzarUnPaso();
 		void Detener();
 		
-		Marco(Posicion^ p);
+		Marco(Posicion ^p);
 		
-		static void mostrarloEn(Graphics^ graphics);
-		static Marco^ marco;
+		static void mostrarloEn(Graphics ^graphics);
+		static Marco ^marco;
 	};
 }
