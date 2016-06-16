@@ -1,6 +1,8 @@
 #include "Figuras.h"
+#include "Mapas.h"
 
 namespace YuGiOh {
+
 	Posicion::Posicion(int x, int y) {
 		this->x = x;
 		this->y = y;
@@ -123,4 +125,18 @@ namespace YuGiOh {
 	Rectangle Figura::crearCuerpo(int x, int y, int ancho, int alto) {
 		return Rectangle(x, y, ancho, alto);
 	}
+
+	bool Animado::colisionaConMapaActual(Posicion^ posicion, Direccion direccion) {
+		Posicion^ coordenada_pie_izquierdo = posicion->getPieIzquierdo(direccion)->toCoordenadas();
+		Posicion^ coordenada_pie_derecho = posicion->getPieDerecho(direccion)->toCoordenadas();
+
+		Terreno terreno1 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_izquierdo);
+		Terreno terreno2 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_derecho);
+
+		if (Colisiona(terreno1) || Colisiona(terreno2))
+			return true;
+		else
+			return false;
+	}
+
 }

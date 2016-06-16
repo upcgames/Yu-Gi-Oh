@@ -48,15 +48,9 @@ namespace YuGiOh {
 	void Marco::intentarAvanzar(Direccion direccion) {
 
 		sprite->siguienteIndice();
-
 		Posicion^ siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
-		Posicion^ coordenada_pie_izquierdo = siguiente_posicion->getPieIzquierdo(direccion)->toCoordenadas();
-		Posicion^ coordenada_pie_derecho = siguiente_posicion->getPieDerecho(direccion)->toCoordenadas();
-
-		Terreno terreno1 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_izquierdo);
-		Terreno terreno2 = Mapa::mapa_actual->getTerrenoEnCoordenada(coordenada_pie_derecho);
 		
-		if (Colisiona(terreno1) || Colisiona(terreno2))
+		if (marco->colisionaConMapaActual(siguiente_posicion, direccion))
 			return; // No avanza 
 
 		Objeto^ siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);

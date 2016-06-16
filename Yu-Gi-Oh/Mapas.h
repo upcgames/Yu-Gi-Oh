@@ -4,24 +4,26 @@
 using namespace System::Collections::Generic;
 
 namespace YuGiOh {
-	public ref class Mapa
-	{
+
+	public ref class Mapa {
 	protected:
 		void generarCapaTerreno();
 	public:
-		Mapa();
 		array<Terreno, 2> ^matriz_terreno;
 		List<Objeto ^> ^objetos;
 		BufferedGraphics ^capa_terreno;
 
 		Objeto^ getObjeto(Posicion^ posicion);
 		
-		static Mapa^ mapa_actual;
-		static Mapa^ obtenerMapa(Pabellon pabellon);
-		
 		Terreno getTerrenoEnCoordenada(Posicion^ posicion);
+
 		void mostrarTerreno(Graphics^ graphics);
 		void mostrarObjetos(Graphics^ graphics);
+		
+		Mapa();
+		
+		static Mapa^ obtenerMapa(Pabellon pabellon);
+		static Mapa^ mapa_actual;
 	};
 
 	public ref class PlazuelaMapa : public Mapa{ public: PlazuelaMapa(); };

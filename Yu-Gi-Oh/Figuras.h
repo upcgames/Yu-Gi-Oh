@@ -57,6 +57,9 @@ namespace YuGiOh {
 	public ref class Animado : Figura {
 	public:
 		Sprite^ sprite;
+
+		//Ideal para verificar colisiones cuando algun personaje se esta moviendo
+		bool colisionaConMapaActual(Posicion^ posicion, Direccion direccion);
 	};
 
 	public ref class Duelista : public Animado {
