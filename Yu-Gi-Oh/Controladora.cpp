@@ -18,7 +18,7 @@ namespace YuGiOh {
 	const float TAMANIO_LETRAS = 20.0f;
 	const int VELOCIDAD_TIMER = 50;
 
-	Terreno TERRENOS_COLISIONANTES[] = { Maceta };
+	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua };
 
 	Juego::Juego(void) {
 		inicializarComponentes();
@@ -35,7 +35,7 @@ namespace YuGiOh {
 		ESCENAS::tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(ESCENAS::introduccion);
+		Escena::EmpezarConEscena(ESCENAS::campus);
 	}
 
 	Juego::~Juego() {

@@ -106,10 +106,7 @@ namespace YuGiOh {
 	void Sprite::siguienteIndice() {
 		indice++;
 
-		if (se_para_en_el_medio && indice == numero_de_columnas)
-			indice += 2;
-
-		else if (indice == numero_de_columnas * 2)
+		if (indice == numero_de_columnas)
 			indice = 0;
 	}
 

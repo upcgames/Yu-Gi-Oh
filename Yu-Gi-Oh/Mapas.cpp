@@ -14,8 +14,8 @@ namespace YuGiOh {
 			for (int x = 0; x < MYFORM_WIDTH; x++) {
 
 				Image^ imagen_terreno;
-				float coordenada_x = x * RESOLUCION_X;
-				float coordenada_y = y * RESOLUCION_Y;
+				int coordenada_x = x * RESOLUCION_X;
+				int coordenada_y = y * RESOLUCION_Y;
 
 				switch (matriz_terreno[y,x]) {
 				case Loceta:
@@ -39,8 +39,8 @@ namespace YuGiOh {
 						coordenada_x + "," + coordenada_y,
 						gcnew Font("Arial", 8.0f),
 						gcnew SolidBrush(Color::Black),
-						coordenada_x,
-						coordenada_y
+						(float)coordenada_x,
+						(float)coordenada_y
 					);
 			}
 		}
@@ -62,15 +62,15 @@ namespace YuGiOh {
 	Terreno Mapa::getTerrenoEnCoordenada(Posicion^ posicion) {
 		
 		// Se invierte, porque los mapas se guardan en forma x,y
-		int x = posicion->y;
-		int	y = posicion->x;
+		int y = posicion->y;
+		int	x = posicion->x;
 
-		if (posicion->x < 0 || posicion->x >= matriz_terreno->GetLength(0))
-			x = 0;
-		if (posicion->y < 0 || posicion->y >= matriz_terreno->GetLength(1))
-			y = 0;
+		if (x < 0 || x >= matriz_terreno->GetLength(1))
+			return (Terreno)0;
+		if (y < 0 || y >= matriz_terreno->GetLength(0))
+			return Terreno(0);
 
-		return matriz_terreno[x, y];
+		return matriz_terreno[y, x];
 	}
 
 	void Mapa::mostrarTerreno(Graphics^ graphics) {

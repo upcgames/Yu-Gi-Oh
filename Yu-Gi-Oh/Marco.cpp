@@ -12,7 +12,6 @@ namespace YuGiOh {
 		sprite->alto = 24;
 		sprite->numero_de_columnas = 8;
 		sprite->numero_de_filas = 6;
-		sprite->se_para_en_el_medio = true;
 
 		direccion = Direccion::Abajo;
 		velocidad = 8;
@@ -37,10 +36,10 @@ namespace YuGiOh {
 				marco->alto
 			),
 			Rectangle(
-				marco_sprite->indice / 2 * marco_sprite->ancho,
+				marco_sprite->indice * marco_sprite->ancho,
 				marco_sprite->subindice * marco_sprite->alto,
-				marco_sprite->ancho,
-				marco_sprite->alto
+				marco_sprite->ancho - 1, // Normalemnte no se deberia quitar uno
+				marco_sprite->alto - 1 // Pero, se pinta un pixel mas
 			),
 			GraphicsUnit::Pixel
 		);

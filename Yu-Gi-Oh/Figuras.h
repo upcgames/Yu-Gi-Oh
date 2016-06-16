@@ -1,8 +1,8 @@
 #pragma once
 #include "Constantes.h"
 
-namespace YuGiOh
-{
+namespace YuGiOh {
+
 	public ref class Posicion {
 	public:
 		int x;
@@ -47,7 +47,6 @@ namespace YuGiOh
 		int alto;
 		int numero_de_filas;
 		int numero_de_columnas;
-		bool se_para_en_el_medio;
 
 		void siguienteIndice();
 		void cambiarSubindice(int subindice);
