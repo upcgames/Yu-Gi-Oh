@@ -8,10 +8,10 @@ namespace YuGiOh {
 	Marco::Marco(Posicion ^p) {
 		sprite = gcnew Sprite(IMAGENES::MARCO_SPRITE);
 		sprite->indice = 0;
-		sprite->ancho = 24;
-		sprite->alto = 24;
-		sprite->numero_de_columnas = 8;
-		sprite->numero_de_filas = 6;
+		sprite->ancho = 48;
+		sprite->alto = 72;
+		sprite->numero_de_columnas = 7;
+		sprite->numero_de_filas = 4;
 
 		direccion = Direccion::Abajo;
 		velocidad = 8;
@@ -30,10 +30,10 @@ namespace YuGiOh {
 		graphics->DrawImage(
 			marco_sprite->imagen,
 			Rectangle(
-				marco->posicion->x,
-				marco->posicion->y,
-				marco->ancho, 
-				marco->alto
+				marco->ancho - marco->sprite->ancho + marco->posicion->x,
+				marco->alto - marco->sprite->alto + marco->posicion->y,
+				marco->sprite->ancho, 
+				marco->sprite->alto
 			),
 			Rectangle(
 				marco_sprite->indice * marco_sprite->ancho,
