@@ -1,5 +1,6 @@
 #pragma once
 #include "Constantes.h"
+#include "Cartas.h"
 
 namespace YuGiOh {
 
@@ -65,5 +66,8 @@ namespace YuGiOh {
 		bool colisionaConMapaActual(Posicion ^posicion, Direccion direccion);
 	};
 
-	public ref class Duelista : public Animado { };
+	public ref class Duelista : public Animado { 
+	public:
+		Baraja ^baraja;
+	};
 }

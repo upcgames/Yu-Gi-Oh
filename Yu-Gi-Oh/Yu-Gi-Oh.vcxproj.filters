@@ -48,6 +48,9 @@
     <ClCompile Include="Mapas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cartas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mapas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cartas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #include "Imagenes.h"
 #include "Mapas.h"
 #include "Objetos.h"
+#include "Cartas.h"
 
 namespace YuGiOh {
 
@@ -15,6 +16,7 @@ namespace YuGiOh {
 		sprite->numero_de_filas = 4;
 
 		direccion = Direccion::Abajo;
+		baraja = Baraja::crearBaraja(1);
 		velocidad = 8;
 		posicion = p;
 		ancho = RESOLUCION_X;

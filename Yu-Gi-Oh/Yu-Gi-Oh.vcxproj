@@ -72,6 +72,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CampusEscena.cpp" />
+    <ClCompile Include="Cartas.cpp" />
     <ClCompile Include="Dialogo.cpp" />
     <ClCompile Include="Escenas.cpp" />
     <ClCompile Include="Figuras.cpp" />
@@ -91,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cartas.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Dialogo.h" />
     <ClInclude Include="Escenas.h" />

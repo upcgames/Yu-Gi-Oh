@@ -14,16 +14,6 @@ namespace YuGiOh {
 		modo_vender = false;
 	}
 
-	Rectangle TiendaEscena::getCuerpoDeCarta(int posicion_carta) {
-		
-		if (posicion_carta < 5) {
-			return Rectangle(192 * posicion_carta + 24, 228, 144, 192);
-		}
-		else {
-			return Rectangle(192 * (posicion_carta - 5) + 24, 456, 144, 192);
-		}
-	}
-
 	void TiendaEscena::salirDeTienda() {
 		DesactivarEscena(this);
 		Mapa::mapa_actual = Mapa::obtenerMapa(pabellon_de_regreso);
@@ -38,9 +28,11 @@ namespace YuGiOh {
 			if (!escena_dibujada) {
 				if (modo_comprar)
 					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, escena_buffer->Graphics);
-				if (modo_vender)
+				else if (modo_vender)
 					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, escena_buffer->Graphics);
 				
+				Marco::marco->baraja->mostrarTodaLaBaraja(escena_buffer->Graphics);
+
 				escena_buffer->Render(Juego::graphics);
 				escena_dibujada = true;
 			}
@@ -61,7 +53,7 @@ namespace YuGiOh {
 			Rectangle mouse_rectangle = Rectangle(e->X, e->Y, 1, 1);
 
 			for (int i = 0; i < 10; i++) {
-				if (getCuerpoDeCarta(i).IntersectsWith(mouse_rectangle)) {
+				if (Baraja::getCuerpoDeCarta(i).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
 						Dialogo::pausarYMostarMensaje("Vendiste la carta!!!");
 					if (modo_comprar)

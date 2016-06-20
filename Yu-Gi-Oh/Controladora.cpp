@@ -93,6 +93,12 @@ namespace YuGiOh {
 		IMAGENES::MACETA = Image::FromFile("Imagenes\\Objetos\\Bloque5.png");
 		IMAGENES::PASTO = Image::FromFile("Imagenes\\Objetos\\Piso2.png");
 		
+		IMAGENES::CARTAS = gcnew List<Image ^>();
+
+		for (int i = 0; i < 30; i++) {
+			IMAGENES::CARTAS->Add(Image::FromFile("Imagenes\\Cartas\\Carta_" + i + ".jpg"));
+		}
+
 		IMAGENES::INTRODUCCION_FONDO_1 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_1.png");
 		IMAGENES::INTRODUCCION_FONDO_2 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_2.png");
 		IMAGENES::FONDO_TIENDA_VENDER = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");

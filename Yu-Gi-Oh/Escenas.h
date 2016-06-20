@@ -61,7 +61,6 @@ namespace YuGiOh {
 		TiendaEscena();
 		bool modo_vender;
 		bool modo_comprar;
-		static Rectangle getCuerpoDeCarta(int posicion_carta);
 		void salirDeTienda();
 		void mouseClick(System::Object ^sender, System::Windows::Forms::MouseEventArgs ^e);
 		void timerTick(System::Object ^sender, System::EventArgs ^e);
