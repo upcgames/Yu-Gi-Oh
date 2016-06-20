@@ -63,9 +63,9 @@ namespace YuGiOh {
 			for (int i = 0; i < 10; i++) {
 				if (getCuerpoDeCarta(i).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
-						Dialogo::mostarMensaje("Vendiste la carta!!!");
+						Dialogo::pausarYMostarMensaje("Vendiste la carta!!!");
 					if (modo_comprar)
-						Dialogo::mostarMensaje("Compraste la carta!!!");
+						Dialogo::pausarYMostarMensaje("Compraste la carta!!!");
 					return;
 				}
 			}
