@@ -83,5 +83,8 @@
     <ClInclude Include="Cartas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Duelistas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #pragma once
-#include "Figuras.h"
+#include "Duelistas.h"
 
 namespace YuGiOh {
 

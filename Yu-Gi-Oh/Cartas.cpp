@@ -24,6 +24,7 @@ namespace YuGiOh {
 			carta->vida = 20 + nivel * 10;
 
 			carta->tipo = (TiposDeCarta)Juego::aleatorio->Next(tipo_de_cartas->Length);
+			carta->imagen = IMAGENES::CARTAS[Juego::aleatorio->Next(NUMERO_DE_CARTAS)];
 			baraja->cartas->Add(carta);
 		}
 
@@ -53,7 +54,7 @@ namespace YuGiOh {
 			Carta ^carta = cartas[i];
 			
 			if (carta != nullptr) {
-				graphics->DrawImage(carta->imagen, getCuerpoDeCarta(i)));
+				graphics->DrawImage(carta->imagen, getCuerpoDeCarta(i));
 			}
 
 		}

@@ -23,6 +23,7 @@ namespace YuGiOh {
 
 	// Velocidad con la que Marco corre en pixeles
 	extern const int VELOCIDAD_TIMER;
+	extern const int NUMERO_DE_CARTAS;
 
 	// Enums
 	public enum TipoEscena { Introduccion, Campus, Tienda };

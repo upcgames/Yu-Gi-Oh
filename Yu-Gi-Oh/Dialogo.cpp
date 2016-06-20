@@ -54,11 +54,13 @@ namespace YuGiOh {
 		Juego::myform->MouseClick -= this->onMouseClick;
 
 		dialogo = nullptr;
-		escena_anterior->escena_dibujada = true;
 
 		if (pausar_anterior_escena) {
 			Escena::ActivarEscena(escena_anterior);
+			escena_anterior->escena_dibujada = false;
 		}
+		else
+			escena_anterior->escena_dibujada = true;
 	}
 
 	void Dialogo::escribirCaracter() {

@@ -17,6 +17,7 @@ namespace YuGiOh {
 	const int MYFORM_SIZE_HEIGHT = MYFORM_HEIGHT * RESOLUCION_Y;
 	const float TAMANIO_LETRAS = 20.0f;
 	const int VELOCIDAD_TIMER = 50;
+	const int NUMERO_DE_CARTAS = 30;
 
 	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua };
 
@@ -35,7 +36,7 @@ namespace YuGiOh {
 		ESCENAS::tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(ESCENAS::campus);
+		Escena::EmpezarConEscena(ESCENAS::introduccion);
 	}
 
 	Juego::~Juego() {
@@ -95,7 +96,7 @@ namespace YuGiOh {
 		
 		IMAGENES::CARTAS = gcnew List<Image ^>();
 
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < NUMERO_DE_CARTAS; i++) {
 			IMAGENES::CARTAS->Add(Image::FromFile("Imagenes\\Cartas\\Carta_" + i + ".jpg"));
 		}
 

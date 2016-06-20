@@ -95,6 +95,7 @@
     <ClInclude Include="Cartas.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Dialogo.h" />
+    <ClInclude Include="Duelistas.h" />
     <ClInclude Include="Escenas.h" />
     <ClInclude Include="Figuras.h" />
     <ClInclude Include="Imagenes.h" />

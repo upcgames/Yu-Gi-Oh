@@ -1,6 +1,5 @@
 #pragma once
 #include "Constantes.h"
-#include "Cartas.h"
 
 namespace YuGiOh {
 
@@ -64,10 +63,5 @@ namespace YuGiOh {
 
 		//Ideal para verificar colisiones cuando algun personaje se esta moviendo
 		bool colisionaConMapaActual(Posicion ^posicion, Direccion direccion);
-	};
-
-	public ref class Duelista : public Animado { 
-	public:
-		Baraja ^baraja;
 	};
 }
