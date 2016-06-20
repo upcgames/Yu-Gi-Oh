@@ -10,6 +10,7 @@ namespace YuGiOh {
 		sprite->indice = 0;
 		sprite->ancho = 48;
 		sprite->alto = 72;
+		sprite->frecuencia = 2;
 		sprite->numero_de_columnas = 7;
 		sprite->numero_de_filas = 4;
 
@@ -36,7 +37,7 @@ namespace YuGiOh {
 				marco->sprite->alto
 			),
 			Rectangle(
-				marco_sprite->indice * marco_sprite->ancho,
+				marco_sprite->indice / marco_sprite->frecuencia * marco_sprite->ancho,
 				marco_sprite->subindice * marco_sprite->alto,
 				marco_sprite->ancho - 1, // Normalemnte no se deberia quitar uno
 				marco_sprite->alto - 1 // Pero, se pinta un pixel mas
