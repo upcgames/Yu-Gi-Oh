@@ -1,5 +1,4 @@
 #pragma once
-#include "Constantes.h"
 #include "Figuras.h"
 
 using namespace System::Windows::Forms;

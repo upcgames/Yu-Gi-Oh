@@ -19,6 +19,9 @@ namespace YuGiOh {
 	extern const int MYFORM_SIZE_WIDTH;
 	extern const int MYFORM_SIZE_HEIGHT;
 
+	extern const int CARTAS_WIDTH;
+	extern const int CARTAS_HEIGHT;
+
 	extern const float TAMANIO_LETRAS;
 
 	// Velocidad con la que Marco corre en pixeles
@@ -41,7 +44,7 @@ namespace YuGiOh {
 	bool Colisiona(Terreno terreno);
 	bool noHayONoExsite(Object^ objeto);
 
-	public ref class CONTROLES abstract sealed{
+	public ref class CONTROLES abstract sealed {
 	public:
 		static Keys CAMBIO_ESCENA;
 		static Keys SALIR;
@@ -53,5 +56,12 @@ namespace YuGiOh {
 		static Keys MOVER_ABAJO_2;
 		static Keys MOVER_IZQUIERDA_2;
 		static Keys MOVER_DERECHA_2;
+	};
+
+	public ref class FUENTES abstract sealed {
+	public:
+		static Font ^DIALOGOS;
+		static Font ^DINERO;
+		static Font ^NIVEL;
 	};
 }

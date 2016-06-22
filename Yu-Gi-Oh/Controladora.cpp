@@ -18,6 +18,8 @@ namespace YuGiOh {
 	const float TAMANIO_LETRAS = 20.0f;
 	const int VELOCIDAD_TIMER = 50;
 	const int NUMERO_DE_CARTAS = 30;
+	const int CARTAS_WIDTH = 144;
+	const int CARTAS_HEIGHT = 192;
 
 	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua };
 
@@ -36,7 +38,7 @@ namespace YuGiOh {
 		ESCENAS::tienda = gcnew TiendaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(ESCENAS::introduccion);
+		Escena::EmpezarConEscena(ESCENAS::campus);
 	}
 
 	Juego::~Juego() {
@@ -115,6 +117,10 @@ namespace YuGiOh {
 		CONTROLES::MOVER_ABAJO_2 = Keys::Down;
 		CONTROLES::MOVER_IZQUIERDA_2 = Keys::Left;
 		CONTROLES::MOVER_DERECHA_2 = Keys::Right;
+	
+		FUENTES::DIALOGOS = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
+		FUENTES::DINERO = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
+		FUENTES::NIVEL = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
 	}
 
 	void IMAGENES::mostarFondo(Image^ imagen, Graphics^ graphics) {

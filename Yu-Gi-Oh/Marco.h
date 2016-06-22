@@ -7,6 +7,7 @@ namespace YuGiOh {
 	public:
 		static bool debe_avanzar;
 		Direccion direccion;
+		int dinero;
 		int velocidad;
 
 		void intentarAvanzar(Direccion direccion);

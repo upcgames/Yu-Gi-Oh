@@ -17,6 +17,7 @@ namespace YuGiOh {
 
 		direccion = Direccion::Abajo;
 		baraja = Baraja::crearBaraja(1);
+		dinero = 10;
 		velocidad = 8;
 		posicion = p;
 		ancho = RESOLUCION_X;

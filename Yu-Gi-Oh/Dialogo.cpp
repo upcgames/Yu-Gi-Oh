@@ -6,7 +6,7 @@ namespace YuGiOh {
 
 	Dialogo::Dialogo(... array<String^>^ mensajes) {
 		this->mensajes = mensajes;
-		this->fuente = gcnew Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
+		this->fuente = FUENTES::DIALOGOS;
 		this->posicion_parrafo = 0;
 		numero_de_oraciones = mensajes->Length;
 		esperando_confirmacion = false;

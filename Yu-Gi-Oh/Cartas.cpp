@@ -5,7 +5,15 @@
 namespace YuGiOh {
 
 	Carta::Carta() {
-		;
+		experiencia = 0;
+	}
+
+	int Carta::getValor() {
+		return nivel * 5;
+	}
+
+	void Carta::mostrarCarta(Graphics ^graphics, Rectangle rectangle_destino) {
+		graphics->DrawImage(imagen, rectangle_destino);
 	}
 
 	Baraja::Baraja() {
@@ -32,29 +40,55 @@ namespace YuGiOh {
 	}
 
 
-	Posicion^ Baraja::getCoordenadasCarta(int posicion_carta) {
+	Posicion^ Baraja::getCoordenadasCarta_10(int posicion_carta) {
 		if (posicion_carta < 5) {
-			return gcnew Posicion(192 * posicion_carta + 24, 228);
+			return gcnew Posicion(192 * posicion_carta + 24, MYFORM_SIZE_HEIGHT - 60 - 2 * CARTAS_HEIGHT);
 		}
 		else {
-			return gcnew Posicion(192 * (posicion_carta - 5) + 24, 456);
+			return gcnew Posicion(192 * (posicion_carta - 5) + 24, MYFORM_SIZE_HEIGHT - 24 - CARTAS_HEIGHT);
 		}
 	}
 
-	Rectangle Baraja::getCuerpoDeCarta(int posicion_carta) {
+	Rectangle Baraja::getCuerpoDeCarta_10(int posicion_carta) {
 
-		Posicion ^posicion = getCoordenadasCarta(posicion_carta);
-
-		return Rectangle(posicion->x, posicion->y, 144, 192);
+		Posicion ^posicion = getCoordenadasCarta_10(posicion_carta);
+		return getCuerpoDeCarta_10(posicion);
 	}
 
-	void Baraja::mostrarTodaLaBaraja(Graphics^ graphics) {
+	Rectangle Baraja::getCuerpoDeCarta_10(Posicion ^posicion) {
+		return Rectangle(posicion->x, posicion->y, CARTAS_WIDTH, CARTAS_HEIGHT);
+	}
+
+
+	void Baraja::mostrarBaraja_10(Graphics ^graphics, bool mostrar_otros_atributos) {
 
 		for (int i = 0; i < 10; i++) {
 			Carta ^carta = cartas[i];
 			
 			if (carta != nullptr) {
-				graphics->DrawImage(carta->imagen, getCuerpoDeCarta(i));
+				Posicion ^posicion_carta = getCoordenadasCarta_10(i);
+				carta->mostrarCarta(graphics, getCuerpoDeCarta_10(posicion_carta));
+
+				if (mostrar_otros_atributos) {
+
+					graphics->DrawString(
+						"Nivel " + carta->nivel,
+						FUENTES::NIVEL,
+						gcnew SolidBrush(Color::White),
+						(float)posicion_carta->x - 10,
+						(float)posicion_carta->y - 14,
+						StringFormat::GenericTypographic
+					);
+
+					graphics->DrawString(
+						"S/ " + carta->getValor() + ".00",
+						FUENTES::DINERO,
+						gcnew SolidBrush(Color::White),
+						(float)posicion_carta->x - 10,
+						(float)posicion_carta->y + CARTAS_HEIGHT - 2,
+						StringFormat::GenericTypographic
+						);
+				}
 			}
 
 		}

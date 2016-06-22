@@ -10,8 +10,8 @@ namespace YuGiOh {
 		onTimerTick = gcnew EventHandler(this, &TiendaEscena::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &TiendaEscena::teclaDown);
 		onMouseClick = gcnew MouseEventHandler(this, &TiendaEscena::mouseClick);
-		modo_comprar = true;
-		modo_vender = false;
+		modo_comprar = false;
+		modo_vender = true;
 	}
 
 	void TiendaEscena::salirDeTienda() {
@@ -28,11 +28,11 @@ namespace YuGiOh {
 			if (!escena_dibujada) {
 				if (modo_comprar)
 					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, escena_buffer->Graphics);
-				else if (modo_vender)
+				else if (modo_vender) {
 					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, escena_buffer->Graphics);
+					Marco::marco->baraja->mostrarBaraja_10(escena_buffer->Graphics, true);
+				}
 				
-				Marco::marco->baraja->mostrarTodaLaBaraja(escena_buffer->Graphics);
-
 				escena_buffer->Render(Juego::graphics);
 				escena_dibujada = true;
 			}
@@ -53,7 +53,7 @@ namespace YuGiOh {
 			Rectangle mouse_rectangle = Rectangle(e->X, e->Y, 1, 1);
 
 			for (int i = 0; i < 10; i++) {
-				if (Baraja::getCuerpoDeCarta(i).IntersectsWith(mouse_rectangle)) {
+				if (Baraja::getCuerpoDeCarta_10(i).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
 						Dialogo::pausarYMostarMensaje("Vendiste la carta!!!");
 					if (modo_comprar)
