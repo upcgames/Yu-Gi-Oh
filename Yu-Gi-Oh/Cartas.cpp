@@ -62,35 +62,32 @@ namespace YuGiOh {
 
 	void Baraja::mostrarBaraja_10(Graphics ^graphics, bool mostrar_otros_atributos) {
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < cartas->Count; i++) {
 			Carta ^carta = cartas[i];
 			
-			if (carta != nullptr) {
-				Posicion ^posicion_carta = getCoordenadasCarta_10(i);
-				carta->mostrarCarta(graphics, getCuerpoDeCarta_10(posicion_carta));
+			Posicion ^posicion_carta = getCoordenadasCarta_10(i);
+			carta->mostrarCarta(graphics, getCuerpoDeCarta_10(posicion_carta));
 
-				if (mostrar_otros_atributos) {
+			if (mostrar_otros_atributos) {
 
-					graphics->DrawString(
-						"Nivel " + carta->nivel,
-						FUENTES::NIVEL,
-						gcnew SolidBrush(Color::White),
-						(float)posicion_carta->x - 10,
-						(float)posicion_carta->y - 14,
-						StringFormat::GenericTypographic
-					);
+				graphics->DrawString(
+					"Nivel " + carta->nivel,
+					FUENTES::NIVEL,
+					gcnew SolidBrush(Color::White),
+					(float)posicion_carta->x - 10,
+					(float)posicion_carta->y - 14,
+					StringFormat::GenericTypographic
+				);
 
-					graphics->DrawString(
-						"S/ " + carta->getValor() + ".00",
-						FUENTES::DINERO,
-						gcnew SolidBrush(Color::White),
-						(float)posicion_carta->x - 10,
-						(float)posicion_carta->y + CARTAS_HEIGHT - 2,
-						StringFormat::GenericTypographic
-						);
-				}
+				graphics->DrawString(
+					"S/ " + carta->getValor() + ".00",
+					FUENTES::DINERO,
+					gcnew SolidBrush(Color::White),
+					(float)posicion_carta->x - 10,
+					(float)posicion_carta->y + CARTAS_HEIGHT,
+					StringFormat::GenericTypographic
+				);
 			}
-
 		}
 	}
 }

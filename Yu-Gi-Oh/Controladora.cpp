@@ -118,6 +118,7 @@ namespace YuGiOh {
 		CONTROLES::MOVER_IZQUIERDA_2 = Keys::Left;
 		CONTROLES::MOVER_DERECHA_2 = Keys::Right;
 	
+		FUENTES::SUBTITULOS = gcnew System::Drawing::Font("ARIAL", TAMANIO_LETRAS - 2, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::DIALOGOS = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::DINERO = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::NIVEL = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);

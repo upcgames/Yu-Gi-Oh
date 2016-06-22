@@ -23,16 +23,57 @@ namespace YuGiOh {
 		ActivarEscena(ESCENAS::campus);
 	}
 
+	void TiendaEscena::mostrarTienda(Graphics ^graphics) {
+		if (modo_comprar)
+			IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, graphics);
+		else if (modo_vender) {
+			IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, graphics);
+			Marco::marco->baraja->mostrarBaraja_10(graphics, true);
+
+			graphics->DrawString(
+				"Espacios Dispnibles: " + (10 - Marco::marco->baraja->cartas->Count),
+				FUENTES::SUBTITULOS,
+				gcnew SolidBrush(Color::White),
+				12,
+				Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
+				StringFormat::GenericTypographic
+			);
+
+			graphics->DrawString(
+				"Dinero: S/ " + Marco::marco->dinero + ".00",
+				FUENTES::SUBTITULOS,
+				gcnew SolidBrush(Color::White),
+				MYFORM_SIZE_WIDTH - 24 - TAMANIO_LETRAS * 9,
+				Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
+				StringFormat::GenericTypographic
+			);
+		}
+	}
+
+	void TiendaEscena::venderCarta(int index) {
+		if (Marco::marco->baraja->cartas->Count > index) {
+
+			Marco::marco->dinero += Marco::marco->baraja->cartas[index]->getValor();
+			Marco::marco->baraja->cartas->RemoveAt(index);
+
+			mostrarTienda(escena_buffer->Graphics);
+			escena_buffer->Render(Juego::graphics);
+			
+			Dialogo::pausarYMostarMensaje("Vendiste la carta!!!");
+		}
+		else {
+			Dialogo::pausarYMostarMensaje("Este espacio esta vacío...");
+		}
+	}
+
+	void TiendaEscena::comprarCarta(int index) {
+		Dialogo::pausarYMostarMensaje("Compraste la carta!!!");
+	}
+
 	void TiendaEscena::timerTick(System::Object^  sender, System::EventArgs^  e) {
 		if (escena_activa) {
 			if (!escena_dibujada) {
-				if (modo_comprar)
-					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, escena_buffer->Graphics);
-				else if (modo_vender) {
-					IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, escena_buffer->Graphics);
-					Marco::marco->baraja->mostrarBaraja_10(escena_buffer->Graphics, true);
-				}
-				
+				mostrarTienda(escena_buffer->Graphics);
 				escena_buffer->Render(Juego::graphics);
 				escena_dibujada = true;
 			}
@@ -52,12 +93,13 @@ namespace YuGiOh {
 
 			Rectangle mouse_rectangle = Rectangle(e->X, e->Y, 1, 1);
 
-			for (int i = 0; i < 10; i++) {
-				if (Baraja::getCuerpoDeCarta_10(i).IntersectsWith(mouse_rectangle)) {
+			for (int index = 0; index < 10; index++) {
+				if (Baraja::getCuerpoDeCarta_10(index).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
-						Dialogo::pausarYMostarMensaje("Vendiste la carta!!!");
-					if (modo_comprar)
-						Dialogo::pausarYMostarMensaje("Compraste la carta!!!");
+						venderCarta(index);
+					else if (modo_comprar)
+						comprarCarta(index);
+
 					return;
 				}
 			}
@@ -71,12 +113,12 @@ namespace YuGiOh {
 
 			Rectangle switch_rectangle = Rectangle(12, 24, 108, 36);
 
-			if (switch_rectangle.IntersectsWith(mouse_rectangle)) {
-				modo_comprar = !modo_comprar;
-				modo_vender = !modo_vender;
-				escena_dibujada = false;
-				return;
-			}
+		if (switch_rectangle.IntersectsWith(mouse_rectangle)) {
+			modo_comprar = !modo_comprar;
+			modo_vender = !modo_vender;
+			escena_dibujada = false;
+			return;
+		}
 
 		}
 	}

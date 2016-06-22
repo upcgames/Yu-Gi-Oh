@@ -60,6 +60,7 @@ namespace YuGiOh {
 
 	public ref class FUENTES abstract sealed {
 	public:
+		static Font ^SUBTITULOS;
 		static Font ^DIALOGOS;
 		static Font ^DINERO;
 		static Font ^NIVEL;

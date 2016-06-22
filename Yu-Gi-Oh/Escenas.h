@@ -56,6 +56,10 @@ namespace YuGiOh {
 	};
 
 	public ref class TiendaEscena : public EscenaDeMapa	{
+	private:
+		void mostrarTienda(Graphics ^graphics);
+		void venderCarta(int index);
+		void comprarCarta(int index);
 	public:
 		TiendaEscena();
 		bool modo_vender;
