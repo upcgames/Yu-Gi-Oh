@@ -24,6 +24,8 @@ namespace YuGiOh {
 		List<Carta ^> ^cartas;
 
 		void mostrarBaraja_10(Graphics^ graphics, bool mostrar_otros_atributos);
+		bool estaVacia();
+		bool estaLlena();
 
 		Baraja();
 		

@@ -12,6 +12,32 @@ namespace YuGiOh {
 		onMouseClick = gcnew MouseEventHandler(this, &TiendaEscena::mouseClick);
 		modo_comprar = false;
 		modo_vender = true;
+		crearCartas();
+	}
+
+	void TiendaEscena::crearCartas() {
+		baraja = gcnew Baraja();
+		
+		Array ^tipo_de_cartas = Enum::GetValues(TiposDeCarta::typeid);
+
+		for (int i = 0; i < 10; i++) {
+			Carta ^carta = gcnew Carta();
+			int nivel;
+
+			if (i < 5)
+				nivel = Juego::aleatorio->Next(1, 4);
+			else
+				nivel = 5;
+
+			carta->ataque = nivel * 10;
+			carta->defensa = nivel * 5;
+			carta->nivel = nivel;
+			carta->vida = 20 + nivel * 10;
+
+			carta->tipo = (TiposDeCarta)Juego::aleatorio->Next(tipo_de_cartas->Length);
+			carta->imagen = IMAGENES::CARTAS[Juego::aleatorio->Next(NUMERO_DE_CARTAS)];
+			baraja->cartas->Add(carta);
+		}
 	}
 
 	void TiendaEscena::salirDeTienda() {
@@ -24,33 +50,34 @@ namespace YuGiOh {
 	}
 
 	void TiendaEscena::mostrarTienda(Graphics ^graphics) {
-		if (modo_comprar)
+		if (modo_comprar) {
 			IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_COMPRAR, graphics);
+			baraja->mostrarBaraja_10(graphics, true);
+		}
 		else if (modo_vender) {
 			IMAGENES::mostarFondo(IMAGENES::FONDO_TIENDA_VENDER, graphics);
 			Marco::marco->baraja->mostrarBaraja_10(graphics, true);
-
-			graphics->DrawString(
-				"Espacios Dispnibles: " + (10 - Marco::marco->baraja->cartas->Count),
-				FUENTES::SUBTITULOS,
-				gcnew SolidBrush(Color::White),
-				12,
-				Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
-				StringFormat::GenericTypographic
-			);
-
-			graphics->DrawString(
-				"Dinero: S/ " + Marco::marco->dinero + ".00",
-				FUENTES::SUBTITULOS,
-				gcnew SolidBrush(Color::White),
-				MYFORM_SIZE_WIDTH - 24 - TAMANIO_LETRAS * 9,
-				Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
-				StringFormat::GenericTypographic
-			);
 		}
+		graphics->DrawString(
+			"Espacios Dispnibles: " + (10 - Marco::marco->baraja->cartas->Count),
+			FUENTES::SUBTITULOS,
+			gcnew SolidBrush(Color::White),
+			12,
+			Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
+			StringFormat::GenericTypographic
+		);
+
+		graphics->DrawString(
+			"Dinero: S/ " + Marco::marco->dinero + ".00",
+			FUENTES::SUBTITULOS,
+			gcnew SolidBrush(Color::White),
+			MYFORM_SIZE_WIDTH - 24 - TAMANIO_LETRAS * 9,
+			Baraja::getCoordenadasCarta_10(0)->y - 30 - TAMANIO_LETRAS,
+			StringFormat::GenericTypographic
+		);
 	}
 
-	void TiendaEscena::venderCarta(int index) {
+	void TiendaEscena::venderCartas(int index) {
 		if (Marco::marco->baraja->cartas->Count > index) {
 
 			Marco::marco->dinero += Marco::marco->baraja->cartas[index]->getValor();
@@ -66,7 +93,20 @@ namespace YuGiOh {
 		}
 	}
 
-	void TiendaEscena::comprarCarta(int index) {
+	void TiendaEscena::comprarCartas(int index) {
+		
+		if (Marco::marco->baraja->estaLlena()) {
+			Dialogo::pausarYMostarMensaje("Ya tienes tu inventario lleno");
+			return;
+		}
+
+		int dinero_de_marco = Marco::marco->dinero;
+
+		if (dinero_de_marco < baraja->cartas[index]->getValor()) {
+			Dialogo::pausarYMostarMensaje("No tienes el dinero suficiente");
+		}
+
+		Marco::marco->baraja->cartas->Add(this->baraja->cartas[index]);
 		Dialogo::pausarYMostarMensaje("Compraste la carta!!!");
 	}
 
@@ -96,9 +136,9 @@ namespace YuGiOh {
 			for (int index = 0; index < 10; index++) {
 				if (Baraja::getCuerpoDeCarta_10(index).IntersectsWith(mouse_rectangle)) {
 					if (modo_vender)
-						venderCarta(index);
+						venderCartas(index);
 					else if (modo_comprar)
-						comprarCarta(index);
+						comprarCartas(index);
 
 					return;
 				}

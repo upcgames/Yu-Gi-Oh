@@ -59,6 +59,17 @@ namespace YuGiOh {
 		return Rectangle(posicion->x, posicion->y, CARTAS_WIDTH, CARTAS_HEIGHT);
 	}
 
+	bool Baraja::estaVacia() {
+		if (cartas->Count == 0)
+			return true;
+		return false;
+	}
+
+	bool Baraja::estaLlena() {
+		if (cartas->Count == 10)
+			return true;
+		return false;
+	}
 
 	void Baraja::mostrarBaraja_10(Graphics ^graphics, bool mostrar_otros_atributos) {
 

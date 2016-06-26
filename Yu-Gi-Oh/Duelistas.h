@@ -8,5 +8,4 @@ namespace YuGiOh {
 	public:
 		Baraja ^baraja;
 	};
-
 }

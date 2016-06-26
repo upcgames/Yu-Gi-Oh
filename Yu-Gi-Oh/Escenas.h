@@ -1,5 +1,6 @@
 #pragma once
 #include "Figuras.h"
+#include "Cartas.h"
 
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
@@ -13,6 +14,7 @@ namespace YuGiOh {
 		bool escena_activa;
 		bool escena_dibujada;
 		
+		Baraja ^baraja;
 		BufferedGraphics ^escena_buffer;
 		KeyEventHandler ^onKeyDown;
 		KeyEventHandler ^onKeyUp;
@@ -58,8 +60,9 @@ namespace YuGiOh {
 	public ref class TiendaEscena : public EscenaDeMapa	{
 	private:
 		void mostrarTienda(Graphics ^graphics);
-		void venderCarta(int index);
-		void comprarCarta(int index);
+		void crearCartas();
+		void venderCartas(int index);
+		void comprarCartas(int index);
 	public:
 		TiendaEscena();
 		bool modo_vender;
