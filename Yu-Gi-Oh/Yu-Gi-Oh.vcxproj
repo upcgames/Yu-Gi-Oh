@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BatallaEscena.cpp" />
     <ClCompile Include="CampusEscena.cpp" />
     <ClCompile Include="Cartas.cpp" />
     <ClCompile Include="Dialogo.cpp" />

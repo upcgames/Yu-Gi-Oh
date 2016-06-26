@@ -21,6 +21,8 @@ namespace YuGiOh {
 	const int NUMERO_DE_CARTAS = 30;
 	const int CARTAS_WIDTH = 144;
 	const int CARTAS_HEIGHT = 192;
+	const int CARTAS_WIDTH_LINE = 48;
+	const int CARTAS_HEIGHT_LINE = 72;
 
 	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua, Roca, Lava, Tejado, Granito };
 
@@ -41,6 +43,7 @@ namespace YuGiOh {
 		ESCENAS::introduccion = gcnew IntroduccionEscena();
 		ESCENAS::campus = gcnew CampusEscena();
 		ESCENAS::tienda = gcnew TiendaEscena();
+		ESCENAS::batalla = gcnew BatallaEscena();
 
 		//Empezar el juego
 		Escena::EmpezarConEscena(ESCENAS::campus);
@@ -122,6 +125,7 @@ namespace YuGiOh {
 		IMAGENES::INTRODUCCION_FONDO_2 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_2.png");
 		IMAGENES::FONDO_TIENDA_VENDER = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
 		IMAGENES::FONDO_TIENDA_COMPRAR = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
+		IMAGENES::BATALLA = Image::FromFile("Imagenes\\Interfaces\\Batalla.png");
 
 		CONTROLES::CAMBIO_ESCENA = Keys::E;
 		CONTROLES::SALIR = Keys::Escape;

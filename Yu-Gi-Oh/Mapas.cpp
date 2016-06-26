@@ -93,7 +93,7 @@ namespace YuGiOh {
 			return "Pabellon B";
 		else if (mapa == Mapas::jardin_mapa)
 			return "Jardín";
-		else if (mapa == Mapas::sotano_mapa)
+		else
 			return "Sótano";
 	}
 
@@ -166,6 +166,19 @@ namespace YuGiOh {
 		default:
 			return nullptr;
 		}
+	}
+
+	MapaTipo Mapa::obtenerMapaTipo(Mapa ^mapa) {
+		if (mapa == Mapas::plazuela_mapa)
+			return Plazuela;
+		else if (mapa == Mapas::pabellonA_mapa)
+			return PabellonA;
+		else if (mapa == Mapas::pabellonB_mapa)
+			return PabellonB;
+		else if (mapa == Mapas::sotano_mapa)
+			return Sotano;
+		else
+			return Jardin;
 	}
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {

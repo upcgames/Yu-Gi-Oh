@@ -6,6 +6,8 @@ namespace YuGiOh {
 
 	Carta::Carta() {
 		experiencia = 0;
+		activa = false;
+		modo = Ataque;
 	}
 
 	int Carta::getValor() {
@@ -49,14 +51,31 @@ namespace YuGiOh {
 		}
 	}
 
+	Posicion^ Baraja::getCoordenadasCarta_10line(int posicion_carta, bool enemigo) {
+		if (enemigo)
+			return gcnew Posicion(96 * posicion_carta + 24, 0);
+		else
+			return gcnew Posicion(96 * posicion_carta + 24, MYFORM_SIZE_HEIGHT - CARTAS_HEIGHT_LINE);
+	}
+
 	Rectangle Baraja::getCuerpoDeCarta_10(int posicion_carta) {
 
 		Posicion ^posicion = getCoordenadasCarta_10(posicion_carta);
 		return getCuerpoDeCarta_10(posicion);
 	}
 
+	Rectangle Baraja::getCuerpoDeCarta_10line(int posicion_carta, bool enemigo) {
+
+		Posicion ^posicion = getCoordenadasCarta_10line(posicion_carta, enemigo);
+		return getCuerpoDeCarta_10line(posicion);
+	}
+
 	Rectangle Baraja::getCuerpoDeCarta_10(Posicion ^posicion) {
 		return Rectangle(posicion->x, posicion->y, CARTAS_WIDTH, CARTAS_HEIGHT);
+	}
+
+	Rectangle Baraja::getCuerpoDeCarta_10line(Posicion ^posicion) {
+		return Rectangle(posicion->x, posicion->y, CARTAS_WIDTH_LINE, CARTAS_HEIGHT_LINE);
 	}
 
 	bool Baraja::estaVacia() {
@@ -69,6 +88,11 @@ namespace YuGiOh {
 		if (cartas->Count == 10)
 			return true;
 		return false;
+	}
+
+	void Baraja::desactivarTodas() {
+		for (int i = 0; i < cartas->Count; i++)
+			cartas[i]->activa = false;
 	}
 
 	void Baraja::mostrarBaraja_10(Graphics ^graphics, bool mostrar_otros_atributos) {
@@ -99,6 +123,22 @@ namespace YuGiOh {
 					StringFormat::GenericTypographic
 				);
 			}
+		}
+	}
+
+	void Baraja::mostrarBaraja_10line(Graphics ^graphics, bool enemigo) {
+
+		for (int i = 0; i < cartas->Count; i++) {
+			Carta ^carta = cartas[i];
+
+			Rectangle rectangle_carta = getCuerpoDeCarta_10line(i, enemigo);
+			
+			if (carta->activa)
+				graphics->FillRectangle(gcnew SolidBrush(Color::Green), rectangle_carta);
+			else if (carta->vida > 0)
+				graphics->FillRectangle(gcnew SolidBrush(Color::Yellow), rectangle_carta);
+			else
+				graphics->FillRectangle(gcnew SolidBrush(Color::Red), rectangle_carta);
 		}
 	}
 }

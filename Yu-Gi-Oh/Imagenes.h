@@ -29,6 +29,7 @@ namespace YuGiOh {
 		static Image ^INTRODUCCION_FONDO_2;
 		static Image ^FONDO_TIENDA_VENDER;
 		static Image ^FONDO_TIENDA_COMPRAR;
+		static Image ^BATALLA;
 
 		static List<Image ^> ^CARTAS;
 	};

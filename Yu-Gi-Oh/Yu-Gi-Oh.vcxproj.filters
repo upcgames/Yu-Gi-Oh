@@ -54,6 +54,9 @@
     <ClCompile Include="Duelistas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BatallaEscena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h">

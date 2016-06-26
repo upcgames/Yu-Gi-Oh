@@ -80,7 +80,14 @@ namespace YuGiOh {
 					return;
 				}
 
-				profesor->ha_sido_derrotado = true;
+				Escena::CambiarEscena(ESCENAS::batalla);
+				ESCENAS::batalla->enemigo = profesor;
+				EscenaDeMapa ^escena_de_mapa = ESCENAS::batalla;
+
+				escena_de_mapa->escena_a_mostrar = Batalla;
+				escena_de_mapa->pabellon_de_regreso = Mapa::obtenerMapaTipo(profesor->mapa);
+				escena_de_mapa->posicion_de_regreso = Marco::marco->posicion;
+				escena_de_mapa->direccion_de_regreso = Marco::marco->direccion;
 			}
 
 		}

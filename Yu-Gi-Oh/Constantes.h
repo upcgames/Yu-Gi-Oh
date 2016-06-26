@@ -22,6 +22,9 @@ namespace YuGiOh {
 	extern const int CARTAS_WIDTH;
 	extern const int CARTAS_HEIGHT;
 
+	extern const int CARTAS_WIDTH_LINE;
+	extern const int CARTAS_HEIGHT_LINE;
+
 	extern const float TAMANIO_LETRAS;
 
 	// Velocidad con la que Marco corre en pixeles
@@ -29,7 +32,7 @@ namespace YuGiOh {
 	extern const int NUMERO_DE_CARTAS;
 
 	// Enums
-	public enum TipoEscena { Introduccion, Campus, Tienda };
+	public enum TipoEscena { Introduccion, Campus, Tienda, Batalla };
 	public enum Direccion { Arriba, Abajo, Izquierda, Derecha };
 	public enum TiposDeCarta { Criticos, Basicos, Extra, Electivos };
 	public enum Pertenencia { Vendedor, DeMarco, DeProfesor };

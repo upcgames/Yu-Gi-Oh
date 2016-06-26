@@ -74,6 +74,9 @@ namespace YuGiOh {
 		case Tienda:
 			return ESCENAS::tienda;
 			break;
+		case Batalla:
+			return ESCENAS::tienda;
+			break;
 		default:
 			return nullptr;
 		}

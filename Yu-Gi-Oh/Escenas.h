@@ -1,6 +1,7 @@
 #pragma once
 #include "Figuras.h"
 #include "Cartas.h"
+#include "Duelistas.h"
 
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
@@ -14,7 +15,6 @@ namespace YuGiOh {
 		bool escena_activa;
 		bool escena_dibujada;
 		
-		Baraja ^baraja;
 		BufferedGraphics ^escena_buffer;
 		KeyEventHandler ^onKeyDown;
 		KeyEventHandler ^onKeyUp;
@@ -60,14 +60,33 @@ namespace YuGiOh {
 	public ref class TiendaEscena : public EscenaDeMapa	{
 	private:
 		void mostrarTienda(Graphics ^graphics);
+
 		void crearCartas();
 		void venderCartas(int index);
 		void comprarCartas(int index);
 	public:
 		TiendaEscena();
+		Baraja ^baraja;
+
 		bool modo_vender;
 		bool modo_comprar;
 		void salirDeTienda();
+		void mouseClick(System::Object ^sender, System::Windows::Forms::MouseEventArgs ^e);
+		void timerTick(System::Object ^sender, System::EventArgs ^e);
+		void teclaDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e);
+	};
+
+	public ref class BatallaEscena : public EscenaDeMapa {
+	private:
+		void mostrarBatalla(Graphics ^graphics);
+	public:
+
+		Duelista ^enemigo;
+		int movimientos_restantes;
+		bool turno_marco;
+		bool turno_enemigo;
+
+		BatallaEscena();
 		void mouseClick(System::Object ^sender, System::Windows::Forms::MouseEventArgs ^e);
 		void timerTick(System::Object ^sender, System::EventArgs ^e);
 		void teclaDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e);
@@ -78,5 +97,6 @@ namespace YuGiOh {
 		static IntroduccionEscena ^introduccion;
 		static CampusEscena ^campus;
 		static TiendaEscena ^tienda;
+		static BatallaEscena ^batalla;
 	};
 }

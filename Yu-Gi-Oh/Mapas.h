@@ -24,6 +24,7 @@ namespace YuGiOh {
 		Mapa();
 		
 		static Mapa ^obtenerMapa(MapaTipo pabellon);
+		static MapaTipo obtenerMapaTipo(Mapa ^pabellon);
 		static String ^getNombre(Mapa ^mapa);
 		static Mapa ^mapa_actual;
 	};
