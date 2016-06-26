@@ -35,6 +35,8 @@ namespace YuGiOh {
 		graphics = this->CreateGraphics();
 		context = BufferedGraphicsManager::Current;
 
+		PROFESORES::profesor_actual = 1;
+
 		//Inicializamos las escenas
 		ESCENAS::introduccion = gcnew IntroduccionEscena();
 		ESCENAS::campus = gcnew CampusEscena();
@@ -131,6 +133,7 @@ namespace YuGiOh {
 		CONTROLES::MOVER_ABAJO_2 = Keys::Down;
 		CONTROLES::MOVER_IZQUIERDA_2 = Keys::Left;
 		CONTROLES::MOVER_DERECHA_2 = Keys::Right;
+		CONTROLES::ACTIVAR_TRAMPA = Keys::Z;
 	
 		FUENTES::SUBTITULOS = gcnew System::Drawing::Font("ARIAL", TAMANIO_LETRAS - 2, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::DIALOGOS = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);

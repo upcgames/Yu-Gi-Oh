@@ -19,6 +19,8 @@ namespace YuGiOh {
 
 		void Mostrarlo(Graphics^ graphics);
 		Profesor ^anteriorProfesor();
+		Profesor ^siguienteProfesor();
+		static Profesor ^getProfesorActual();
 		Profesor(int nivel, Mapa ^mapa, Posicion ^posicion);
 	};
 
@@ -29,6 +31,8 @@ namespace YuGiOh {
 		static Profesor ^Profesor3;
 		static Profesor ^Profesor4;
 		static Profesor ^Profesor5;
+
+		static int profesor_actual;
 
 		static void Mostrarlos(Graphics^ graphics);
 	};

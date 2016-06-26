@@ -11,7 +11,7 @@ namespace YuGiOh {
 		this->nivel = nivel;
 		ha_sido_derrotado = false;
 
-		if (nivel == 10)
+		if (nivel == 9)
 			this->sprite = gcnew Sprite(IMAGENES::RECTOR_SPRITE);
 		else
 			this->sprite = gcnew Sprite(IMAGENES::PROFESOR_SPRITE);
@@ -43,27 +43,61 @@ namespace YuGiOh {
 			),
 			GraphicsUnit::Pixel
 			);
-		sprite->siguienteIndice();
+
+		if (!ha_sido_derrotado)
+			sprite->siguienteIndice();
 	}
 
 	Profesor ^Profesor::anteriorProfesor() {
-		if (nivel == 1)
-			return nullptr;
-		else if (nivel == 3)
+
+		if (nivel == 3)
 			return PROFESORES::Profesor1;
 		else if (nivel == 5)
 			return PROFESORES::Profesor2;
 		else if (nivel == 7)
 			return PROFESORES::Profesor3;
-		else if (nivel == 10)
+		else if (nivel == 9)
 			return PROFESORES::Profesor4;
+		else
+			return nullptr;
+	}
+
+	Profesor ^Profesor::siguienteProfesor() {
+		if (nivel == 1)
+			return PROFESORES::Profesor2;
+		else if (nivel == 3)
+			return PROFESORES::Profesor3;
+		else if (nivel == 5)
+			return PROFESORES::Profesor4;
+		else if (nivel == 7)
+			return PROFESORES::Profesor5;
+		else
+			return nullptr;
+	}
+
+	Profesor ^Profesor::getProfesorActual() {
+
+		int nivel = PROFESORES::profesor_actual;
+
+		if (nivel == 1)
+			return PROFESORES::Profesor1;
+		else if (nivel == 3)
+			return PROFESORES::Profesor2;
+		else if (nivel == 5)
+			return PROFESORES::Profesor3;
+		else if (nivel == 7)
+			return PROFESORES::Profesor4;
+		else if (nivel == 9)
+			return PROFESORES::Profesor5;
+		else
+			return nullptr;
 	}
 
 	void PROFESORES::Mostrarlos(Graphics^ graphics) {
 
 		if (Mapa::mapa_actual == Mapas::plazuela_mapa)
 			PROFESORES::Profesor1->Mostrarlo(graphics);
-		else if (Mapa::mapa_actual == Mapas::pabellonA_mapa)
+		else if (Mapa::mapa_actual == Mapas::pabellonA_mapa && Profesor4->ha_sido_derrotado)
 			PROFESORES::Profesor5->Mostrarlo(graphics);
 		else if (Mapa::mapa_actual == Mapas::pabellonB_mapa)
 			PROFESORES::Profesor2->Mostrarlo(graphics);

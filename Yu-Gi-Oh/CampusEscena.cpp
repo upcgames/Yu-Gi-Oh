@@ -24,7 +24,7 @@ namespace YuGiOh
 		PROFESORES::Profesor2 = gcnew Profesor(3, Mapas::pabellonB_mapa, gcnew Posicion(16, 11, true));
 		PROFESORES::Profesor3 = gcnew Profesor(5, Mapas::sotano_mapa, gcnew Posicion(16, 6, true));
 		PROFESORES::Profesor4 = gcnew Profesor(7, Mapas::jardin_mapa, gcnew Posicion(11, 4, true));
-		PROFESORES::Profesor5 = gcnew Profesor(10, Mapas::pabellonA_mapa, gcnew Posicion(2, 10, true));
+		PROFESORES::Profesor5 = gcnew Profesor(9, Mapas::pabellonA_mapa, gcnew Posicion(2, 10, true));
 	}
 
 	void CampusEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
@@ -83,11 +83,39 @@ namespace YuGiOh
 			Marco::marco->Detener();
 		else if ((e->KeyCode == CONTROLES::MOVER_DERECHA_1 || e->KeyCode == CONTROLES::MOVER_DERECHA_2) && Marco::marco->direccion == Derecha)
 			Marco::marco->Detener();
+		else if (e->KeyCode == CONTROLES::ACTIVAR_TRAMPA) {
+			Profesor ^profesor_actual = Profesor::getProfesorActual();
+			if (profesor_actual == PROFESORES::Profesor5 && profesor_actual->ha_sido_derrotado)
+				return;
+
+			profesor_actual->ha_sido_derrotado = true;
+			if (profesor_actual->nivel == 7)
+				Dialogo::pausarYMostarMensaje("Ganaste a los 4 profesores!!!, ahora eres maestro!");
+			else if (profesor_actual->nivel == 9)
+				Dialogo::pausarYMostarMensaje("Has derrotado al mismisimo rector!");
+			else
+				Dialogo::pausarYMostarMensaje("Has derrotado al profesor de " + Mapa::getNombre(profesor_actual->mapa));
+
+			PROFESORES::profesor_actual += 2;
+		}
 	}
 
-	void CampusEscena::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
-	{
-		;
+	void CampusEscena::mouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		Posicion ^posicion_mouse = gcnew Posicion(e->X, e->Y);
+
+		Objeto ^siguiente_bloque = Mapa::mapa_actual->getObjeto(posicion_mouse);
+		Profesor ^siguiente_profesor = dynamic_cast<Profesor ^>(Mapa::mapa_actual->getProfesor(posicion_mouse));
+
+		if (noHayONoExsite(siguiente_bloque)) {
+			if (noHayONoExsite(siguiente_profesor)) {
+				Marco::marco->posicion->x = (posicion_mouse->x / RESOLUCION_X) * RESOLUCION_X;;
+				Marco::marco->posicion->y = (posicion_mouse->y / RESOLUCION_Y) * RESOLUCION_Y;;
+			}
+			else
+				Dialogo::pausarYMostarMensaje("No se puede ir a ese lugar!!");
+		}
+		else
+			Dialogo::pausarYMostarMensaje("No se puede ir a ese lugar!!");
 	}
 }
 

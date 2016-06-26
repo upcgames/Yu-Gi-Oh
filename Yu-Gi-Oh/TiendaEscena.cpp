@@ -125,6 +125,11 @@ namespace YuGiOh {
 			if (e->KeyCode == CONTROLES::SALIR) {
 				salirDeTienda();
 			}
+			else if (e->KeyCode == CONTROLES::ACTIVAR_TRAMPA) {
+				Marco::marco->dinero += 5;
+				mostrarTienda(escena_buffer->Graphics);
+				escena_buffer->Render(Juego::graphics);
+			}
 		}
 	}
 

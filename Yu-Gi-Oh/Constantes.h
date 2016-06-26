@@ -56,6 +56,7 @@ namespace YuGiOh {
 		static Keys MOVER_ABAJO_2;
 		static Keys MOVER_IZQUIERDA_2;
 		static Keys MOVER_DERECHA_2;
+		static Keys ACTIVAR_TRAMPA;
 	};
 
 	public ref class FUENTES abstract sealed {
