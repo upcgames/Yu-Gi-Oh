@@ -130,20 +130,20 @@ namespace YuGiOh {
 
 	PlazuelaMapa::PlazuelaMapa() : Mapa() {
 		this->matriz_terreno = gcnew array<Terreno,2> {
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta},
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Loceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Maceta, Maceta, Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Maceta, Maceta, Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
+			{ Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Pasto, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado},
+			{ Granito, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Hielo, Hielo, Hielo, Hielo, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Maceta },
+			{ Hielo, Hielo, Hielo, Hielo, Hielo, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Maceta },
+			{ Granito, Hielo, Hielo, Hielo, Hielo, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Maceta },
+			{ Granito, Hielo, Hielo, Hielo, Hielo, Agua, Agua, Agua, Agua, Agua, Agua, Agua, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Maceta },
+			{ Granito, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Hielo, Hielo, Hielo, Hielo, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Granito, Granito, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Granito, Granito, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Hielo, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito }
 		};
 
 		this->objetos = gcnew List<Objeto ^>();

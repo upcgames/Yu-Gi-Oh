@@ -22,7 +22,7 @@ namespace YuGiOh {
 	const int CARTAS_WIDTH = 144;
 	const int CARTAS_HEIGHT = 192;
 
-	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua };
+	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua, Roca, Lava, Tejado, Granito };
 
 	Juego::Juego(void) {
 
