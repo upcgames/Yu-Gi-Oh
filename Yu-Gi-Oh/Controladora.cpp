@@ -91,14 +91,22 @@ namespace YuGiOh {
 		IMAGENES::MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Marco_Sprite.png");
 		IMAGENES::MONEDA_SPRITE = Image::FromFile("Imagenes\\Objetos\\Moneda_Sprite.png");
 
+		IMAGENES::PUERTA = Image::FromFile("Imagenes\\Objetos\\PUERTA.png");
+
 		//Objetos
-		IMAGENES::LOCETA = Image::FromFile("Imagenes\\Objetos\\Piso4.png");
-		IMAGENES::PUERTA = Image::FromFile("Imagenes\\Objetos\\Caja1.png");
-		IMAGENES::MONEDA = Image::FromFile("Imagenes\\Objetos\\Caja4.png");
-		IMAGENES::AGUA = Image::FromFile("Imagenes\\Objetos\\Piso3.png");
-		IMAGENES::MACETA = Image::FromFile("Imagenes\\Objetos\\Bloque5.png");
-		IMAGENES::PASTO = Image::FromFile("Imagenes\\Objetos\\Piso2.png");
-		
+		IMAGENES::LOCETA = Image::FromFile("Imagenes\\Objetos\\LOCETA.png");
+		IMAGENES::AGUA = Image::FromFile("Imagenes\\Objetos\\AGUA.png");
+		IMAGENES::ARENA = Image::FromFile("Imagenes\\Objetos\\ARENA.png");
+		IMAGENES::GRANITO = Image::FromFile("Imagenes\\Objetos\\GRANITO.png");
+		IMAGENES::HIELO = Image::FromFile("Imagenes\\Objetos\\HIELO.png");
+		IMAGENES::LAVA = Image::FromFile("Imagenes\\Objetos\\LAVA.png");
+		IMAGENES::LODO = Image::FromFile("Imagenes\\Objetos\\LODO.png");
+		IMAGENES::MACETA = Image::FromFile("Imagenes\\Objetos\\MACETA.png");
+		IMAGENES::PASTO = Image::FromFile("Imagenes\\Objetos\\PASTO.png");
+		IMAGENES::ROCA = Image::FromFile("Imagenes\\Objetos\\ROCA.png");
+		IMAGENES::TEJADO = Image::FromFile("Imagenes\\Objetos\\TEJADO.png");
+		IMAGENES::TIERRA = Image::FromFile("Imagenes\\Objetos\\TIERRA.png");
+
 		IMAGENES::CARTAS = gcnew List<Image ^>();
 
 		for (int i = 0; i < NUMERO_DE_CARTAS; i++) {

@@ -10,11 +10,18 @@ namespace YuGiOh {
 		static Image ^MONEDA_SPRITE;
 					 
 		static Image ^LOCETA;
-		static Image ^PUERTA;
-		static Image ^MONEDA;
 		static Image ^AGUA;
+		static Image ^ARENA;
+		static Image ^GRANITO;
+		static Image ^HIELO;
+		static Image ^LAVA;
+		static Image ^LODO;
 		static Image ^MACETA;
 		static Image ^PASTO;
+		static Image ^PUERTA;
+		static Image ^ROCA;
+		static Image ^TEJADO;
+		static Image ^TIERRA;
 					 
 		static Image ^INTRODUCCION_FONDO_1;
 		static Image ^INTRODUCCION_FONDO_2;

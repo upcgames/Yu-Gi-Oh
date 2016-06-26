@@ -21,15 +21,40 @@ namespace YuGiOh {
 				case Loceta:
 					imagen_terreno = IMAGENES::LOCETA;
 					break;
-				case Pasto:
-					imagen_terreno = IMAGENES::PASTO;
-					break;
 				case Agua:
 					imagen_terreno = IMAGENES::AGUA;
+					break;
+				case Arena:
+					imagen_terreno = IMAGENES::ARENA;
+					break;
+				case Granito:
+					imagen_terreno = IMAGENES::GRANITO;
+					break;
+				case Hielo:
+					imagen_terreno = IMAGENES::HIELO;
+					break;
+				case Lava:
+					imagen_terreno = IMAGENES::LAVA;
+					break;
+				case Lodo:
+					imagen_terreno = IMAGENES::LODO;
 					break;
 				case Maceta:
 					imagen_terreno = IMAGENES::MACETA;
 					break;
+				case Pasto:
+					imagen_terreno = IMAGENES::PASTO;
+					break;
+				case Roca:
+					imagen_terreno = IMAGENES::ROCA;
+					break;
+				case Tejado:
+					imagen_terreno = IMAGENES::TEJADO;
+					break;
+				default:
+					imagen_terreno = IMAGENES::TIERRA;
+					break;
+				
 				}
 
 				capa_terreno->Graphics->DrawImage(imagen_terreno, Rectangle(coordenada_x, coordenada_y, RESOLUCION_X, RESOLUCION_Y));

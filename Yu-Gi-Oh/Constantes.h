@@ -35,7 +35,7 @@ namespace YuGiOh {
 	public enum Pertenencia { Vendedor, DeMarco, DeProfesor };
 	public enum ModoBatalla { Defensa, Ataque };
 	public enum Objetos { Puerta, PuertaEscena, Moneda };
-	public enum Terreno { Loceta, Agua, Maceta, Pasto };
+	public enum Terreno { Loceta, Agua, Arena, Granito, Hielo, Lava, Lodo, Maceta, Pasto, Roca, Tejado, Tierra };
 	public enum MapaTipo { Plazuela, PabellonA, PabellonB, Jardin, Sotano };
 
 	extern Terreno TERRENOS_COLISIONANTES[];
