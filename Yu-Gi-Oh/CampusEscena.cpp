@@ -15,6 +15,8 @@ namespace YuGiOh
 		Mapas::plazuela_mapa = gcnew PlazuelaMapa();
 		Mapas::pabellonA_mapa = gcnew PabellonAMapa();
 		Mapas::pabellonB_mapa = gcnew PabellonBMapa();
+		Mapas::sotano_mapa = gcnew SotanoMapa();
+		Mapas::jardin_mapa = gcnew JardinMapa();
 		Mapa::mapa_actual = Mapas::plazuela_mapa;
 	}
 

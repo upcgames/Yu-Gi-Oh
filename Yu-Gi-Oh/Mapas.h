@@ -37,7 +37,7 @@ namespace YuGiOh {
 		static PlazuelaMapa ^plazuela_mapa;
 		static PabellonAMapa ^pabellonA_mapa;
 		static PabellonBMapa ^pabellonB_mapa;
-		static JardinMapa ^jardinMapa;
-		static SotanoMapa ^sotanoMapas;
+		static JardinMapa ^jardin_mapa;
+		static SotanoMapa ^sotano_mapa;
 	};
 }

@@ -74,7 +74,11 @@ namespace YuGiOh {
 
 	bool MonedaObjeto::interactuarConMarco() {
 		Marco::marco->dinero += dinero_sorpresa;
-		Dialogo::pausarYMostarMensaje("Encontraste " + dinero_sorpresa + " soles!!");
+		if (dinero_sorpresa == 1)
+			Dialogo::pausarYMostarMensaje("Encontraste " + dinero_sorpresa + " sol!!");
+		else
+			Dialogo::pausarYMostarMensaje("Encontraste " + dinero_sorpresa + " soles!!");
+
 		Mapa::mapa_actual->objetos->Remove(this);
 		Marco::marco->Detener();
 		return true;

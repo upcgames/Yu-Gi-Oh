@@ -123,6 +123,12 @@ namespace YuGiOh {
 		case PabellonB:
 			return Mapas::pabellonB_mapa;
 			break;
+		case Sotano:
+			return Mapas::sotano_mapa;
+			break;
+		case Jardin:
+			return Mapas::jardin_mapa;
+			break;
 		default:
 			return nullptr;
 		}
@@ -150,6 +156,7 @@ namespace YuGiOh {
 		this->objetos->AddRange(gcnew array<Objeto ^>{
 			gcnew PuertaObjeto(PabellonA, gcnew Posicion(-1, 3, true), gcnew Posicion(19, 3, true), Izquierda),
 			gcnew PuertaObjeto(PabellonB, gcnew Posicion(8, 14, true), gcnew Posicion(8, 0, true), Abajo),
+			gcnew PuertaObjeto(Jardin, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba),
 			gcnew PuertaEscenaObjeto(Tienda, gcnew Posicion(0, 9, true), Plazuela, gcnew Posicion(1, 9, true), Derecha),
 			gcnew MonedaObjeto(gcnew Posicion(1, 1, true)),
 			gcnew MonedaObjeto(gcnew Posicion(1, 12, true)),
@@ -165,25 +172,28 @@ namespace YuGiOh {
 
 	PabellonAMapa::PabellonAMapa() : Mapa() {
 		this->matriz_terreno = gcnew array<Terreno, 2> {
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta},
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
+			{ Lava, Lava, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta},
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta },
+			{ Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Lava, Maceta }
 		};
 
 		this->objetos = gcnew List<Objeto ^>();
 		this->objetos->AddRange(gcnew array<Objeto ^>{
-			gcnew PuertaObjeto(Plazuela, gcnew Posicion(20, 3, true), gcnew Posicion(0, 3, true), Derecha)
+			gcnew PuertaObjeto(Plazuela, gcnew Posicion(20, 3, true), gcnew Posicion(0, 3, true), Derecha),
+			gcnew MonedaObjeto(gcnew Posicion(3, 2, true)),
+			gcnew MonedaObjeto(gcnew Posicion(7, 8, true)),
+			gcnew MonedaObjeto(gcnew Posicion(18, 1, true))
 		});
 
 		generarCapaTerreno();
@@ -191,35 +201,91 @@ namespace YuGiOh {
 
 	PabellonBMapa::PabellonBMapa() : Mapa() {
 		this->matriz_terreno = gcnew array<Terreno, 2> {
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta},
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Maceta },
-			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta }
+			{ Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Hielo, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito},
+			{ Granito, Loceta, Loceta, Granito, Loceta, Loceta, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Granito, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Hielo, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Granito, Loceta, Granito, Loceta, Granito, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Granito },
+			{ Granito, Loceta, Loceta, Loceta, Loceta, Granito, Loceta, Loceta, Hielo, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Loceta, Granito },
+			{ Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Hielo, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito, Granito }
 		};
 
 		this->objetos = gcnew List<Objeto ^>();
 		this->objetos->AddRange(gcnew array<Objeto ^>{
-			gcnew PuertaObjeto(Plazuela, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba)
+			gcnew PuertaObjeto(Plazuela, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba),
+			gcnew PuertaObjeto(Sotano, gcnew Posicion(8, 14, true), gcnew Posicion(8, 0, true), Abajo),
+			gcnew MonedaObjeto(gcnew Posicion(2, 1, true)),
+			gcnew MonedaObjeto(gcnew Posicion(12, 10, true)),
+			gcnew MonedaObjeto(gcnew Posicion(16, 1, true))
 		});
 
 		generarCapaTerreno();
 	}
 
 	JardinMapa::JardinMapa() : Mapa() {
-		;
+		this->matriz_terreno = gcnew array<Terreno, 2> {
+			{ Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta, Maceta},
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Agua, Agua, Agua, Agua, Agua, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Agua, Agua, Agua, Agua, Agua, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Agua, Agua, Agua, Agua, Agua, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Agua, Agua, Agua, Agua, Agua, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Agua, Agua, Agua, Agua, Agua, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Agua, Agua, Agua, Agua, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Pasto, Maceta },
+			{ Maceta, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Pasto, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Maceta }
+		};
+
+		this->objetos = gcnew List<Objeto ^>();
+		this->objetos->AddRange(gcnew array<Objeto ^>{
+			gcnew PuertaObjeto(Plazuela, gcnew Posicion(8, 14, true), gcnew Posicion(8, 0, true), Abajo),
+			gcnew MonedaObjeto(gcnew Posicion(3, 2, true)),
+			gcnew MonedaObjeto(gcnew Posicion(16, 2, true)),
+			gcnew MonedaObjeto(gcnew Posicion(14, 11, true))
+		});
+
+		generarCapaTerreno();
 	}
 
 	SotanoMapa::SotanoMapa() : Mapa() {
-		;
+		this->matriz_terreno = gcnew array<Terreno, 2> {
+			{ Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado},
+			{ Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Hielo, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado },
+			{ Tejado, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado },
+			{ Tejado, Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Hielo, Tejado, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Hielo, Tejado, Hielo, Tejado, Hielo, Tejado, Tejado, Hielo, Hielo, Tejado, Hielo, Tejado, Hielo, Hielo, Hielo, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Hielo, Tejado, Tejado, Tejado, Hielo, Tejado, Hielo, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado, Hielo, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Hielo, Tejado },
+			{ Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Hielo, Tejado },
+			{ Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado, Tejado }
+		};
+
+		this->objetos = gcnew List<Objeto ^>();
+		this->objetos->AddRange(gcnew array<Objeto ^>{
+			gcnew PuertaObjeto(PabellonB, gcnew Posicion(8, -1, true), gcnew Posicion(8, 13, true), Arriba),
+			gcnew MonedaObjeto(gcnew Posicion(5, 8, true)),
+			gcnew MonedaObjeto(gcnew Posicion(11, 5, true)),
+			gcnew MonedaObjeto(gcnew Posicion(13, 8, true)),
+			gcnew MonedaObjeto(gcnew Posicion(18, 1, true)),
+			gcnew MonedaObjeto(gcnew Posicion(16, 10, true))
+		});
+
+		generarCapaTerreno();
 	}
 }
