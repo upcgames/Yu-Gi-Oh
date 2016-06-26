@@ -29,11 +29,15 @@ namespace YuGiOh {
 	public ref class PlazuelaMapa : public Mapa{ public: PlazuelaMapa(); };
 	public ref class PabellonAMapa : public Mapa{ public: PabellonAMapa(); };
 	public ref class PabellonBMapa : public Mapa{ public: PabellonBMapa(); };
+	public ref class JardinMapa : public Mapa{ public: JardinMapa(); };
+	public ref class SotanoMapa : public Mapa{ public: SotanoMapa(); };
 
 	public ref class Mapas abstract sealed {
 	public:
 		static PlazuelaMapa ^plazuela_mapa;
 		static PabellonAMapa ^pabellonA_mapa;
 		static PabellonBMapa ^pabellonB_mapa;
+		static JardinMapa ^jardinMapa;
+		static SotanoMapa ^sotanoMapas;
 	};
 }

@@ -51,6 +51,9 @@
     <ClCompile Include="Cartas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Profesor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constantes.h">

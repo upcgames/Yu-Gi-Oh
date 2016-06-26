@@ -59,7 +59,7 @@ namespace YuGiOh {
 	}
 
 	MonedaObjeto::MonedaObjeto(Posicion ^posicion) : ObjetoAnimado(posicion) {
-		dinero_sorpresa = (Juego::aleatorio->Next(10) + 1) * 10;
+		dinero_sorpresa = (Juego::aleatorio->Next(5) + 1);
 
 		sprite = gcnew Sprite(IMAGENES::MONEDA_SPRITE);
 		sprite->indice = 0;
@@ -72,7 +72,8 @@ namespace YuGiOh {
 		alto = RESOLUCION_Y;
 	}
 
-	bool MonedaObjeto::interactuarConMarco(){
+	bool MonedaObjeto::interactuarConMarco() {
+		Marco::marco->dinero += dinero_sorpresa;
 		Dialogo::pausarYMostarMensaje("Encontraste " + dinero_sorpresa + " soles!!");
 		Mapa::mapa_actual->objetos->Remove(this);
 		Marco::marco->Detener();

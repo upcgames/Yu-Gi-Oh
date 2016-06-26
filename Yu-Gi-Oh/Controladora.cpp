@@ -5,6 +5,7 @@
 #include "Constantes.h"
 #include "Imagenes.h"
 #include "Escenas.h"
+#include "Mapas.h"
 
 namespace YuGiOh {
 
@@ -24,13 +25,15 @@ namespace YuGiOh {
 	Terreno TERRENOS_COLISIONANTES[] = { Maceta, Agua };
 
 	Juego::Juego(void) {
+
+		aleatorio = gcnew Random();
+
 		inicializarComponentes();
 		InitializeComponent();
 		myform = this;
 
 		graphics = this->CreateGraphics();
 		context = BufferedGraphicsManager::Current;
-		aleatorio = gcnew Random();
 
 		//Inicializamos las escenas
 		ESCENAS::introduccion = gcnew IntroduccionEscena();
@@ -122,6 +125,13 @@ namespace YuGiOh {
 		FUENTES::DIALOGOS = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::DINERO = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::NIVEL = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
+		
+		Marco::marco = gcnew Marco(gcnew Posicion(9, 9, true));
+		PROFESORES::Profesor1 = gcnew Profesor(1);
+		PROFESORES::Profesor2 = gcnew Profesor(3);
+		PROFESORES::Profesor3 = gcnew Profesor(5);
+		PROFESORES::Profesor4 = gcnew Profesor(7);
+		PROFESORES::Profesor5 = gcnew Profesor(10);
 	}
 
 	void IMAGENES::mostarFondo(Image^ imagen, Graphics^ graphics) {

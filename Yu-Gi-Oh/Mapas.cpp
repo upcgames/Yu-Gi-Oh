@@ -189,4 +189,12 @@ namespace YuGiOh {
 
 		generarCapaTerreno();
 	}
+
+	JardinMapa::JardinMapa() : Mapa() {
+		;
+	}
+
+	SotanoMapa::SotanoMapa() : Mapa() {
+		;
+	}
 }

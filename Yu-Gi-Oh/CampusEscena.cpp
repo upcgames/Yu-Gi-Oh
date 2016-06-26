@@ -7,17 +7,14 @@ namespace YuGiOh
 {
 	CampusEscena::CampusEscena()
 	{
-		Marco::marco = gcnew Marco(gcnew Posicion(0, 0));
 		onTimerTick = gcnew EventHandler(this, &CampusEscena::timerTick);
 		onKeyDown = gcnew KeyEventHandler(this, &CampusEscena::teclaDown);
 		onKeyUp = gcnew KeyEventHandler(this, &CampusEscena::teclaUp);
 		onMouseClick = gcnew MouseEventHandler(this, &CampusEscena::mouseClick);
 
-		Marco::marco = gcnew Marco(gcnew Posicion(9, 9, true));
 		Mapas::plazuela_mapa = gcnew PlazuelaMapa();
 		Mapas::pabellonA_mapa = gcnew PabellonAMapa();
 		Mapas::pabellonB_mapa = gcnew PabellonBMapa();
-
 		Mapa::mapa_actual = Mapas::plazuela_mapa;
 	}
 
