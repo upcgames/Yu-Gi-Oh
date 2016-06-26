@@ -51,7 +51,7 @@
     <ClCompile Include="Cartas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Profesor.cpp">
+    <ClCompile Include="Duelistas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,7 +6,6 @@ namespace YuGiOh {
 	public ref class Marco : public Duelista {
 	public:
 		static bool debe_avanzar;
-		Direccion direccion;
 		int dinero;
 		int velocidad;
 

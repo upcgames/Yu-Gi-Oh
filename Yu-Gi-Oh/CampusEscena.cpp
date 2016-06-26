@@ -18,6 +18,13 @@ namespace YuGiOh
 		Mapas::sotano_mapa = gcnew SotanoMapa();
 		Mapas::jardin_mapa = gcnew JardinMapa();
 		Mapa::mapa_actual = Mapas::plazuela_mapa;
+
+		Marco::marco = gcnew Marco(gcnew Posicion(9, 9, true));
+		PROFESORES::Profesor1 = gcnew Profesor(1, Mapas::plazuela_mapa, gcnew Posicion(16, 3, true));
+		PROFESORES::Profesor2 = gcnew Profesor(3, Mapas::pabellonB_mapa, gcnew Posicion(16, 11, true));
+		PROFESORES::Profesor3 = gcnew Profesor(5, Mapas::sotano_mapa, gcnew Posicion(16, 6, true));
+		PROFESORES::Profesor4 = gcnew Profesor(7, Mapas::jardin_mapa, gcnew Posicion(11, 4, true));
+		PROFESORES::Profesor5 = gcnew Profesor(10, Mapas::pabellonA_mapa, gcnew Posicion(2, 10, true));
 	}
 
 	void CampusEscena::timerTick(System::Object^  sender, System::EventArgs^  e)
@@ -31,6 +38,7 @@ namespace YuGiOh
 
 			Mapa::mapa_actual->mostrarTerreno(escena_buffer->Graphics);
 			Mapa::mapa_actual->mostrarObjetos(escena_buffer->Graphics);
+			PROFESORES::Mostrarlos(escena_buffer->Graphics);
 			Marco::mostrarloEn(escena_buffer->Graphics);
 
 			escena_buffer->Render(Juego::graphics);

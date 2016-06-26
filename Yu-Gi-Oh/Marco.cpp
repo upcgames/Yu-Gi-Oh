@@ -3,6 +3,7 @@
 #include "Mapas.h"
 #include "Objetos.h"
 #include "Cartas.h"
+#include "Dialogo.h"
 
 namespace YuGiOh {
 
@@ -58,9 +59,30 @@ namespace YuGiOh {
 			return; // No avanza 
 
 		Objeto ^siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);
+		Profesor ^siguiente_profesor = dynamic_cast<Profesor ^>(Mapa::mapa_actual->getProfesor(siguiente_posicion));
 
 		if (noHayONoExsite(siguiente_bloque)) {
-			marco->avanzarUnPaso();
+			if (noHayONoExsite(siguiente_profesor))
+				marco->avanzarUnPaso();
+			else {
+
+				Profesor ^profesor = siguiente_profesor;
+				marco->Detener();
+
+				if (profesor->ha_sido_derrotado) {
+					Dialogo::pausarYMostarMensaje("Ya derrotaste a este profesor");
+					return;
+				}
+				
+				if (profesor->nivel != 1 && !profesor->anteriorProfesor()->ha_sido_derrotado) {
+					String ^mapa_profe = Mapa::getNombre(profesor->anteriorProfesor()->mapa);
+					Dialogo::pausarYMostarMensaje("Primero, derrota al anterior profe(" + mapa_profe + ")");
+					return;
+				}
+
+				profesor->ha_sido_derrotado = true;
+			}
+
 		}
 		else {
 			//Se choca con un objeto y se interactua con este

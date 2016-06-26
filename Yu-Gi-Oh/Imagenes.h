@@ -7,6 +7,8 @@ namespace YuGiOh {
 		static void mostarFondo(Image ^imagen, Graphics ^graphics);
 
 		static Image ^MARCO_SPRITE;
+		static Image ^PROFESOR_SPRITE;
+		static Image ^RECTOR_SPRITE;
 		static Image ^MONEDA_SPRITE;
 					 
 		static Image ^LOCETA;

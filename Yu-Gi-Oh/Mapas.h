@@ -14,6 +14,7 @@ namespace YuGiOh {
 		BufferedGraphics ^capa_terreno;
 
 		Objeto ^getObjeto(Posicion ^posicion);
+		static Figura ^getProfesor(Posicion ^posicion);
 		
 		Terreno getTerrenoEnCoordenada(Posicion ^posicion);
 
@@ -23,6 +24,7 @@ namespace YuGiOh {
 		Mapa();
 		
 		static Mapa ^obtenerMapa(MapaTipo pabellon);
+		static String ^getNombre(Mapa ^mapa);
 		static Mapa ^mapa_actual;
 	};
 

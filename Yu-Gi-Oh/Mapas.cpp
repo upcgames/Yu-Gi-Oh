@@ -84,6 +84,40 @@ namespace YuGiOh {
 		return nullptr;
 	}
 
+	String ^Mapa::getNombre(Mapa ^mapa) {
+		if (mapa == Mapas::plazuela_mapa)
+			return "PLazuela";
+		else if (mapa == Mapas::pabellonA_mapa)
+			return "Pabellon A";
+		else if (mapa == Mapas::pabellonB_mapa)
+			return "Pabellon B";
+		else if (mapa == Mapas::jardin_mapa)
+			return "Jardín";
+		else if (mapa == Mapas::sotano_mapa)
+			return "Sótano";
+	}
+
+	Figura ^Mapa::getProfesor(Posicion ^posicion) {
+
+		Profesor ^profesor;
+
+		if (Mapa::mapa_actual == Mapas::plazuela_mapa)
+			profesor = PROFESORES::Profesor1;
+		else if (Mapa::mapa_actual == Mapas::pabellonA_mapa)
+			profesor = PROFESORES::Profesor5;
+		else if (Mapa::mapa_actual == Mapas::pabellonB_mapa)
+			profesor = PROFESORES::Profesor2;
+		else if (Mapa::mapa_actual == Mapas::sotano_mapa)
+			profesor = PROFESORES::Profesor3;
+		else if (Mapa::mapa_actual == Mapas::jardin_mapa)
+			profesor = PROFESORES::Profesor4;
+
+		if (profesor->posicion->getCuerpo().IntersectsWith(posicion->getCuerpo()))
+			return profesor;
+		else
+			return nullptr;
+	}
+
 	Terreno Mapa::getTerrenoEnCoordenada(Posicion ^posicion) {
 		
 		// Se invierte, porque los mapas se guardan en forma x,y

@@ -88,7 +88,10 @@ namespace YuGiOh {
 
 	void Juego::inicializarComponentes() {
 		//Sprites
-		IMAGENES::MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\Marco_Sprite.png");
+		IMAGENES::MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\MARCO_SPRITE.png");
+		IMAGENES::PROFESOR_SPRITE = Image::FromFile("Imagenes\\Personajes\\PROFESOR_SPRITE.png");
+		IMAGENES::RECTOR_SPRITE = Image::FromFile("Imagenes\\Personajes\\RECTOR_SPRITE.png");
+		IMAGENES::MARCO_SPRITE = Image::FromFile("Imagenes\\Personajes\\MARCO_SPRITE.png");
 		IMAGENES::MONEDA_SPRITE = Image::FromFile("Imagenes\\Objetos\\Moneda_Sprite.png");
 
 		IMAGENES::PUERTA = Image::FromFile("Imagenes\\Objetos\\PUERTA.png");
@@ -133,13 +136,6 @@ namespace YuGiOh {
 		FUENTES::DIALOGOS = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::DINERO = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
 		FUENTES::NIVEL = gcnew System::Drawing::Font("Lucida Console", TAMANIO_LETRAS - 8, FontStyle::Regular, GraphicsUnit::Point);
-		
-		Marco::marco = gcnew Marco(gcnew Posicion(9, 9, true));
-		PROFESORES::Profesor1 = gcnew Profesor(1);
-		PROFESORES::Profesor2 = gcnew Profesor(3);
-		PROFESORES::Profesor3 = gcnew Profesor(5);
-		PROFESORES::Profesor4 = gcnew Profesor(7);
-		PROFESORES::Profesor5 = gcnew Profesor(10);
 	}
 
 	void IMAGENES::mostarFondo(Image^ imagen, Graphics^ graphics) {

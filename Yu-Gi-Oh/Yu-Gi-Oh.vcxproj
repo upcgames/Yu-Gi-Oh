@@ -82,7 +82,7 @@
     <ClCompile Include="Mapas.cpp" />
     <ClCompile Include="Marco.cpp" />
     <ClCompile Include="Objetos.cpp" />
-    <ClCompile Include="Profesor.cpp" />
+    <ClCompile Include="Duelistas.cpp" />
     <ClCompile Include="TiendaEscena.cpp" />
   </ItemGroup>
   <ItemGroup>
