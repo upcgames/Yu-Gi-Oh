@@ -85,7 +85,7 @@ namespace YuGiOh
 			Marco::marco->Detener();
 		else if (e->KeyCode == CONTROLES::ACTIVAR_TRAMPA) {
 			Profesor ^profesor_actual = Profesor::getProfesorActual();
-			if (profesor_actual == PROFESORES::Profesor5 && profesor_actual->ha_sido_derrotado)
+			if (PROFESORES::profesor_actual == 9 && PROFESORES::Profesor5->ha_sido_derrotado)
 				return;
 
 			profesor_actual->ha_sido_derrotado = true;

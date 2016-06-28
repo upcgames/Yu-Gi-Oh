@@ -79,12 +79,19 @@ namespace YuGiOh {
 	public ref class BatallaEscena : public EscenaDeMapa {
 	private:
 		void mostrarBatalla(Graphics ^graphics);
+		void mostrarCartasActivas(Graphics^ graphics);
 	public:
 
 		Duelista ^enemigo;
+		List<Carta ^> ^cartas_activas_enemigo;
+		List<Carta ^> ^cartas_activas_marco;
+
 		int movimientos_restantes;
 		bool turno_marco;
 		bool turno_enemigo;
+
+		void empezarBatalla();
+		void terminarBatalla();
 
 		BatallaEscena();
 		void mouseClick(System::Object ^sender, System::Windows::Forms::MouseEventArgs ^e);

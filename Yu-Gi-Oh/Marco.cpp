@@ -69,6 +69,11 @@ namespace YuGiOh {
 				Profesor ^profesor = siguiente_profesor;
 				marco->Detener();
 
+				if (baraja->estaVacia()) {
+					Dialogo::pausarYMostarMensaje("No tienes cartas para luchar!!");
+					return;
+				}
+
 				if (profesor->ha_sido_derrotado) {
 					Dialogo::pausarYMostarMensaje("Ya derrotaste a este profesor");
 					return;
@@ -82,6 +87,7 @@ namespace YuGiOh {
 
 				Escena::CambiarEscena(ESCENAS::batalla);
 				ESCENAS::batalla->enemigo = profesor;
+				ESCENAS::batalla->empezarBatalla();
 				EscenaDeMapa ^escena_de_mapa = ESCENAS::batalla;
 
 				escena_de_mapa->escena_a_mostrar = Batalla;

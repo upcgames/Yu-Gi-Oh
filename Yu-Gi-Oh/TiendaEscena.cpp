@@ -59,7 +59,7 @@ namespace YuGiOh {
 			Marco::marco->baraja->mostrarBaraja_10(graphics, true);
 		}
 		graphics->DrawString(
-			"Espacios Dispnibles: " + (10 - Marco::marco->baraja->cartas->Count),
+			"Espacios Disponibles: " + (10 - Marco::marco->baraja->cartas->Count),
 			FUENTES::SUBTITULOS,
 			gcnew SolidBrush(Color::White),
 			12,

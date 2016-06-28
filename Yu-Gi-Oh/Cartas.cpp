@@ -134,9 +134,9 @@ namespace YuGiOh {
 			Rectangle rectangle_carta = getCuerpoDeCarta_10line(i, enemigo);
 			
 			if (carta->activa)
-				graphics->FillRectangle(gcnew SolidBrush(Color::Green), rectangle_carta);
-			else if (carta->vida > 0)
 				graphics->FillRectangle(gcnew SolidBrush(Color::Yellow), rectangle_carta);
+			else if (carta->vida > 0)
+				graphics->FillRectangle(gcnew SolidBrush(Color::Green), rectangle_carta);
 			else
 				graphics->FillRectangle(gcnew SolidBrush(Color::Red), rectangle_carta);
 		}

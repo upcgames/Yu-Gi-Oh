@@ -52,6 +52,9 @@ namespace YuGiOh {
 		Juego::myform->timer->Tick -= this->onTimerTick;
 		Juego::myform->KeyDown -= this->onKeyDown;
 		Juego::myform->MouseClick -= this->onMouseClick;
+		
+		if (Marco::marco != nullptr)
+			Marco::marco->Detener();
 
 		dialogo = nullptr;
 
