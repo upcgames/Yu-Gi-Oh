@@ -93,6 +93,12 @@ namespace YuGiOh {
 		void empezarBatalla();
 		void terminarBatalla();
 
+		void atacarEnemigoActivo(int posicion);
+		void atacarAliadoActivo(int posicion);
+
+		void ingresarEnemigo();
+		void ingresarAliado();
+
 		BatallaEscena();
 		void mouseClick(System::Object ^sender, System::Windows::Forms::MouseEventArgs ^e);
 		void timerTick(System::Object ^sender, System::EventArgs ^e);

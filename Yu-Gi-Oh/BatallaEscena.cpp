@@ -51,6 +51,57 @@ namespace YuGiOh {
 			}
 		}
 	}
+	
+	void BatallaEscena::ingresarEnemigo() {
+
+		if (cartas_activas_enemigo->Count == 3)
+			return;
+
+		for (int i = 0; i < enemigo->baraja->cartas->Count; i++)  {
+			if (enemigo->baraja->cartas[i]->vida > 0 && !enemigo->baraja->cartas[i]->activa) {
+				enemigo->baraja->cartas[i]->activa = true;
+				cartas_activas_enemigo->Add(enemigo->baraja->cartas[i]);
+				return;
+			}
+		}
+
+		if (cartas_activas_enemigo->Count == 0) {
+			Dialogo::pausarYMostarMensaje("Ganaste este duelo!!!");
+			Dialogo::dialogo->devolver_a_escena = false;
+			Dialogo::dialogo->callback = gcnew Action(this, &BatallaEscena::terminarBatalla);
+			return;
+		}
+	}
+
+	void BatallaEscena::ingresarAliado() {
+
+	}
+
+	void BatallaEscena::atacarEnemigoActivo(int posicion) {
+		int ataque_total = 0;
+		escena_dibujada = false;
+
+		for (int i = 0; i < cartas_activas_marco->Count; i++)  {
+			if (cartas_activas_marco[i]->modo == Ataque)
+				ataque_total += cartas_activas_marco[i]->ataque;
+		}
+
+		int vida_final = cartas_activas_enemigo[posicion]->vida - ataque_total;
+
+		if (vida_final <= 0){
+			cartas_activas_enemigo[posicion]->vida = 0;
+			cartas_activas_enemigo[posicion]->activa = false;
+			cartas_activas_enemigo->RemoveAt(posicion);
+			ingresarEnemigo();
+			return;
+		}
+
+		cartas_activas_enemigo[posicion]->vida = vida_final;
+	}
+
+	void BatallaEscena::atacarAliadoActivo(int posicion) {
+
+	}
 
 	void BatallaEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		if (escena_activa && escena_dibujada) {
@@ -69,12 +120,27 @@ namespace YuGiOh {
 		if (escena_activa && escena_dibujada) {
 
 			Rectangle mouse_rectangle = Rectangle(e->X, e->Y, 1, 1);
+			int x = mouse_rectangle.X;
+			int y = mouse_rectangle.Y;
+			
+			Rectangle enemigos_activos_rectangle = Rectangle(192, 120, 576, 192);
 
-			for (int index = 0; index < 10; index++) {
-				if (Baraja::getCuerpoDeCarta_10(index).IntersectsWith(mouse_rectangle)) {
+			if (mouse_rectangle.IntersectsWith(enemigos_activos_rectangle)) {
+
+				if ((x >= 336 && x < 408) || (x >= 552 && x < 624))
+					return;
+				
+				int posicion = (x - 192) / 216;
+
+				if (cartas_activas_enemigo->Count <= posicion) {
+					Dialogo::pausarYMostarMensaje("No hay ningun enemigo en esta posicion!");
 					return;
 				}
+
+				atacarEnemigoActivo(posicion);
 			}
+
+
 		}
 
 	}
@@ -83,6 +149,7 @@ namespace YuGiOh {
 		DesactivarEscena(this);
 		cartas_activas_enemigo->Clear();
 		cartas_activas_marco->Clear();
+		dynamic_cast<Profesor ^>(enemigo)->ha_sido_derrotado = true;
 
 		Mapa::mapa_actual = Mapa::obtenerMapa(pabellon_de_regreso);
 		Marco::marco->Detener();
@@ -98,11 +165,19 @@ namespace YuGiOh {
 			carta->mostrarCarta(graphics, Rectangle(192 + i *216,360,CARTAS_WIDTH,CARTAS_HEIGHT));
 
 			graphics->DrawString(
-				"Ataque: " + carta->nivel,
+				"Ataque: " + carta->ataque,
 				FUENTES::NIVEL,
 				gcnew SolidBrush(Color::White),
 				(float)192 + i * 216,
 				(float)360,
+				StringFormat::GenericTypographic
+				);
+			graphics->DrawString(
+				"Vida: " + carta->vida,
+				FUENTES::NIVEL,
+				gcnew SolidBrush(Color::White),
+				(float)192 + i * 216,
+				(float)360 + TAMANIO_LETRAS + 6,
 				StringFormat::GenericTypographic
 				);
 		}
@@ -118,6 +193,14 @@ namespace YuGiOh {
 				gcnew SolidBrush(Color::White),
 				(float)192 + i * 216,
 				(float)120,
+				StringFormat::GenericTypographic
+				);
+			graphics->DrawString(
+				"Vida: " + carta->vida,
+				FUENTES::NIVEL,
+				gcnew SolidBrush(Color::White),
+				(float)192 + i * 216,
+				(float)120 + TAMANIO_LETRAS + 6,
 				StringFormat::GenericTypographic
 				);
 		}

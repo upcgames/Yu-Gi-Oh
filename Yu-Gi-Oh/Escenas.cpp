@@ -19,6 +19,9 @@ namespace YuGiOh {
 
 		else if (ESCENAS::tienda->escena_activa)
 			return ESCENAS::tienda;
+
+		else if (ESCENAS::batalla->escena_activa)
+			return ESCENAS::batalla;
 		
 		return nullptr;
 	}

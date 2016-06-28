@@ -10,6 +10,7 @@ namespace YuGiOh {
 		this->posicion_parrafo = 0;
 		numero_de_oraciones = mensajes->Length;
 		esperando_confirmacion = false;
+		devolver_a_escena = true;
 	}
 
 	void Dialogo::mostarMensaje(... array<String^>^ mensajes) {
@@ -56,14 +57,16 @@ namespace YuGiOh {
 		if (Marco::marco != nullptr)
 			Marco::marco->Detener();
 
+		escena_anterior->escena_dibujada = true;
+
 		dialogo = nullptr;
 
-		if (pausar_anterior_escena) {
+		if (callback != nullptr)
+			callback();
+
+		if (pausar_anterior_escena && devolver_a_escena)
 			Escena::ActivarEscena(escena_anterior);
-			escena_anterior->escena_dibujada = false;
-		}
-		else
-			escena_anterior->escena_dibujada = true;
+
 	}
 
 	void Dialogo::escribirCaracter() {

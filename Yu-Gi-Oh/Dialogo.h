@@ -23,6 +23,8 @@ namespace YuGiOh {
 	public:
 		Escena ^escena_anterior;
 		int posicion_parrafo;
+		bool devolver_a_escena;
+		Action ^callback;
 
 		static Dialogo ^dialogo;
 		
