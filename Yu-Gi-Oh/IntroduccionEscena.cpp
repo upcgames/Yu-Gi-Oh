@@ -21,9 +21,15 @@ namespace YuGiOh {
 					"Encontrarás monedas a lo largo del mapa",
 					"O también podrás encontrar otros objetos...",
 					"Tu objetivo es derrotar a 4 profesores",
+					"Usaras tus cartas para derrotarlos a todos",
+					"Para batallar utiliza el mouse",
 					"Puedes intercambiar monedas por cartas",
+					"Para intercambiar tendrás que ir a la tienda",
+					"Y usar el mouse para comprar o vender cartas...",
 					"Que empieze tu aventura!"
 				);
+
+				 Dialogo::dialogo->que_hacer_al_terminar = gcnew Action(this, &Escena::terminarDeDibujar);
 
 				 if (Dialogo::getNumeroDeParrafo() == 0) {
 					 IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO_1, escena_buffer->Graphics);

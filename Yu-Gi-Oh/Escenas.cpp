@@ -70,6 +70,10 @@ namespace YuGiOh {
 		escena_dibujada = false;
 	}
 
+	void Escena::terminarDeDibujar() {
+		escena_dibujada = true;
+	}
+
 	Escena^ Escena::getEscenaTipo(TipoEscena tipo) {
 		switch (tipo) {
 		case Introduccion:

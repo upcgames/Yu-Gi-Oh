@@ -24,6 +24,7 @@ namespace YuGiOh {
 		Escena();
 		
 		void volverADibujar();
+		void terminarDeDibujar();
 
 		static Escena ^getEscenaActual();
 		static Escena ^getEscenaTipo(TipoEscena tipo);

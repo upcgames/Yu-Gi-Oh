@@ -61,7 +61,10 @@ namespace YuGiOh {
 	public:
 		Sprite ^sprite;
 		Direccion direccion;
+		int velocidad;
+		
 		//Ideal para verificar colisiones cuando algun personaje se esta moviendo
+		void redondearMovimiento(Direccion direccion);
 		bool colisionaConMapaActual(Posicion ^posicion, Direccion direccion);
 	};
 }

@@ -130,6 +130,21 @@ namespace YuGiOh {
 		return Rectangle(x, y, ancho, alto);
 	}
 
+	void Animado::redondearMovimiento(Direccion direccion) {
+		if (direccion == Derecha || direccion == Izquierda)	{
+			if (posicion->y % RESOLUCION_Y == RESOLUCION_Y - velocidad)
+				posicion->y += 8;
+			else if (posicion->y % RESOLUCION_Y == velocidad)
+				posicion->y -= 8;
+		}
+		else if (direccion == Arriba || direccion == Abajo) {
+			if (posicion->x % RESOLUCION_X == RESOLUCION_X - velocidad)
+				posicion->x += velocidad;
+			else if (posicion->x % RESOLUCION_X == velocidad)
+				posicion->x -= velocidad;
+		}
+	}
+
 	//Ideal para verificar colisiones cuando algun personaje se esta moviendo
 	bool Animado::colisionaConMapaActual(Posicion ^posicion, Direccion direccion) {
 		Posicion ^coordenada_pie_izquierdo = posicion->getPieIzquierdo(direccion)->toCoordenadas();

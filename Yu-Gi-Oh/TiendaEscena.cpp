@@ -104,9 +104,13 @@ namespace YuGiOh {
 
 		if (dinero_de_marco < baraja->cartas[index]->getValor()) {
 			Dialogo::pausarYMostarMensaje("No tienes el dinero suficiente");
+			return;
 		}
 
+		Marco::marco->dinero -= baraja->cartas[index]->getValor();
 		Marco::marco->baraja->cartas->Add(this->baraja->cartas[index]);
+		mostrarTienda(escena_buffer->Graphics);
+		escena_buffer->Render(Juego::graphics);
 		Dialogo::pausarYMostarMensaje("Compraste la carta!!!");
 	}
 

@@ -57,12 +57,10 @@ namespace YuGiOh {
 		if (Marco::marco != nullptr)
 			Marco::marco->Detener();
 
-		escena_anterior->escena_dibujada = true;
-
 		dialogo = nullptr;
 
-		if (callback != nullptr)
-			callback();
+		if (que_hacer_al_terminar != nullptr)
+			que_hacer_al_terminar();
 
 		if (pausar_anterior_escena && devolver_a_escena)
 			Escena::ActivarEscena(escena_anterior);

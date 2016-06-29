@@ -53,6 +53,8 @@ namespace YuGiOh {
 	void Marco::intentarAvanzar(Direccion direccion) {
 
 		sprite->siguienteIndice();
+		redondearMovimiento(direccion);
+
 		Posicion ^siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
 		
 		if (marco->colisionaConMapaActual(siguiente_posicion, direccion))

@@ -24,7 +24,7 @@ namespace YuGiOh {
 		Escena ^escena_anterior;
 		int posicion_parrafo;
 		bool devolver_a_escena;
-		Action ^callback;
+		Action ^que_hacer_al_terminar;
 
 		static Dialogo ^dialogo;
 		

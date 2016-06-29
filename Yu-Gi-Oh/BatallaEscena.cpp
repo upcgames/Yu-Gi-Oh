@@ -86,7 +86,7 @@ namespace YuGiOh {
 				Marco::marco->baraja->cartas[i]->nivel += 1;
 
 			Dialogo::dialogo->devolver_a_escena = false;
-			Dialogo::dialogo->callback = gcnew Action(this, &BatallaEscena::terminarBatalla);
+			Dialogo::dialogo->que_hacer_al_terminar = gcnew Action(this, &BatallaEscena::terminarBatalla);
 			return;
 		}
 	}
@@ -109,7 +109,7 @@ namespace YuGiOh {
 			escena_buffer->Render(Juego::graphics);
 			Dialogo::pausarYMostarMensaje("Perdiste este duelo!!!");
 			Dialogo::dialogo->devolver_a_escena = false;
-			Dialogo::dialogo->callback = gcnew Action(this, &BatallaEscena::terminarBatalla);
+			Dialogo::dialogo->que_hacer_al_terminar = gcnew Action(this, &BatallaEscena::terminarBatalla);
 			return;
 		}
 	}
