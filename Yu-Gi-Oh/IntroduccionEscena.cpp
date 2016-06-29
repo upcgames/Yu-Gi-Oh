@@ -34,8 +34,14 @@ namespace YuGiOh {
 				 if (Dialogo::getNumeroDeParrafo() == 0) {
 					 IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO_1, escena_buffer->Graphics);
 				 }
-				 else if (Dialogo::getNumeroDeParrafo() == 4) {
+				 else if (Dialogo::getNumeroDeParrafo() == 3) {
 					 IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO_2, escena_buffer->Graphics);
+				 }
+				 else if (Dialogo::getNumeroDeParrafo() == 5) {
+					 IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO_3, escena_buffer->Graphics);
+				 }
+				 else if (Dialogo::getNumeroDeParrafo() == 8) {
+					 IMAGENES::mostarFondo(IMAGENES::INTRODUCCION_FONDO_4, escena_buffer->Graphics);
 				 }
 
 			}

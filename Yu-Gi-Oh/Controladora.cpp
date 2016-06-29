@@ -123,6 +123,8 @@ namespace YuGiOh {
 
 		IMAGENES::INTRODUCCION_FONDO_1 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_1.png");
 		IMAGENES::INTRODUCCION_FONDO_2 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_2.png");
+		IMAGENES::INTRODUCCION_FONDO_3 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_3.png");
+		IMAGENES::INTRODUCCION_FONDO_4 = Image::FromFile("Imagenes\\Interfaces\\Introduccion_4.png");
 		IMAGENES::FONDO_TIENDA_VENDER = Image::FromFile("Imagenes\\Interfaces\\Tienda_Vender.png");
 		IMAGENES::FONDO_TIENDA_COMPRAR = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
 		IMAGENES::BATALLA = Image::FromFile("Imagenes\\Interfaces\\Batalla.png");
