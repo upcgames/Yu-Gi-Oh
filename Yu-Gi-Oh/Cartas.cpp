@@ -34,6 +34,8 @@ namespace YuGiOh {
 			carta->vida = 20 + nivel * 10;
 
 			carta->tipo = (TiposDeCarta)Juego::aleatorio->Next(tipo_de_cartas->Length);
+			int random_int = Juego::aleatorio->Next(2);
+			carta->modo = (ModoBatalla)random_int;
 			carta->imagen = IMAGENES::CARTAS[Juego::aleatorio->Next(NUMERO_DE_CARTAS)];
 			baraja->cartas->Add(carta);
 		}

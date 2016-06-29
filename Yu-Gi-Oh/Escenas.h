@@ -23,6 +23,8 @@ namespace YuGiOh {
 		
 		Escena();
 		
+		void volverADibujar();
+
 		static Escena ^getEscenaActual();
 		static Escena ^getEscenaTipo(TipoEscena tipo);
 		static void CambiarEscena(Escena ^escena);
@@ -94,7 +96,7 @@ namespace YuGiOh {
 		void terminarBatalla();
 
 		void atacarEnemigoActivo(int posicion);
-		void atacarAliadoActivo(int posicion);
+		void atacarAliadoActivo();
 
 		void ingresarEnemigo();
 		void ingresarAliado();

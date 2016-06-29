@@ -46,7 +46,7 @@ namespace YuGiOh {
 		ESCENAS::batalla = gcnew BatallaEscena();
 
 		//Empezar el juego
-		Escena::EmpezarConEscena(ESCENAS::campus);
+		Escena::EmpezarConEscena(ESCENAS::introduccion);
 	}
 
 	Juego::~Juego() {

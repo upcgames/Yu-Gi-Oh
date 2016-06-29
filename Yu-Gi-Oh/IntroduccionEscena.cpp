@@ -37,9 +37,19 @@ namespace YuGiOh {
 	}
 
 	void IntroduccionEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
-		if (escena_activa && escena_dibujada) {
+		
+		if (escena_activa) {
+
+			if (e->KeyCode == CONTROLES::SALIR) {
+				Dialogo::dialogo->terminarDeEscribir();
 				DesactivarEscena(this);
 				ActivarEscena(ESCENAS::campus);
+			}
+
+			if (escena_dibujada) {
+				DesactivarEscena(this);
+				ActivarEscena(ESCENAS::campus);
+			}
 		}
 	}
 }

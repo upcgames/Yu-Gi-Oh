@@ -36,7 +36,7 @@ namespace YuGiOh {
 	public enum Direccion { Arriba, Abajo, Izquierda, Derecha };
 	public enum TiposDeCarta { Criticos, Basicos, Extra, Electivos };
 	public enum Pertenencia { Vendedor, DeMarco, DeProfesor };
-	public enum ModoBatalla { Defensa, Ataque };
+	public enum ModoBatalla { Ataque, Defensa };
 	public enum Objetos { Puerta, PuertaEscena, Moneda };
 	public enum Terreno { Loceta, Agua, Arena, Granito, Hielo, Lava, Lodo, Maceta, Pasto, Roca, Tejado, Tierra };
 	public enum MapaTipo { Plazuela, PabellonA, PabellonB, Jardin, Sotano };

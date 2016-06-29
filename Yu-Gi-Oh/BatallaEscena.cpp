@@ -23,6 +23,16 @@ namespace YuGiOh {
 		cartas_activas_enemigo->Add(enemigo->baraja->cartas[2]);
 		cartas_activas_enemigo[2]->activa = true;
 
+		for (int i = 0; i < Marco::marco->baraja->cartas->Count; i++) {
+			int nivel = Marco::marco->baraja->cartas[i]->nivel;
+			Marco::marco->baraja->cartas[i]->ataque = nivel * 10;
+			Marco::marco->baraja->cartas[i]->defensa = nivel * 5;
+			Marco::marco->baraja->cartas[i]->nivel = nivel;
+			Marco::marco->baraja->cartas[i]->activa = false;
+			Marco::marco->baraja->cartas[i]->vida = 20 + nivel * 10;
+		}
+			
+
 		cartas_activas_marco->Add(Marco::marco->baraja->cartas[0]);
 		cartas_activas_marco[0]->activa = true;
 		if (Marco::marco->baraja->cartas->Count > 1) {
@@ -54,19 +64,27 @@ namespace YuGiOh {
 	
 	void BatallaEscena::ingresarEnemigo() {
 
-		if (cartas_activas_enemigo->Count == 3)
+		if (cartas_activas_enemigo->Count == 3) {
+			atacarAliadoActivo();
 			return;
+		}
 
 		for (int i = 0; i < enemigo->baraja->cartas->Count; i++)  {
 			if (enemigo->baraja->cartas[i]->vida > 0 && !enemigo->baraja->cartas[i]->activa) {
 				enemigo->baraja->cartas[i]->activa = true;
 				cartas_activas_enemigo->Add(enemigo->baraja->cartas[i]);
+				atacarAliadoActivo();
 				return;
 			}
 		}
 
 		if (cartas_activas_enemigo->Count == 0) {
+			mostrarBatalla(escena_buffer->Graphics);
+			escena_buffer->Render(Juego::graphics);
 			Dialogo::pausarYMostarMensaje("Ganaste este duelo!!!");
+			for (int i = 0; i < Marco::marco->baraja->cartas->Count; i++)
+				Marco::marco->baraja->cartas[i]->nivel += 1;
+
 			Dialogo::dialogo->devolver_a_escena = false;
 			Dialogo::dialogo->callback = gcnew Action(this, &BatallaEscena::terminarBatalla);
 			return;
@@ -74,7 +92,26 @@ namespace YuGiOh {
 	}
 
 	void BatallaEscena::ingresarAliado() {
+		if (cartas_activas_marco->Count == 3) {
+			return;
+		}
 
+		for (int i = 0; i < Marco::marco->baraja->cartas->Count; i++)  {
+			if (Marco::marco->baraja->cartas[i]->vida > 0 && !Marco::marco->baraja->cartas[i]->activa) {
+				cartas_activas_marco->Add(Marco::marco->baraja->cartas[i]);
+				Marco::marco->baraja->cartas[i]->activa = true;
+				return;
+			}
+		}
+
+		if (cartas_activas_marco->Count == 0) {
+			mostrarBatalla(escena_buffer->Graphics);
+			escena_buffer->Render(Juego::graphics);
+			Dialogo::pausarYMostarMensaje("Perdiste este duelo!!!");
+			Dialogo::dialogo->devolver_a_escena = false;
+			Dialogo::dialogo->callback = gcnew Action(this, &BatallaEscena::terminarBatalla);
+			return;
+		}
 	}
 
 	void BatallaEscena::atacarEnemigoActivo(int posicion) {
@@ -82,7 +119,6 @@ namespace YuGiOh {
 		escena_dibujada = false;
 
 		for (int i = 0; i < cartas_activas_marco->Count; i++)  {
-			if (cartas_activas_marco[i]->modo == Ataque)
 				ataque_total += cartas_activas_marco[i]->ataque;
 		}
 
@@ -91,16 +127,40 @@ namespace YuGiOh {
 		if (vida_final <= 0){
 			cartas_activas_enemigo[posicion]->vida = 0;
 			cartas_activas_enemigo[posicion]->activa = false;
+
 			cartas_activas_enemigo->RemoveAt(posicion);
+
 			ingresarEnemigo();
 			return;
 		}
 
+		atacarAliadoActivo();
 		cartas_activas_enemigo[posicion]->vida = vida_final;
 	}
 
-	void BatallaEscena::atacarAliadoActivo(int posicion) {
+	void BatallaEscena::atacarAliadoActivo() {
+		int ataque_total = 0;
+		escena_dibujada = false;
 
+		for (int i = 0; i < cartas_activas_enemigo->Count; i++)  {
+				ataque_total += cartas_activas_enemigo[i]->ataque;
+		}
+
+		int vida_final = cartas_activas_marco[0]->vida - ataque_total;
+
+		if (vida_final <= 0){
+			cartas_activas_marco[0]->vida = 0;
+			cartas_activas_marco[0]->activa = false;
+
+			cartas_activas_marco->RemoveAt(0);
+
+			ingresarAliado();
+			return;
+		}
+
+		cartas_activas_marco[0]->vida = vida_final;
+		mostrarBatalla(escena_buffer->Graphics);
+		escena_buffer->Render(Juego::graphics);
 	}
 
 	void BatallaEscena::teclaDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
@@ -109,7 +169,14 @@ namespace YuGiOh {
 				terminarBatalla();
 			}
 			else if (e->KeyCode == CONTROLES::ACTIVAR_TRAMPA) {
-				movimientos_restantes = 4;
+				for (int i = 0; i < Marco::marco->baraja->cartas->Count; i++) {
+					Marco::marco->baraja->cartas[i]->nivel += 1;
+					int nivel = Marco::marco->baraja->cartas[i]->nivel;
+					Marco::marco->baraja->cartas[i]->ataque = nivel * 10;
+					Marco::marco->baraja->cartas[i]->defensa = nivel * 5;
+					Marco::marco->baraja->cartas[i]->nivel = nivel;
+					Marco::marco->baraja->cartas[i]->vida = 20 + nivel * 10;
+				}
 				mostrarBatalla(escena_buffer->Graphics);
 				escena_buffer->Render(Juego::graphics);
 			}
@@ -140,7 +207,19 @@ namespace YuGiOh {
 				atacarEnemigoActivo(posicion);
 			}
 
+			Rectangle aliados_activos_rectangle = Rectangle(192, 360, 576, 192);
 
+			if (mouse_rectangle.IntersectsWith(aliados_activos_rectangle)) {
+
+				if ((x >= 336 && x < 408) || (x >= 552 && x < 624))
+					return;
+
+				int posicion = (x - 192) / 216;
+				
+				cartas_activas_marco[posicion]->modo = cartas_activas_marco[posicion]->modo == Ataque ? Defensa : Ataque;
+
+				atacarAliadoActivo();
+			}
 		}
 
 	}
@@ -162,7 +241,7 @@ namespace YuGiOh {
 		for (int i = 0; i < cartas_activas_marco->Count; i++) {
 			Carta ^carta = cartas_activas_marco[i];
 
-			carta->mostrarCarta(graphics, Rectangle(192 + i *216,360,CARTAS_WIDTH,CARTAS_HEIGHT));
+			carta->mostrarCarta(graphics, Rectangle(192 + i * 216, 360, CARTAS_WIDTH, CARTAS_HEIGHT));
 
 			graphics->DrawString(
 				"Ataque: " + carta->ataque,
@@ -180,6 +259,17 @@ namespace YuGiOh {
 				(float)360 + TAMANIO_LETRAS + 6,
 				StringFormat::GenericTypographic
 				);
+
+			String ^modo = carta->modo == Defensa ? "Defensa" : "Ataque";
+
+			graphics->DrawString(
+				"Modo: " + modo,
+				FUENTES::NIVEL,
+				gcnew SolidBrush(Color::White),
+				(float)192 + i * 216,
+				(float)360 + 2 * TAMANIO_LETRAS + 6,
+				StringFormat::GenericTypographic
+				);
 		}
 
 		for (int i = 0; i < cartas_activas_enemigo->Count; i++) {
@@ -188,7 +278,7 @@ namespace YuGiOh {
 			carta->mostrarCarta(graphics, Rectangle(192 + i * 216, 120, CARTAS_WIDTH, CARTAS_HEIGHT));
 
 			graphics->DrawString(
-				"Ataque: " + carta->nivel,
+				"Ataque: " + carta->ataque,
 				FUENTES::NIVEL,
 				gcnew SolidBrush(Color::White),
 				(float)192 + i * 216,
@@ -201,6 +291,16 @@ namespace YuGiOh {
 				gcnew SolidBrush(Color::White),
 				(float)192 + i * 216,
 				(float)120 + TAMANIO_LETRAS + 6,
+				StringFormat::GenericTypographic
+				);
+			String ^modo = carta->modo == Defensa ? "Defensa" : "Ataque";
+
+			graphics->DrawString(
+				"Modo: " + modo,
+				FUENTES::NIVEL,
+				gcnew SolidBrush(Color::White),
+				(float)192 + i * 216,
+				(float)120 + 2 * TAMANIO_LETRAS + 6,
 				StringFormat::GenericTypographic
 				);
 		}
