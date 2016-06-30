@@ -215,6 +215,11 @@ namespace YuGiOh {
 					return;
 
 				int posicion = (x - 192) / 216;
+
+				if (cartas_activas_marco->Count <= posicion) {
+					Dialogo::pausarYMostarMensaje("No hay ningun aliado en esta posicion!");
+					return;
+				}
 				
 				cartas_activas_marco[posicion]->modo = cartas_activas_marco[posicion]->modo == Ataque ? Defensa : Ataque;
 

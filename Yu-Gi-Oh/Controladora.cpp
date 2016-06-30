@@ -129,7 +129,6 @@ namespace YuGiOh {
 		IMAGENES::FONDO_TIENDA_COMPRAR = Image::FromFile("Imagenes\\Interfaces\\Tienda_Comprar.png");
 		IMAGENES::BATALLA = Image::FromFile("Imagenes\\Interfaces\\Batalla.png");
 
-		CONTROLES::CAMBIO_ESCENA = Keys::E;
 		CONTROLES::SALIR = Keys::Escape;
 		CONTROLES::MOVER_ARRIBA_1 = Keys::W;
 		CONTROLES::MOVER_ABAJO_1 = Keys::S;

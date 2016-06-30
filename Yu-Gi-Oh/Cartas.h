@@ -8,7 +8,6 @@ namespace YuGiOh {
 		Image^ imagen;
 		TiposDeCarta tipo;
 		ModoBatalla modo;
-		int posicion_anterior;
 		int experiencia;
 		bool activa;
 		int nivel;

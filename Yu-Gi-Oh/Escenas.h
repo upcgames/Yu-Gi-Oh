@@ -16,6 +16,7 @@ namespace YuGiOh {
 		bool escena_dibujada;
 		
 		BufferedGraphics ^escena_buffer;
+
 		KeyEventHandler ^onKeyDown;
 		KeyEventHandler ^onKeyUp;
 		MouseEventHandler ^onMouseClick;

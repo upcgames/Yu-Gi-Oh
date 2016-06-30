@@ -59,7 +59,7 @@ namespace YuGiOh {
 	}
 
 	MonedaObjeto::MonedaObjeto(Posicion ^posicion) : ObjetoAnimado(posicion) {
-		dinero_sorpresa = (Juego::aleatorio->Next(5) + 1);
+		dinero_sorpresa = (Juego::aleatorio->Next(5) + 1);// 1 al 5
 
 		sprite = gcnew Sprite(IMAGENES::MONEDA_SPRITE);
 		sprite->indice = 0;

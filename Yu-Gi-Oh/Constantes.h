@@ -49,7 +49,6 @@ namespace YuGiOh {
 
 	public ref class CONTROLES abstract sealed {
 	public:
-		static Keys CAMBIO_ESCENA;
 		static Keys SALIR;
 		static Keys MOVER_ARRIBA_1;
 		static Keys MOVER_ABAJO_1;

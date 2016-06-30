@@ -212,6 +212,7 @@ namespace YuGiOh {
 			gcnew MonedaObjeto(gcnew Posicion(17, 2, true)),
 			gcnew MonedaObjeto(gcnew Posicion(18, 7, true)),
 			gcnew MonedaObjeto(gcnew Posicion(18, 12, true))
+
 		});
 
 		generarCapaTerreno();

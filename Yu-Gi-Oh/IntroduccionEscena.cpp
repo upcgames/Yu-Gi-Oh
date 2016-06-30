@@ -56,6 +56,7 @@ namespace YuGiOh {
 				Dialogo::dialogo->terminarDeEscribir();
 				DesactivarEscena(this);
 				ActivarEscena(ESCENAS::campus);
+				return;
 			}
 
 			if (escena_dibujada) {

@@ -11,6 +11,7 @@ namespace YuGiOh {
 	public:
 		array<Terreno, 2> ^matriz_terreno;
 		List<Objeto ^> ^objetos;
+		
 		BufferedGraphics ^capa_terreno;
 
 		Objeto ^getObjeto(Posicion ^posicion);

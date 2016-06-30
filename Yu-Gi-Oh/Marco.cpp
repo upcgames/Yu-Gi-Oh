@@ -57,17 +57,22 @@ namespace YuGiOh {
 
 		Posicion ^siguiente_posicion = posicion->getSiguientePosicion(direccion, velocidad);
 		
+
+		// Colision para los bloques
 		if (marco->colisionaConMapaActual(siguiente_posicion, direccion))
 			return; // No avanza 
-
+		
+		// Colision para los objetos
 		Objeto ^siguiente_bloque = Mapa::mapa_actual->getObjeto(siguiente_posicion);
+		
+		// Colision para los profesor
 		Profesor ^siguiente_profesor = dynamic_cast<Profesor ^>(Mapa::mapa_actual->getProfesor(siguiente_posicion));
 
 		if (noHayONoExsite(siguiente_bloque)) {
 			if (noHayONoExsite(siguiente_profesor))
 				marco->avanzarUnPaso();
 			else {
-
+				// COLISION CON UN PROFESOR
 				Profesor ^profesor = siguiente_profesor;
 				marco->Detener();
 
@@ -100,6 +105,7 @@ namespace YuGiOh {
 
 		}
 		else {
+			// COLISION DE UN OBJETO
 			//Se choca con un objeto y se interactua con este
 			Objeto ^objeto_dinamico = siguiente_bloque;
 			bool debe_dar_un_paso_mas = objeto_dinamico->interactuarConMarco();
